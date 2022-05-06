@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Box } from "@chakra-ui/react";
 
 type SpotPriceProps = {
   asset: string;
@@ -16,11 +17,11 @@ const calculateVariation = (price: number, openPrice: number): number => {
 
 const SpotPrice: FC<SpotPriceProps> = (props) => {
   return (
-    <span>
+    <Box>
       {props.asset} {props.price}
       {props.symbol}{" "}
       {calculateVariation(props.price, props.openPrice).toPrecision(2)}%
-    </span>
+    </Box>
   );
 };
 
