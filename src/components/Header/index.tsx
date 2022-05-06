@@ -15,7 +15,7 @@ import SpotPrice from "./SpotPrice";
 
 const Header: FC = () => {
   return (
-    <Flex bg="grey.100">
+    <Flex bg="grey">
       <Box
         display="flex"
         alignItems="center"
@@ -26,7 +26,7 @@ const Header: FC = () => {
         <SpotPrice asset={"ARGENT"} price={21.25} symbol={"€"} openPrice={22} />
       </Box>
       <Spacer />
-      <Box marginEnd={{ base: "10px", md: "75px" }}>
+      <Box marginEnd={{ base: "10px", md: "75px" }} display={{base: "none", md: "inherit"}}>
         <MyAccount />
         <Menu>
           <MenuButton
