@@ -8,12 +8,13 @@ import {
   MenuList,
 } from "@chakra-ui/react";
 import { FC } from "react";
+import SpotPrice from "./SpotPrice";
 
 const Header: FC = () => {
   return (
     <Flex>
-      <span>OR 1 783,85 € 0,14%</span>
-      <span>ARGENT 21,33 € 0,19%</span>
+      <SpotPrice asset={"OR"} price={1783.85} symbol={"€"} openPrice={1780} />
+      <SpotPrice asset={"ARGENT"} price={21.25} symbol={"€"} openPrice={22} />
       <span>CONTACT</span>
       <Menu>
         <MenuButton as={Button} variant="ghost" rightIcon={<ChevronDownIcon />}>
