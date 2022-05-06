@@ -15,7 +15,7 @@ import SpotPrice from "./SpotPrice";
 
 const Header: FC = () => {
   return (
-    <Flex bg="red.100">
+    <Flex bg="grey.100">
       <Box
         display="flex"
         alignItems="center"
