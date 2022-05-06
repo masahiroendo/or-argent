@@ -1,9 +1,12 @@
-import React from "react";
+import { Button } from "@chakra-ui/react";
+
+import Header from "./components/Header";
 
 function App() {
   return (
     <div>
-      <header>Or-Argent App</header>
+      <Header />
+      <Button>Chakra Box</Button>
     </div>
   );
 }
