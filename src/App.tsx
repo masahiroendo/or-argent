@@ -1,15 +1,16 @@
-import { Flex } from "@chakra-ui/react";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Main from "./components/Main";
+import { Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Contact from './pages/Contact';
+import Home from './pages/Home';
 
 function App() {
   return (
-    <Flex direction="column">
-      <Header />
-      <Main />
-      <Footer />
-    </Flex>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route path="" element={<Home />} />
+        <Route path="contact" element={<Contact />} />
+      </Route>
+    </Routes>
   );
 }
 
