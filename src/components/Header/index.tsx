@@ -1,8 +1,10 @@
 import { Box, Flex, Show, Spacer } from '@chakra-ui/react';
 import { FC } from 'react';
+import { NavLink } from 'react-router-dom';
 import CurrencySelect from './CurrencySelect';
 import LanguageSelect from './LanguageSelect';
 import SpotPrice from './SpotPrice';
+import './style.scss';
 
 const Header: FC = () => {
   return (
@@ -13,7 +15,11 @@ const Header: FC = () => {
       </Box>
       <Spacer />
       <Box>
-        <Show above="md">Contact</Show>
+        <Show above="md">
+          <NavLink to="contact" className={({ isActive }) => (isActive ? 'active' : undefined)}>
+            Contact
+          </NavLink>
+        </Show>
         <LanguageSelect />
         <CurrencySelect />
       </Box>
