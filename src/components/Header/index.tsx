@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import CurrencySelect from './CurrencySelect';
 import LanguageSelect from './LanguageSelect';
 import SpotPrice from './SpotPrice';
-import './style.scss';
+import styles from './style.module.scss';
 
 const Header: FC = () => {
   return (
@@ -16,7 +16,7 @@ const Header: FC = () => {
       <Spacer />
       <Box>
         <Show above="md">
-          <NavLink to="contact" className={({ isActive }) => (isActive ? 'active' : undefined)}>
+          <NavLink to="contact" className={({ isActive }) => (isActive ? styles.active : undefined)}>
             Contact
           </NavLink>
         </Show>

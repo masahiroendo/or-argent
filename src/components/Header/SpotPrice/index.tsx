@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { HStack } from '@chakra-ui/react';
 import { ArrowDownIcon, ArrowUpIcon } from '@chakra-ui/icons';
 
-import './style.scss';
+import style from './style.module.scss';
 
 type SpotPriceProps = {
   asset: string;
@@ -24,11 +24,11 @@ const SpotPrice: FC<SpotPriceProps> = (props) => {
   const variationStyle = variation < 0 ? 'down' : 'up';
 
   return (
-    <HStack className="spot-price">
+    <HStack className={style['spot-price']}>
       <span>{props.asset}</span> <span>{props.price}</span>
       <span>{props.symbol}</span>{' '}
       {variation < 0 ? <ArrowDownIcon viewBox="0 0 24 24" color="red" /> : <ArrowUpIcon color="green" />}
-      <span className={variationStyle}>{variation.toPrecision(2)}%</span>
+      <span className={style[variationStyle]}>{variation.toPrecision(2)}%</span>
     </HStack>
   );
 };
