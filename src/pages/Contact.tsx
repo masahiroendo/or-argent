@@ -1,10 +1,12 @@
-import { FC } from 'react';
+import { FC, Fragment } from 'react';
+import ContactForm from '../components/Main/ContactForm';
 
 const Contact: FC = () => {
   return (
-    <div>
+    <Fragment>
       <h1>Contact page</h1>
-    </div>
+      <ContactForm />
+    </Fragment>
   );
 };
 
