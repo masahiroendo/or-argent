@@ -1,4 +1,4 @@
-import { extendTheme } from '@chakra-ui/react';
+import { extendTheme, type ThemeConfig } from '@chakra-ui/react';
 
 import '@fontsource/playfair-display/400.css';
 import '@fontsource/playfair-display/400-italic.css';
@@ -13,5 +13,14 @@ const theme = extendTheme({
     body: `'Playfair Display', serif`,
   },
 });
+
+// 2. Add your color mode config
+const config: ThemeConfig = {
+  initialColorMode: 'light',
+  useSystemColorMode: true,
+};
+
+// 3. extend the theme
+export const configTheme = extendTheme({ config });
 
 export default theme;

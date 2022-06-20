@@ -6,12 +6,16 @@ import Layout from '../components/Layout';
 import Contact from '../pages/Contact';
 import Home from '../pages/Home';
 import NotFound from '../pages/NotFound';
+import GoldPage from '../pages/GoldPage';
+import SilverPage from '../pages/SilverPage';
 
 const AppRoutes: FC = () => {
   return (
     <Routes>
       <Route path={ROUTES.HOME} element={<Layout />}>
         <Route path="" element={<Home />} />
+        <Route path={ROUTES.GOLD} element={<GoldPage />} />
+        <Route path={ROUTES.SILVER} element={<SilverPage />} />
         <Route path={ROUTES.CONTACT} element={<Contact />} />
       </Route>
       <Route path="*" element={<NotFound />} />
