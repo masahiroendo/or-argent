@@ -1,4 +1,4 @@
-import { FormEvent, useReducer, useState } from 'react';
+import { FormEvent, useReducer } from 'react';
 
 enum actions {
   input = 'INPUT',
@@ -28,7 +28,7 @@ const inputStateReducer = (state: InputState, action: InputAction) => {
     case actions.blur:
       return { value: state.value, isTouched: true };
     case actions.reset:
-      return { value: '', isTouched: false };
+      return initialInputState;
   }
   return initialInputState;
 };

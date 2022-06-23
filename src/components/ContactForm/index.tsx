@@ -1,9 +1,11 @@
 import { FC, FormEvent } from 'react';
-import styles from './styleForForm.module.scss';
 import useInput from '../../hooks/use-input';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../router/constant';
 import { Button, Text, Textarea } from '@chakra-ui/react';
+import { EmailIcon } from '@chakra-ui/icons';
+
+import styles from './styleForForm.module.scss';
 
 const inputCheck = (value: string) => value.trim() !== '';
 const emailCheck = (value: string) => value.includes('@');
@@ -120,8 +122,8 @@ const ContactForm: FC = () => {
           />
           {messageHasError && <p className={styles['error-text']}>Type a message to confirm</p>}
         </fieldset>
-        <Button disabled={!formIsValid} type="submit">
-          Send
+        <Button disabled={!formIsValid} type="submit" leftIcon={<EmailIcon />} colorScheme="teal" variant="solid">
+          Email
         </Button>
       </div>
     </form>
