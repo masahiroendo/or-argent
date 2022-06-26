@@ -1,10 +1,14 @@
-import { FC, Fragment, PropsWithChildren } from 'react';
+import { FC, Fragment, PropsWithChildren, useCallback, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import classes from './Modal.module.scss';
 
-const Backdrop: FC = (props) => {
-  return <div className={classes.backdrop} />;
+type BackdropProps = {
+  onCancel: () => void;
+};
+
+const Backdrop: FC<PropsWithChildren<BackdropProps>> = ({ onCancel }) => {
+  return <div className={classes.backdrop} onClick={onCancel} />;
 };
 
 type ModalOverlayProps = {};
@@ -19,13 +23,24 @@ const ModalOverlay: FC<PropsWithChildren<ModalOverlayProps>> = (props) => {
 
 const portalElement = document.getElementById('overlays');
 
-type ModalProps = {};
+type ModalProps = {
+  onCancel: () => void;
+};
 
-const Modal: FC<PropsWithChildren<ModalProps>> = (props) => {
+const Modal: FC<PropsWithChildren<ModalProps>> = ({ onCancel, children }) => {
+  const handleKeyDown = useCallback((event: KeyboardEvent) => {
+    event.key === 'Escape' && onCancel();
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
+
   return (
     <Fragment>
-      {ReactDOM.createPortal(<Backdrop />, portalElement!)};
-      {ReactDOM.createPortal(<ModalOverlay>{props.children}</ModalOverlay>, portalElement!)};
+      {ReactDOM.createPortal(<Backdrop onCancel={onCancel} />, portalElement!)};
+      {ReactDOM.createPortal(<ModalOverlay>{children}</ModalOverlay>, portalElement!)};
     </Fragment>
   );
 };
