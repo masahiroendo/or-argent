@@ -21,6 +21,15 @@ const initialInputState: InputState = {
   isTouched: false,
 };
 
+export type UseInputType = {
+  value: string;
+  isValid: boolean;
+  hasError: boolean;
+  valueChangeHandler: (event: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  inputBlurHandler: (event: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  reset: () => void;
+};
+
 const inputStateReducer = (state: InputState, action: InputAction) => {
   switch (action.type) {
     case actions.input:
@@ -33,7 +42,7 @@ const inputStateReducer = (state: InputState, action: InputAction) => {
   return initialInputState;
 };
 
-const useInput = (validationFunction: (value: string) => boolean) => {
+const useInput = (validationFunction: (value: string) => boolean): UseInputType => {
   const [inputState, dispatch] = useReducer(inputStateReducer, initialInputState);
 
   const valueIsValid = validationFunction(inputState.value);
