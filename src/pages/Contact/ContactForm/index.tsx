@@ -2,7 +2,7 @@ import { FC, FormEvent, useContext } from 'react';
 import { Button, Text, Textarea } from '@chakra-ui/react';
 import { EmailIcon } from '@chakra-ui/icons';
 
-import styles from './styleForForm.module.scss';
+import styles from './styleContactForm.module.scss';
 import { FormContext } from '../FormContext';
 
 export type FormContent = {

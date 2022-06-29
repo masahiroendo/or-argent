@@ -29,9 +29,9 @@
 }
 
 .control-group {
-  // display: flex;
-  // column-gap: 1rem;
-  // flex-wrap: wrap;
+  display: flex;
+  column-gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .control-group .form-control {
@@ -84,4 +84,20 @@ button:disabled:active {
 
 .error-text {
   color: #b40e0e;
+}
+
+[class*='col-'] {
+  float: left;
+  padding: 15px;
+}
+
+@media only screen and (max-width: 768px) {
+  [class*='col-'] {
+    width: 100%;
+  }
+}
+
+/* for desktop: */
+.col-3 {
+  width: 25%;
 }
