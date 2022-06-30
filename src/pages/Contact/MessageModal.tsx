@@ -30,7 +30,7 @@ const MessageModal: FC<PropsWithChildren<MessageModalProps>> = ({ onCancel }) =>
   const [error, setError] = useState<ModalError | null>(null);
 
   const {
-    fields: { firstName, lastName, email, message },
+    fields: { firstName, lastName, telephone, email, subject, message },
     updateSentContent,
     resetContent,
     sentContent,
@@ -47,13 +47,22 @@ const MessageModal: FC<PropsWithChildren<MessageModalProps>> = ({ onCancel }) =>
       setSent(false);
       setIsSending(true);
       await sentEmailWithContent(
-        { firstName: firstName.value, lastName: lastName.value, email: email.value, message: message.value },
+        {
+          firstName: firstName.value,
+          lastName: lastName.value,
+          telephone: telephone.value,
+          email: email.value,
+          subject: subject.value,
+          message: message.value,
+        },
         () => {
           resetContent();
           updateSentContent({
             firstName: firstName.value,
             lastName: lastName.value,
+            telephone: telephone.value,
             email: email.value,
+            subject: subject.value,
             message: message.value,
           });
         },

@@ -28,9 +28,12 @@ type ModalProps = {
 };
 
 const Modal: FC<PropsWithChildren<ModalProps>> = ({ onClose, children }) => {
-  const handleKeyDown = useCallback((event: KeyboardEvent) => {
-    event.key === 'Escape' && onClose();
-  }, []);
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent) => {
+      event.key === 'Escape' && onClose();
+    },
+    [onClose],
+  );
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
