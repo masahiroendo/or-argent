@@ -3,4 +3,5 @@ export const ROUTES = Object.freeze({
   CONTACT: 'contact',
   GOLD: 'gold',
   SILVER: 'silver',
+  LOGIN: 'login',
 });

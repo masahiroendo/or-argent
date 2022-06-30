@@ -1,42 +1,70 @@
-.form-control {
-  margin-bottom: 1rem;
-}
+@use 'sass:map';
 
-.form-control input,
-.form-control label {
-  display: block;
-}
+$maxWidth: 1340px;
 
-.form-control label {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
+.contact-container {
+  max-width: $maxWidth;
 
-.form-control input,
-.form-control select {
-  font: inherit;
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  width: 20rem;
-  max-width: 100%;
-}
+  .contact-links-container {
+    padding: 0.6rem;
+    .contact-links {
+      background-color: silver;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
 
-.form-control input:focus {
-  outline: none;
-  border-color: #240370;
-  background-color: #e0d4fd;
-}
+  .contact-form-container {
+    padding: 0.6rem;
+    .contact-form {
+      background-color: #f0d7a5;
 
-.control-group {
-  display: flex;
-  column-gap: 1rem;
-  flex-wrap: wrap;
-}
+      .control-group {
+        display: flex;
+        column-gap: 1rem;
+        flex-wrap: wrap;
 
-.control-group .form-control {
-  min-width: 15rem;
-  // flex: 1;
+        .form-control {
+          margin-bottom: 1rem;
+
+          input {
+            display: block;
+            font: inherit;
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 100%;
+            &:focus {
+              outline: none;
+              border-color: #240370;
+              background-color: #e0d4fd;
+            }
+          }
+
+          textarea {
+            display: block;
+            font: inherit;
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 25rem;
+            width: 100%;
+            &:focus {
+              outline: none;
+              border-color: #240370;
+              background-color: #e0d4fd;
+            }
+          }
+
+          label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+          }
+        }
+      }
+    }
+  }
 }
 
 button {
@@ -64,17 +92,15 @@ button:disabled:active {
   cursor: not-allowed;
 }
 
-.form-actions {
-  text-align: right;
-}
-
-.form-actions button {
-  margin-left: 1rem;
-}
-
-.invalid input {
-  border: 1px solid #b40e0e;
-  background-color: #fddddd;
+.invalid {
+  textarea {
+    border: 1px solid #b40e0e;
+    background-color: #fddddd;
+  }
+  input {
+    border: 1px solid #b40e0e;
+    background-color: #fddddd;
+  }
 }
 
 .invalid input:focus {
@@ -86,18 +112,67 @@ button:disabled:active {
   color: #b40e0e;
 }
 
+$breakpoints: (
+  'phone': 360px,
+  'tablet': 768px,
+  'desktop': 1366px,
+  'LGdesktop': 1920px,
+) !default;
+
 [class*='col-'] {
   float: left;
-  padding: 15px;
-}
-
-@media only screen and (max-width: 768px) {
-  [class*='col-'] {
-    width: 100%;
-  }
+  padding: 10px;
 }
 
 /* for desktop: */
+.col-1 {
+  width: 8.33%;
+}
+.col-2 {
+  width: 16.66%;
+}
 .col-3 {
   width: 25%;
+}
+.col-4 {
+  width: 33.33%;
+}
+.col-5 {
+  width: 41.66%;
+}
+.col-6 {
+  width: 50%;
+}
+.col-7 {
+  width: 58.33%;
+}
+.col-8 {
+  width: 66.66%;
+}
+.col-9 {
+  width: 75%;
+}
+.col-10 {
+  width: 83.33%;
+}
+.col-11 {
+  width: 91.66%;
+}
+.col-12 {
+  width: 100%;
+}
+
+@media only screen and (max-width: map.get($breakpoints, 'tablet')) {
+  [class*='col-'] {
+    width: 100%;
+  }
+
+  .contact-links {
+    .col-2 {
+      width: 16.66%;
+    }
+    .col-10 {
+      width: 83.33%;
+    }
+  }
 }
