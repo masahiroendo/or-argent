@@ -1,4 +1,4 @@
-import { FormEvent, useReducer, useState } from 'react';
+import { FormEvent, useReducer } from 'react';
 
 enum actions {
   input = 'INPUT',
@@ -21,6 +21,15 @@ const initialInputState: InputState = {
   isTouched: false,
 };
 
+export type UseInputType = {
+  value: string;
+  isValid: boolean;
+  hasError: boolean;
+  valueChangeHandler: (event: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  inputBlurHandler: (event: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  reset: () => void;
+};
+
 const inputStateReducer = (state: InputState, action: InputAction) => {
   switch (action.type) {
     case actions.input:
@@ -28,12 +37,12 @@ const inputStateReducer = (state: InputState, action: InputAction) => {
     case actions.blur:
       return { value: state.value, isTouched: true };
     case actions.reset:
-      return { value: '', isTouched: false };
+      return initialInputState;
   }
   return initialInputState;
 };
 
-const useInput = (validationFunction: (value: string) => boolean) => {
+const useInput = (validationFunction: (value: string) => boolean): UseInputType => {
   const [inputState, dispatch] = useReducer(inputStateReducer, initialInputState);
 
   const valueIsValid = validationFunction(inputState.value);
