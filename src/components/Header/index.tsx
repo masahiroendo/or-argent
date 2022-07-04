@@ -1,4 +1,4 @@
-import { Box, Flex, Show, Spacer } from '@chakra-ui/react';
+import { Box, Button, ButtonGroup, Flex, Show, Spacer } from '@chakra-ui/react';
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import CurrencySelect from './CurrencySelect';
@@ -19,16 +19,16 @@ const Header: FC = () => {
         </NavLink>
       </Box>
       <Spacer />
-      <Box>
-        <Show above="md">
+      <Show above="sm">
+        <ButtonGroup p={1}>
           <NavLink to="contact" className={({ isActive }) => (isActive ? styles.active : undefined)}>
-            Contact
+            <Button>Contact</Button>
           </NavLink>
-        </Show>
-        <LanguageSelect />
-        <CurrencySelect />
-        <ThemeSwitchBtn />
-      </Box>
+          <LanguageSelect />
+          <CurrencySelect />
+          <ThemeSwitchBtn />
+        </ButtonGroup>
+      </Show>
     </Flex>
   );
 };
