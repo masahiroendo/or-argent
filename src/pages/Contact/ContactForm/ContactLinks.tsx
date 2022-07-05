@@ -25,7 +25,7 @@ const ContactLinks: FC = () => {
               <ReactCountryFlag countryCode="GB" svg /> <a href="tel:++442078941234">+44-20-7894-1234</a>
             </div>
             <div>
-              <Link to={ROUTES.CALLBACK}>Être rappelé</Link>
+              <Link to={`/${ROUTES.CALLBACK}`}>Être rappelé</Link>
             </div>
           </div>
         </div>
