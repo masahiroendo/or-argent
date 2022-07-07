@@ -12,12 +12,14 @@ import {
   SimpleGrid,
   Stack,
 } from '@chakra-ui/react';
-import { FC, FormEvent } from 'react';
+import { ChangeEvent, FC, FormEvent, useState } from 'react';
 
 import CallBackHeader from './CallBackHeader';
 import useInput from '../../../hooks/use-input';
 import { capitalize } from '../../../utils/string-utils';
+import { sendEmail } from '../../../services/email';
 
+const to = 'vemih35989@meidir.com'; // get a disposable email address from https://temp-mail.org/en/
 const weekDays: string[] = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi'];
 const timeSlots: string[] = ['matinée', 'midi', 'soir'];
 const timeZoneOptions = [
@@ -44,10 +46,89 @@ const CallBack: FC = () => {
   const phoneInput = useInput((value: string) => value.trim() !== '');
   const emailInput = useInput((value: string) => value.includes('@'));
   const timeZoneSelect = useInput((value: string) => value.trim() !== '');
+  const [checkedWeekDays, setCheckedWeekDays] = useState<string[]>([]);
+  const [noWeekDaysChecked, setNoWeekDaysChecked] = useState(false);
+  const [checkedTimeSlot, setCheckedTimeSlot] = useState<string[]>([]);
+  const [noTimeSlotChecked, setNoTimeSlotChecked] = useState(false);
 
-  const handleSubmit = (event: FormEvent) => {
-    console.table([nameInput.value, phoneInput.value, emailInput.value, timeZoneSelect.value]);
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+    const payload = {
+      name: nameInput.value,
+      phone: phoneInput.value,
+      email: emailInput.value,
+      timeZones: timeZoneSelect.value,
+      weekDays: checkedWeekDays,
+      timeSlots: checkedTimeSlot,
+    };
+    if (!isValidForm()) {
+      return;
+    }
+
+    try {
+      await sendEmail([to], 'Contact Request from or-argent', payload);
+    } catch (err) {
+      console.error('Error while sending email', err);
+    }
+  };
+
+  const handleWeekDaysChange = (day: string) => (e: ChangeEvent<HTMLInputElement>) => {
+    // e.target.checked
+    //   ? setCheckedWeekDays([...checkedWeekDays].concat(day))
+    //   : setCheckedWeekDays([...checkedWeekDays].filter((d) => d !== day));
+    let update = [...checkedWeekDays];
+    if (e.target.checked) {
+      update = update.concat(day);
+    } else {
+      update = update.filter((d) => d !== day);
+    }
+    setCheckedWeekDays(update);
+    setNoWeekDaysChecked(!update.length);
+  };
+
+  const handleTimeSlotChange = (time: string) => (e: ChangeEvent<HTMLInputElement>) => {
+    let update = [...checkedTimeSlot];
+    if (e.target.checked) {
+      update = update.concat(time);
+    } else {
+      update = update.filter((t) => t !== time);
+    }
+    setCheckedTimeSlot(update);
+    setNoTimeSlotChecked(!update.length);
+  };
+
+  // const isInvalidForm = () => {
+  //   return (
+  //     !nameInput.value ||
+  //     nameInput.hasError ||
+  //     !phoneInput.value ||
+  //     phoneInput.hasError ||
+  //     !emailInput.value ||
+  //     emailInput.hasError ||
+  //     !timeZoneSelect.value ||
+  //     timeZoneSelect.hasError ||
+  //     !checkedWeekDays.length ||
+  //     noWeekDaysChecked ||
+  //     !checkedTimeSlot.length ||
+  //     noTimeSlotChecked
+  //   );
+  // };
+
+  const isValidForm = () => {
+    return (
+      nameInput.value &&
+      !nameInput.hasError &&
+      phoneInput.value &&
+      !phoneInput.hasError &&
+      emailInput.value &&
+      !emailInput.hasError &&
+      checkedWeekDays.length &&
+      !noWeekDaysChecked &&
+      checkedTimeSlot.length &&
+      !noTimeSlotChecked &&
+      timeZoneSelect.value &&
+      !timeZoneSelect.hasError
+    );
   };
 
   return (
@@ -91,27 +172,35 @@ const CallBack: FC = () => {
             />
             <FormErrorMessage>Please enter your email</FormErrorMessage>
           </FormControl>
-          <FormControl>
+          <FormControl isInvalid={noWeekDaysChecked}>
             <CheckboxGroup>
               <FormLabel htmlFor="week-day">Jour de la semaine</FormLabel>
               <Stack spacing={[1, 5]} direction={['column', 'row']}>
-                {weekDays.map((day) => (
-                  <Checkbox key={day} name="week-day" value={day}>
-                    {capitalize(day)}
-                  </Checkbox>
-                ))}
+                {weekDays.map((day) => {
+                  const isChecked = checkedWeekDays.includes(day);
+                  return (
+                    <Checkbox key={day} name="week-day" isChecked={isChecked} onChange={handleWeekDaysChange(day)}>
+                      {capitalize(day)}
+                    </Checkbox>
+                  );
+                })}
               </Stack>
             </CheckboxGroup>
+            <FormErrorMessage>Please select at least one weekday</FormErrorMessage>
           </FormControl>
-          <FormControl>
+          <FormControl isInvalid={noTimeSlotChecked}>
             <FormLabel htmlFor="time-slot">Moment de la journée</FormLabel>
             <Stack spacing={[1, 5]} direction={['column', 'row']}>
-              {timeSlots.map((time) => (
-                <Checkbox key={time} name="time-slot" value={time}>
-                  {capitalize(time)}
-                </Checkbox>
-              ))}
+              {timeSlots.map((time) => {
+                const isChecked = checkedTimeSlot.includes(time);
+                return (
+                  <Checkbox key={time} name="time-slot" isChecked={isChecked} onChange={handleTimeSlotChange(time)}>
+                    {capitalize(time)}
+                  </Checkbox>
+                );
+              })}
             </Stack>
+            <FormErrorMessage>Please select a time slot</FormErrorMessage>
           </FormControl>
           <FormControl isInvalid={timeZoneSelect.hasError}>
             <FormLabel htmlFor="time-zone">Fuseau Horaire</FormLabel>
@@ -120,12 +209,12 @@ const CallBack: FC = () => {
               options={timeZoneOptions}
               isClearable={true}
               onChange={(selected) => {
-                timeZoneSelect.anyChangeHandler && timeZoneSelect.anyChangeHandler(selected?.label);
+                timeZoneSelect.anyChangeHandler && timeZoneSelect.anyChangeHandler(selected?.label || '');
               }}></Select>
           </FormControl>
         </SimpleGrid>
-        <Flex justifyContent="center">
-          <Button variant="ghost" type="submit" style={{ borderRadius: '25px' }}>
+        <Flex justifyContent="center" mt={'1rem'}>
+          <Button disabled={!isValidForm()} variant="ghost" type="submit" style={{ borderRadius: '25px' }}>
             Demande de rappel
           </Button>
         </Flex>
