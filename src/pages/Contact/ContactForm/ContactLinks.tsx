@@ -1,4 +1,5 @@
 import { EmailIcon, Icon, PhoneIcon } from '@chakra-ui/icons';
+import { useColorModeValue } from '@chakra-ui/react';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import ReactCountryFlag from 'react-country-flag';
@@ -10,9 +11,11 @@ import { ROUTES } from '../../../router/constant';
 import styles from './styleContactForm.module.scss';
 
 const ContactLinks: FC = () => {
+  const bg = useColorModeValue('silver', '#221c19');
+
   return (
     <div className={`${styles['contact-links-container']} ${styles['col-3']}`}>
-      <div className={styles['contact-links']}>
+      <div className={styles['contact-links']} style={{ backgroundColor: bg }}>
         <div className={styles['col-12']}>
           <div className={styles['col-2']}>
             <PhoneIcon />

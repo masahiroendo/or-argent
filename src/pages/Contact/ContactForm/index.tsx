@@ -1,5 +1,5 @@
 import { FC, FormEvent, useContext } from 'react';
-import { Button } from '@chakra-ui/react';
+import { Button, useColorModeValue } from '@chakra-ui/react';
 import { EmailIcon } from '@chakra-ui/icons';
 
 import ContactLinks from './ContactLinks';
@@ -24,6 +24,8 @@ const ContactForm: FC<ContactFormProps> = ({ onSubmitCallback }) => {
   const {
     fields: { firstName, lastName, telephone, email, subject, message },
   } = useContext(FormContext);
+
+  const formBg = useColorModeValue('#f0d7a5', '#191F22');
 
   let formIsValid = false;
 
@@ -81,7 +83,10 @@ const ContactForm: FC<ContactFormProps> = ({ onSubmitCallback }) => {
       <ContactLinks />
 
       <div className={`${styles['contact-form-container']} ${styles['col-9']}`}>
-        <form onSubmit={formSubmitHandler} className={`${styles['contact-form']} ${styles['col-9']}`}>
+        <form
+          onSubmit={formSubmitHandler}
+          className={`${styles['contact-form']} ${styles['col-9']}`}
+          style={{ backgroundColor: formBg }}>
           <div className={styles['control-group']}>
             <div className={styles['col-12']}>
               <fieldset className={firstNameClasses}>
