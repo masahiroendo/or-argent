@@ -1,6 +1,10 @@
 import { FC } from 'react';
-import { PhoneIcon } from '@chakra-ui/icons';
+import { EmailIcon, PhoneIcon } from '@chakra-ui/icons';
 import { Box, Heading, SimpleGrid, Text } from '@chakra-ui/react';
+import { FaCommentAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
+import { ROUTES } from '../../../router/constant';
 
 const CallBackHeader: FC = () => {
   return (
@@ -18,16 +22,27 @@ const CallBackHeader: FC = () => {
         <Heading as="h2" size="md">
           Être rappelé
         </Heading>
+        <Text>
+          <Link to={`/${ROUTES.CALLBACK}`}>Cliquez ici</Link>
+        </Text>
       </Box>
       <Box height="80px">
         <Heading as="h2" size="md">
           Email
         </Heading>
+        <Text>
+          <EmailIcon />
+          <a href="mailto:support@goldsilver.fr">support@goldsilver.fr</a>
+        </Text>
       </Box>
       <Box height="80px">
         <Heading as="h2" size="md">
           Messagerie sécurisée
         </Heading>
+        <Text>
+          <FaCommentAlt style={{ display: 'unset' }} />
+          <Link to={`/${ROUTES.LOGIN}`}>Cliquez ici</Link>
+        </Text>
       </Box>
     </SimpleGrid>
   );

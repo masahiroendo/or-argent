@@ -73,9 +73,6 @@ const CallBack: FC = () => {
   };
 
   const handleWeekDaysChange = (day: string) => (e: ChangeEvent<HTMLInputElement>) => {
-    // e.target.checked
-    //   ? setCheckedWeekDays([...checkedWeekDays].concat(day))
-    //   : setCheckedWeekDays([...checkedWeekDays].filter((d) => d !== day));
     let update = [...checkedWeekDays];
     if (e.target.checked) {
       update = update.concat(day);
@@ -96,23 +93,6 @@ const CallBack: FC = () => {
     setCheckedTimeSlot(update);
     setNoTimeSlotChecked(!update.length);
   };
-
-  // const isInvalidForm = () => {
-  //   return (
-  //     !nameInput.value ||
-  //     nameInput.hasError ||
-  //     !phoneInput.value ||
-  //     phoneInput.hasError ||
-  //     !emailInput.value ||
-  //     emailInput.hasError ||
-  //     !timeZoneSelect.value ||
-  //     timeZoneSelect.hasError ||
-  //     !checkedWeekDays.length ||
-  //     noWeekDaysChecked ||
-  //     !checkedTimeSlot.length ||
-  //     noTimeSlotChecked
-  //   );
-  // };
 
   const isValidForm = () => {
     return (
@@ -214,7 +194,7 @@ const CallBack: FC = () => {
           </FormControl>
         </SimpleGrid>
         <Flex justifyContent="center" mt={'1rem'}>
-          <Button disabled={!isValidForm()} variant="ghost" type="submit" style={{ borderRadius: '25px' }}>
+          <Button disabled={!isValidForm()} variant="solid" type="submit" style={{ borderRadius: '25px' }}>
             Demande de rappel
           </Button>
         </Flex>
