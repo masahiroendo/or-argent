@@ -8,6 +8,7 @@ import Home from '../pages/Home';
 import NotFound from '../pages/NotFound';
 import GoldPage from '../pages/GoldPage';
 import SilverPage from '../pages/SilverPage';
+import CallBack from '../pages/Contact/CallBack';
 
 const AppRoutes: FC = () => {
   return (
@@ -17,6 +18,7 @@ const AppRoutes: FC = () => {
         <Route path={ROUTES.GOLD} element={<GoldPage />} />
         <Route path={ROUTES.SILVER} element={<SilverPage />} />
         <Route path={ROUTES.CONTACT} element={<Contact />} />
+        <Route path={ROUTES.CALLBACK} element={<CallBack />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

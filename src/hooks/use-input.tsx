@@ -25,6 +25,7 @@ export type UseInputType = {
   value: string;
   isValid: boolean;
   hasError: boolean;
+  anyChangeHandler?: (event: any) => void;
   valueChangeHandler: (event: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   inputBlurHandler: (event: FormEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   reset: () => void;
@@ -56,6 +57,10 @@ const useInput = (validationFunction: (value: string) => boolean): UseInputType 
     dispatch({ type: actions.blur, value: '' });
   };
 
+  const anyChangeHandler = (value: any) => {
+    dispatch({ type: actions.input, value });
+  };
+
   const reset = () => {
     dispatch({ type: actions.reset, value: '' });
   };
@@ -64,6 +69,7 @@ const useInput = (validationFunction: (value: string) => boolean): UseInputType 
     value: inputState.value,
     isValid: valueIsValid,
     hasError,
+    anyChangeHandler,
     valueChangeHandler,
     inputBlurHandler,
     reset,

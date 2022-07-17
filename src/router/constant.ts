@@ -4,4 +4,5 @@ export const ROUTES = Object.freeze({
   GOLD: 'gold',
   SILVER: 'silver',
   LOGIN: 'login',
+  CALLBACK: 'callback',
 });
