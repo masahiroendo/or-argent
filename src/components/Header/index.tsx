@@ -61,10 +61,10 @@ const Header: FC = () => {
   return (
     <Flex bg="grey.100" paddingX={{ base: '10px', md: '25px', lg: '75px' }}>
       <Box display="flex" alignItems="center" gap={2}>
-        <NavLink to="Gold" className={({ isActive }) => (isActive ? styles.active : undefined)}>
+        <NavLink to="Metal/Gold" className={({ isActive }) => (isActive ? styles.active : undefined)}>
           <SpotPrice asset={'OR'} price={goldSpot.price} symbol={'€'} openPrice={goldSpot.open} />
         </NavLink>
-        <NavLink to="Silver" className={({ isActive }) => (isActive ? styles.active : undefined)}>
+        <NavLink to="Metal/Silver" className={({ isActive }) => (isActive ? styles.active : undefined)}>
           <SpotPrice asset={'ARGENT'} price={silverSpot.price} symbol={'€'} openPrice={silverSpot.open} />
         </NavLink>
       </Box>

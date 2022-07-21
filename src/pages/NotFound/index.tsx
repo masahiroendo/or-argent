@@ -10,7 +10,7 @@ import style from './style.module.scss';
 const NotFound: FC = () => {
   return (
     <div className={style.container}>
-      <h1>NotFound</h1>
+      <h1>Not Found</h1>
       <Link to={ROUTES.HOME}>
         <Button>Back to HomePage</Button>
       </Link>
