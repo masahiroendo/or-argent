@@ -1,6 +1,8 @@
 import { FC, useEffect, useState } from 'react';
 import { Box, Button, ButtonGroup, Flex, Show, Spacer } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import CurrencySelect from './CurrencySelect';
 import LanguageSelect from './LanguageSelect';
 import SpotPrice from './SpotPrice';
@@ -44,6 +46,7 @@ const fetchLatestGoldAndSilverPrices = async (): Promise<{ gold: SpotPriceDataTy
 const Header: FC = () => {
   const [goldSpot, setGoldSpot] = useState<SpotPriceDataType>(initSpotPrice);
   const [silverSpot, setSilverSpot] = useState<SpotPriceDataType>(initSpotPrice);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,17 +65,17 @@ const Header: FC = () => {
     <Flex bg="grey.100" paddingX={{ base: '10px', md: '25px', lg: '75px' }}>
       <Box display="flex" alignItems="center" gap={2}>
         <NavLink to="Metal/Gold" className={({ isActive }) => (isActive ? styles.active : undefined)}>
-          <SpotPrice asset={'OR'} price={goldSpot.price} symbol={'€'} openPrice={goldSpot.open} />
+          <SpotPrice asset={'gold'} price={goldSpot.price} symbol={'€'} openPrice={goldSpot.open} />
         </NavLink>
         <NavLink to="Metal/Silver" className={({ isActive }) => (isActive ? styles.active : undefined)}>
-          <SpotPrice asset={'ARGENT'} price={silverSpot.price} symbol={'€'} openPrice={silverSpot.open} />
+          <SpotPrice asset={'silver'} price={silverSpot.price} symbol={'€'} openPrice={silverSpot.open} />
         </NavLink>
       </Box>
       <Spacer />
       <Show above="sm">
         <ButtonGroup p={1}>
           <NavLink to="contact" className={({ isActive }) => (isActive ? styles.active : undefined)}>
-            <Button>Contact</Button>
+            <Button>{t('contact')}</Button>
           </NavLink>
           <LanguageSelect />
           <CurrencySelect />
