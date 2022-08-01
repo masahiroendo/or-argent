@@ -1,13 +1,15 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { ChakraProvider } from '@chakra-ui/react';
+import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import theme from './theme';
-import { BrowserRouter } from 'react-router-dom';
+import { isDev } from './constants';
+import './i18n';
 
-if (process.env.NODE_ENV === 'development') {
+if (isDev) {
   const { worker } = require('./mocks/browser');
   worker.start();
 }
