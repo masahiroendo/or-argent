@@ -8,6 +8,7 @@ import reportWebVitals from './reportWebVitals';
 import theme from './theme';
 import { isDev } from './constants';
 import './i18n';
+import { CurrencyProvider } from './contexts/CurrencyContext';
 
 if (isDev) {
   const { worker } = require('./mocks/browser');
@@ -19,7 +20,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ChakraProvider theme={theme}>
-        <App />
+        <CurrencyProvider>
+          <App />
+        </CurrencyProvider>
       </ChakraProvider>
     </BrowserRouter>
   </React.StrictMode>,
