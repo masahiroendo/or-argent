@@ -3,9 +3,7 @@ import { Button, Menu, MenuButton, MenuItem, MenuList, useBreakpointValue } from
 import { FC, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { CurrencyContext } from '../../contexts/CurrencyContext';
-
-const currencies = ['EUR', 'USD', 'CHF', 'JPY', 'GBP', 'RUB', 'CNY', 'INR', 'BRL', 'ZAR'];
+import { currencies, CurrencyContext } from '../../contexts/CurrencyContext';
 
 const CurrencySelect: FC = () => {
   const { t } = useTranslation();
@@ -19,8 +17,8 @@ const CurrencySelect: FC = () => {
       </MenuButton>
       <MenuList>
         {currencies.map((c) => (
-          <MenuItem onClick={() => change(c)} key={c}>
-            {c}
+          <MenuItem onClick={() => change(c.iso)} key={c.iso}>
+            {c.iso}
           </MenuItem>
         ))}
       </MenuList>
