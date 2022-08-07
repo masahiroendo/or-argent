@@ -1,0 +1,64 @@
+{
+  "product-menu": {
+    "title": "地金 & コイン",
+    "gold": {
+      "buy-all": "金購入",
+      "buy-bars": "金地金",
+      "buy-coins": "金貨　コイン"
+    },
+    "silver": {
+      "buy-all": "銀購入",
+      "buy-bars": "銀地金",
+      "buy-coins": "銀貨コイン"
+    }
+  },
+  "storing": {
+    "title": "保管"
+  },
+  "delivery": {
+    "title": "郵送"
+  },
+  "rates": {
+    "title": "料金"
+  },
+  "chart": {
+    "title": "市場相場",
+    "gold": {
+      "price": {
+        "price": "Gold Price",
+        "live": "Live Spot Price",
+        "historical": "Historical Chart"
+      }
+    },
+    "silver": {
+      "price": {
+        "price": "Silver Price",
+        "live": "Live Spot Price",
+        "historical": "Historical Chart"
+      }
+    },
+    "ratio": {
+      "ratio": "Ratio",
+      "gold-silver": "Gold/Silver ratio"
+    }
+  },
+  "publications": {
+    "title": "出版",
+    "news": {
+      "title": "News",
+      "articles": "Articles",
+      "videos": "Videos",
+      "mobile-app": "Mobile App"
+    },
+    "media": {
+      "title": "Media",
+      "press-releases": "Press-Releases"
+    }
+  },
+  "about": {
+    "title": "会社概要"
+  },
+  "cart": {
+    "title": "カート"
+  }
+}

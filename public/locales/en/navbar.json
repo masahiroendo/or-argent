@@ -1,0 +1,64 @@
+{
+  "product-menu": {
+    "title": "Lingots & Coins",
+    "gold": {
+      "buy-all": "Buy Gold",
+      "buy-bars": "Gold Bars",
+      "buy-coins": "Gold Coins"
+    },
+    "silver": {
+      "buy-all": "Buy Silver",
+      "buy-bars": "Silver Bars",
+      "buy-coins": "Silver Coins"
+    }
+  },
+  "storing": {
+    "title": "Storing"
+  },
+  "delivery": {
+    "title": "Delivery"
+  },
+  "rates": {
+    "title": "Rates"
+  },
+  "chart": {
+    "title": "Chart",
+    "gold": {
+      "price": {
+        "price": "Gold Price",
+        "live": "Live Spot Price",
+        "historical": "Historical Chart"
+      }
+    },
+    "silver": {
+      "price": {
+        "price": "Silver Price",
+        "live": "Live Spot Price",
+        "historical": "Historical Chart"
+      }
+    },
+    "ratio": {
+      "ratio": "Ratio",
+      "gold-silver": "Gold/Silver ratio"
+    }
+  },
+  "publications": {
+    "title": "Publications",
+    "news": {
+      "title": "News",
+      "articles": "Articles",
+      "videos": "Videos",
+      "mobile-app": "Mobile App"
+    },
+    "media": {
+      "title": "Media",
+      "press-releases": "Press-Releases"
+    }
+  },
+  "about": {
+    "title": "About"
+  },
+  "cart": {
+    "title": "Cart"
+  }
+}

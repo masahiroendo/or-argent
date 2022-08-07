@@ -1,22 +1,17 @@
 import { FC } from 'react';
 import { Flex } from '@chakra-ui/react';
-import { NavLink, Outlet } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Outlet } from 'react-router-dom';
 
 import Footer from './Footer';
 import Header from './Header';
-import styles from './styles.module.scss';
+import NavBar from './NavBar/NavBar';
 
 const Layout: FC = () => {
-  const { t } = useTranslation();
-
   return (
     <Flex direction="column">
       <Header />
+      <NavBar />
       <main>
-        <NavLink to="" className={({ isActive }) => (isActive ? styles.active : undefined)}>
-          {t('title')}
-        </NavLink>
         <Outlet />
       </main>
       <Footer />

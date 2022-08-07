@@ -1,0 +1,64 @@
+{
+  "product-menu": {
+    "title": "Lingots & Pièces",
+    "gold": {
+      "buy-all": "Acheter de l'or",
+      "buy-bars": "Lingos d'or",
+      "buy-coins": "Pièces d'or"
+    },
+    "silver": {
+      "buy-all": "Acheter de l'argent",
+      "buy-bars": "Lingots d'argent",
+      "buy-coins": "Pièces d'argent"
+    }
+  },
+  "storing": {
+    "title": "Stockage"
+  },
+  "delivery": {
+    "title": "Livraison"
+  },
+  "rates": {
+    "title": "Tarifs"
+  },
+  "chart": {
+    "title": "Cours",
+    "gold": {
+      "price": {
+        "price": "Cours de l'or",
+        "live": "Cours spot",
+        "historical": "Graphique historique"
+      }
+    },
+    "silver": {
+      "price": {
+        "price": "Cours de l'argent",
+        "live": "Cours spot",
+        "historical": "Graphique historique"
+      }
+    },
+    "ratio": {
+      "ratio": "Ratios",
+      "gold-silver": "Ratio or/argent"
+    }
+  },
+  "publications": {
+    "title": "Publications",
+    "news": {
+      "title": "Actualités",
+      "articles": "Articles",
+      "videos": "Vidéos",
+      "mobile-app": "Application mobile"
+    },
+    "media": {
+      "title": "Media",
+      "press-releases": "Relations presse"
+    }
+  },
+  "about": {
+    "title": "A propos"
+  },
+  "cart": {
+    "title": "Panier"
+  }
+}
