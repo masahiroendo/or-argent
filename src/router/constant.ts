@@ -12,4 +12,5 @@ export const ROUTES = Object.freeze({
   PUBLICATIONS: 'publication',
   RATES: 'rates',
   STORING: 'storing',
+  UNDER_CONSTRUCTION: 'under-construction',
 });
