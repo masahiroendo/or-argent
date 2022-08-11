@@ -9,10 +9,13 @@ const breakPoints = {
   0: {
     items: 1,
   },
-  600: {
+  568: {
     items: 2,
   },
-  1024: {
+  900: {
+    items: 3,
+  },
+  1224: {
     items: 4,
   },
 };
@@ -65,7 +68,18 @@ const products: Product[] = [
 
 const HomeCarousel: FC = () => {
   const items = products.map((p) => <CarouselItem key={p.productId} item={p} />);
-  return <AliceCarousel items={items} mouseTracking responsive={breakPoints} />;
+  return (
+    <AliceCarousel
+      items={items}
+      mouseTracking
+      responsive={breakPoints}
+      infinite
+      autoPlay
+      autoPlayInterval={3000}
+      animationDuration={1500}
+      keyboardNavigation
+    />
+  );
 };
 
 export default HomeCarousel;

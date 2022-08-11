@@ -11,9 +11,10 @@ import {
   VStack,
   DrawerCloseButton,
 } from '@chakra-ui/react';
-import { GiHamburgerMenu } from 'react-icons/gi';
+// import { GiHamburgerMenu } from 'react-icons/gi';
 
 import NavigationItems from './NavigationItems';
+import { HamburgerIcon } from '@chakra-ui/icons';
 
 const ResponsiveMenu: FC = () => {
   const { t } = useTranslation('navbar');
@@ -27,7 +28,7 @@ const ResponsiveMenu: FC = () => {
           variant="ghost"
           ref={btnRef}
           aria-label="Menu"
-          icon={<GiHamburgerMenu size="30px" />}
+          icon={<HamburgerIcon fontSize={'4xl'} />}
           onClick={onOpen}
         />
       </Box>

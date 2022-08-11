@@ -28,6 +28,7 @@ const CarouselItem: FC<CarouselItemProps> = ({ item }) => {
 
   return (
     <Box
+      cursor="pointer"
       justifyContent="space-between"
       display="flex"
       onDragStart={handleDragStart}
