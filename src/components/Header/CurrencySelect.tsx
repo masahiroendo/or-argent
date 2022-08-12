@@ -4,6 +4,7 @@ import { FC, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { currencies, CurrencyContext } from '../../contexts/CurrencyContext';
+import { buttonHover } from './styles';
 
 const CurrencySelect: FC = () => {
   const { t } = useTranslation();
@@ -12,7 +13,12 @@ const CurrencySelect: FC = () => {
 
   return (
     <Menu>
-      <MenuButton as={Button} variant="ghost" rightIcon={<ChevronDownIcon />}>
+      <MenuButton
+        as={Button}
+        _active={buttonHover}
+        _hover={buttonHover}
+        variant="ghost"
+        rightIcon={<ChevronDownIcon />}>
         {small ? currency.symbol : `${t('currency')} (${currency.symbol})`}
       </MenuButton>
       <MenuList>

@@ -3,6 +3,8 @@ import { Button, Menu, MenuButton, MenuItem, MenuList, useBreakpointValue } from
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { buttonHover } from './styles';
+
 const languages = [
   {
     code: 'fr',
@@ -42,7 +44,12 @@ const LanguageSelect: FC = () => {
 
   return (
     <Menu>
-      <MenuButton as={Button} variant="ghost" rightIcon={<ChevronDownIcon />}>
+      <MenuButton
+        as={Button}
+        _active={buttonHover}
+        _hover={buttonHover}
+        variant="ghost"
+        rightIcon={<ChevronDownIcon />}>
         {selectedLanguage}
       </MenuButton>
       <MenuList>

@@ -1,5 +1,5 @@
 import { FC, useContext, useEffect, useState } from 'react';
-import { Box, Button, ButtonGroup, Flex, Show, Spacer } from '@chakra-ui/react';
+import { Box, Button, ButtonGroup, Container, Show, Spacer, useColorModeValue } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -11,6 +11,7 @@ import { ThemeSwitchBtn } from './themeSwitchBtn';
 import { makeMetalPricesApiOHLCEndpoint } from '../../constants/endpoints';
 import { MetalsAPIOHLCResponse } from '../../constants/apiResponses';
 import { CurrencyContext } from '../../contexts/CurrencyContext';
+import { buttonHover } from './styles';
 
 type SpotPriceDataType = {
   price: number;
@@ -51,6 +52,7 @@ const Header: FC = () => {
   const [silverSpot, setSilverSpot] = useState<SpotPriceDataType>(initSpotPrice);
   const { t } = useTranslation();
   const { currency } = useContext(CurrencyContext);
+  const bg = useColorModeValue('#f0d7a5', '#191F22');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,27 +68,31 @@ const Header: FC = () => {
   }, [currency]);
 
   return (
-    <Flex bg="grey.100" paddingX={{ base: '10px', md: '25px', lg: '75px' }}>
-      <Box display="flex" alignItems="center" gap={2}>
-        <NavLink to="Metal/Gold" className={({ isActive }) => (isActive ? styles.active : undefined)}>
-          <SpotPrice asset={'gold'} price={goldSpot.price} openPrice={goldSpot.open} />
-        </NavLink>
-        <NavLink to="Metal/Silver" className={({ isActive }) => (isActive ? styles.active : undefined)}>
-          <SpotPrice asset={'silver'} price={silverSpot.price} openPrice={silverSpot.open} />
-        </NavLink>
-      </Box>
-      <Spacer />
-      <Show above="sm">
-        <ButtonGroup p={1}>
-          <NavLink to="contact" className={({ isActive }) => (isActive ? styles.active : undefined)}>
-            <Button>{t('contact')}</Button>
+    <Box bg={bg}>
+      <Container display="flex" paddingX={{ base: '10px', md: '25px', lg: '75px' }} maxW="container.xl">
+        <Box display="flex" alignItems="center" gap={2}>
+          <NavLink to="Metal/Gold" className={({ isActive }) => (isActive ? styles.active : undefined)}>
+            <SpotPrice asset={'gold'} price={goldSpot.price} openPrice={goldSpot.open} />
           </NavLink>
-          <LanguageSelect />
-          <CurrencySelect />
-          <ThemeSwitchBtn />
-        </ButtonGroup>
-      </Show>
-    </Flex>
+          <NavLink to="Metal/Silver" className={({ isActive }) => (isActive ? styles.active : undefined)}>
+            <SpotPrice asset={'silver'} price={silverSpot.price} openPrice={silverSpot.open} />
+          </NavLink>
+        </Box>
+        <Spacer />
+        <Show above="sm">
+          <ButtonGroup p={1}>
+            <NavLink to="contact" className={({ isActive }) => (isActive ? styles.active : undefined)}>
+              <Button _active={buttonHover} _hover={buttonHover} variant="ghost">
+                {t('contact')}
+              </Button>
+            </NavLink>
+            <LanguageSelect />
+            <CurrencySelect />
+            <ThemeSwitchBtn />
+          </ButtonGroup>
+        </Show>
+      </Container>
+    </Box>
   );
 };
 
