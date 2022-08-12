@@ -1,62 +1,29 @@
-import { FC, useState } from 'react';
-import { Box, Button, ButtonGroup, Image } from '@chakra-ui/react';
-import AliceCarousel from 'react-alice-carousel';
-import { FaDesktop } from 'react-icons/fa';
+import { FC } from 'react';
+import { Box, Button, ButtonGroup, Container, Heading } from '@chakra-ui/react';
+import { FaPlayCircle } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
-export type Banner = {
-  Id: string;
-  imageSrc: string;
-  title: string;
-  description: string;
-};
+const Hero: FC = () => {
+  const { t } = useTranslation(['translation', 'home']);
 
-type HeroProps = {
-  banners: Banner[];
-};
-
-// const Hero: FC<HeroProps> = ({ banners }) => {
-//   const [index, setIndex] = useState(0);
-
-//   const handleSelect = (selectedIndex: number) => {
-//     setIndex(selectedIndex);
-//   };
-
-//   const items = banners.map((banner) => (
-//     <Carousel.Item key={banner.Id}>
-//       <Image src={banner.imageSrc} alt={banner.title} objectFit="cover" />
-//     </Carousel.Item>
-//   ));
-//   return (
-//     <Carousel activeIndex={index} onSelect={handleSelect}>
-//       {items}
-//     </Carousel>
-//   );
-// };
-
-const Hero: FC<HeroProps> = ({ banners }) => {
-  const [index, setIndex] = useState(0);
-
-  const items = banners.map((banner) => (
-    <>
+  return (
+    <Container pt={'3em'} pl={{ md: '17em' }} pb={'5em'} pr={{ md: '17em' }} maxW="container.xl">
+      <Heading as="h1" size="3xl" mb={'1em'}>
+        {t('title', { ns: 'home' })}
+      </Heading>
+      <Box>{t('description', { ns: 'home' })}</Box>
       <Box>
-        <h3>{banner.title}</h3>
-        <Box>{banner.description}</Box>
-        <Box>
-          <ButtonGroup alignItems={'center'}>
-            <Button size={'lg'} bg="blue.200">
-              Learn More
-            </Button>
-            <Button leftIcon={<FaDesktop />} bg="blue.100">
-              Watch a Demo
-            </Button>
-          </ButtonGroup>
-        </Box>
-        <Image key={banner.Id} src={banner.imageSrc} alt={banner.title} objectFit="cover" />
+        <ButtonGroup alignItems={'center'} my={'2em'}>
+          <Button size="lg" variant="ghost" border="1px" borderColor="yellow.500" borderRadius="5em">
+            {t('create-account')}
+          </Button>
+          <Button leftIcon={<FaPlayCircle />} size="lg" borderRadius="5em" _before={{ opacity: '85%' }}>
+            {t('watch-a-demo')}
+          </Button>
+        </ButtonGroup>
       </Box>
-    </>
-  ));
-
-  return <AliceCarousel items={items} autoWidth responsive={{ 0: { items: 1 } }} />;
+    </Container>
+  );
 };
 
 export default Hero;

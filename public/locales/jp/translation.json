@@ -1,8 +1,10 @@
 {
   "contact": "お問い合わせ",
+  "create-account": "会員登録",
   "currency": "通貨",
   "gold": "金",
   "page-is-under-construction": "このページは現在準備中です",
   "silver": "銀",
-  "title": "金さん銀さん"
+  "title": "金さん銀さん",
+  "watch-a-demo": "詳しく見る"
 }

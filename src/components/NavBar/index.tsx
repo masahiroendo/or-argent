@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { HStack, Image, Show, Spacer } from '@chakra-ui/react';
+import { Container, HStack, Image, Show, Spacer } from '@chakra-ui/react';
 
 import DesktopMenu from './DesktopMenu';
 import ResponsiveMenu from './ResponsiveMenu';
@@ -10,18 +10,20 @@ const NavBar: FC = () => {
   return (
     <header>
       <nav>
-        <HStack>
+        <Container display="flex" justifyContent={{ base: 'space-between', md: 'center' }} maxW="container.xl">
           <NavLink to={ROUTES.HOME}>
             <Image boxSize="100px" objectFit="cover" src="/assets/images/logo-shape.png" alt="or argent logo" />
           </NavLink>
-          <Show breakpoint="(min-width: 800px)">
-            <DesktopMenu />
-          </Show>
-          <Spacer />
-          <Show breakpoint="(max-width: 799px)">
-            <ResponsiveMenu />
-          </Show>
-        </HStack>
+          <HStack>
+            <Show above="md">
+              <DesktopMenu />
+            </Show>
+            <Spacer />
+            <Show below="md">
+              <ResponsiveMenu />
+            </Show>
+          </HStack>
+        </Container>
       </nav>
     </header>
   );

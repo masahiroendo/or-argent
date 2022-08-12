@@ -1,8 +1,10 @@
 {
   "contact": "Contact",
+  "create-account": "Créer un compte",
   "currency": "Devise",
   "gold": "Or",
   "page-is-under-construction": "Cette page est en cours de dévelopement",
   "silver": "Argent",
-  "title": "Or et Argent"
+  "title": "Or et Argent",
+  "watch-a-demo": "Voir notre vidéo"
 }
