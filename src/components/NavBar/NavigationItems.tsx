@@ -1,14 +1,13 @@
 import { FC } from 'react';
 import { CgShoppingCart } from 'react-icons/cg';
-import { NavLink } from 'react-router-dom';
 import { TFunction } from 'react-i18next';
-import { Image } from '@chakra-ui/react';
 
 import { ROUTES } from '../../router/constant';
 import ProductMenu from './ProductMenu';
 import SimpleLink from './SimpleLink';
 import PublicationMenu from './PublicationMenu';
 import ChartMenu from './ChartMenu';
+import User from './User';
 
 type NavigationItemsProps = {
   translateFn: TFunction;
@@ -17,9 +16,9 @@ type NavigationItemsProps = {
 const NavigationItems: FC<NavigationItemsProps> = ({ translateFn: t }) => {
   return (
     <>
-      <NavLink to={ROUTES.HOME}>
+      {/* <NavLink to={ROUTES.HOME}>
         <Image boxSize="100px" objectFit="cover" src="/assets/images/logo-shape.png" alt="or argent logo" />
-      </NavLink>
+      </NavLink> */}
       <ProductMenu />
       <SimpleLink to={ROUTES.STORING} content={t('storing.title')} />
       <SimpleLink to={ROUTES.DELIVERY} content={t('delivery.title')} />
@@ -27,7 +26,8 @@ const NavigationItems: FC<NavigationItemsProps> = ({ translateFn: t }) => {
       <ChartMenu />
       <PublicationMenu />
       <SimpleLink to={ROUTES.ABOUT_US} content={t('about.title')} />
-      <SimpleLink to={ROUTES.CART}>{<CgShoppingCart size={24} />}</SimpleLink>{' '}
+      <SimpleLink to={ROUTES.CART}>{<CgShoppingCart size={24} />}</SimpleLink>
+      <User />
     </>
   );
 };
