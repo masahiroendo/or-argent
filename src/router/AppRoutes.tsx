@@ -10,6 +10,7 @@ import MetalPage from '../pages/Metal';
 import CallBack from '../pages/Contact/CallBack';
 import Storing from '../pages/Storing';
 import UnderConstruction from '../pages/UnderConstruction';
+import CreateAccount from '../pages/CreateAccount';
 
 const AppRoutes: FC = () => {
   return (
@@ -21,6 +22,7 @@ const AppRoutes: FC = () => {
         <Route path={ROUTES.CALLBACK} element={<CallBack />} />
         <Route path={ROUTES.STORING} element={<Storing />} />
         <Route path={ROUTES.UNDER_CONSTRUCTION} element={<UnderConstruction />} />
+        <Route path={ROUTES.CREATE_ACCOUNT} element={<CreateAccount />} />
       </Route>
       <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
       <Route path="*" element={<NotFound />} />

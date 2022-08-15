@@ -7,7 +7,7 @@ import ProductMenu from './ProductMenu';
 import SimpleLink from './SimpleLink';
 import PublicationMenu from './PublicationMenu';
 import ChartMenu from './ChartMenu';
-import User from './User';
+import SignIn from './SignIn';
 
 type NavigationItemsProps = {
   translateFn: TFunction;
@@ -27,7 +27,7 @@ const NavigationItems: FC<NavigationItemsProps> = ({ translateFn: t }) => {
       <PublicationMenu />
       <SimpleLink to={ROUTES.ABOUT_US} content={t('about.title')} />
       <SimpleLink to={ROUTES.CART}>{<CgShoppingCart size={24} />}</SimpleLink>
-      <User />
+      <SignIn />
     </>
   );
 };

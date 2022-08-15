@@ -4,6 +4,7 @@ export const ROUTES = Object.freeze({
   CART: 'cart',
   CHART: 'chart',
   CONTACT: 'contact',
+  CREATE_ACCOUNT: 'create-account',
   DELIVERY: 'delivery',
   HOME: '/',
   LOGIN: 'login',
