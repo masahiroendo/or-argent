@@ -1,9 +1,19 @@
 {
+  "agree-terms-and-conditions": "I agree to the Terms. Learn about how we use and protect your data in our Privacy Policy.",
   "contact": "Contact",
   "create-account": "Create an account",
   "currency": "Currency",
+  "firstname": "First name",
+  "gender": {
+    "gender": "gender",
+    "select-your-gender": "select your gender",
+    "male": "male",
+    "female": "female"
+  },
   "gold": "Gold",
+  "lastname": "Last name",
   "page-is-under-construction": "This page is under construction",
+  "register-form": "Register Form Page",
   "silver": "Silver",
   "title": "GOLD and SILVER",
   "watch-a-demo": "Watch our video"

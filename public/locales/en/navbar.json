@@ -60,5 +60,16 @@
   },
   "cart": {
     "title": "Cart"
+  },
+  "user": {
+    "create-account": "Create an account",
+    "login": "Login",
+    "email": "Email",
+    "forgot-password": "Forgot password?",
+    "no-account-yet": "No account yet?",
+    "password": "Password",
+    "remember-me": "Remember me.",
+    "signin": "Sign In",
+    "user-name": "User Name"
   }
 }

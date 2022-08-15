@@ -1,9 +1,19 @@
 {
+  "agree-terms-and-conditions": "会員規約および個人情報保護方針に同意して会員登録を進める",
   "contact": "お問い合わせ",
   "create-account": "会員登録",
   "currency": "通貨",
+  "firstname": "性",
+  "lastname": "名",
+  "gender": {
+    "gender": "性別",
+    "select-your-gender": "以下の性別をお選び下さい",
+    "male": "男性",
+    "female": "女性"
+  },
   "gold": "金",
   "page-is-under-construction": "このページは現在準備中です",
+  "register-form": "新規会員登録ページ",
   "silver": "銀",
   "title": "金さん銀さん",
   "watch-a-demo": "詳しく見る"
