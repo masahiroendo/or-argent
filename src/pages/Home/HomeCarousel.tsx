@@ -5,6 +5,8 @@ import { v4 } from 'uuid';
 
 import CarouselItem, { Product } from './CarouselItem';
 
+import 'react-alice-carousel/lib/scss/alice-carousel.scss';
+
 const breakPoints = {
   0: {
     items: 1,

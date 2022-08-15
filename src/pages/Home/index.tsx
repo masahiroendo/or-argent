@@ -1,10 +1,7 @@
 import { FC, Fragment } from 'react';
-import { faker } from '@faker-js/faker';
-import { v4 } from 'uuid';
-
-import 'react-alice-carousel/lib/scss/alice-carousel.scss';
 import Hero from './Hero';
 import HomeCarousel from './HomeCarousel';
+import AboutUs from './AboutUs';
 
 // const banners: Banner[] = [
 //   {
@@ -32,6 +29,7 @@ const Home: FC = () => {
     <Fragment>
       <Hero />
       <HomeCarousel />
+      <AboutUs />
     </Fragment>
   );
 };
