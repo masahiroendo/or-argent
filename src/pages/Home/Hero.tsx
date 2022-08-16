@@ -11,8 +11,8 @@ const Hero: FC = () => {
   const { t } = useTranslation(['translation', 'home']);
 
   return (
-    <Container py={'3em'} px={{ md: '10em', lg: '17em' }} maxW="container.xl">
-      <Heading as="h1" size="3xl" mb={'1em'}>
+    <Container py={'3em'} maxW="container.lg">
+      <Heading as="h1" fontSize={{ base: '4xl', md: '5xl', lg: '6xl' }} mb={'1em'}>
         {t('title', { ns: 'home' })}
       </Heading>
       <Box>{t('description', { ns: 'home' })}</Box>
@@ -20,9 +20,9 @@ const Hero: FC = () => {
         <NavLink to={`/${ROUTES.CREATE_ACCOUNT}`}>
           <GoldButton>{t('create-account')}</GoldButton>
         </NavLink>
-        <SilverButton leftIcon={<FaPlayCircle />} _before={{ opacity: '85%' }}>
-          {t('watch-a-demo')}
-        </SilverButton>
+        <NavLink to={`#`}>
+          <SilverButton leftIcon={<FaPlayCircle />}>{t('watch-a-demo')}</SilverButton>
+        </NavLink>
       </Flex>
     </Container>
   );
