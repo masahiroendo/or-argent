@@ -6,12 +6,14 @@ import { useTranslation } from 'react-i18next';
 import CurrencySelect from './CurrencySelect';
 import LanguageSelect from './LanguageSelect';
 import SpotPrice from './SpotPrice';
-import styles from './style.module.scss';
 import { ThemeSwitchBtn } from './themeSwitchBtn';
 import { makeMetalPricesApiOHLCEndpoint } from '../../constants/endpoints';
 import { MetalsAPIOHLCResponse } from '../../constants/apiResponses';
 import { CurrencyContext } from '../../contexts/CurrencyContext';
 import { buttonHover } from './styles';
+import { COLORS } from '../../constants/colors';
+
+import styles from './style.module.scss';
 
 type SpotPriceDataType = {
   price: number;
@@ -52,7 +54,7 @@ const Header: FC = () => {
   const [silverSpot, setSilverSpot] = useState<SpotPriceDataType>(initSpotPrice);
   const { t } = useTranslation();
   const { currency } = useContext(CurrencyContext);
-  const bg = useColorModeValue('#f0d7a5', '#191F22');
+  const bg = useColorModeValue(COLORS.GOLD, COLORS.SILVER);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -6,6 +6,7 @@ import ContactLinks from './ContactLinks';
 import { FormContext } from '../FormContext';
 
 import styles from './styleContactForm.module.scss';
+import { COLORS } from '../../../constants/colors';
 
 export type FormContent = {
   firstName: string;
@@ -25,7 +26,7 @@ const ContactForm: FC<ContactFormProps> = ({ onSubmitCallback }) => {
     fields: { firstName, lastName, telephone, email, subject, message },
   } = useContext(FormContext);
 
-  const formBg = useColorModeValue('#f0d7a5', '#191F22');
+  const formBg = useColorModeValue(COLORS.GOLD, COLORS.SILVER);
 
   let formIsValid = false;
 
