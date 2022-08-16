@@ -37,7 +37,8 @@ import useToggle from '../../hooks/use-toggle';
 import { ROUTES } from '../../router/constant';
 import GoldButton from '../buttons/GoldButton';
 import SilverButton from '../buttons/SilverButton';
-const User = () => {
+
+const SignIn = () => {
   const { opened, toggle } = useToggle();
   const [show, setShow] = useState<boolean>(false);
   const [userName, setUserName] = useState('');
@@ -133,4 +134,4 @@ const User = () => {
   );
 };
 
-export default User;
+export default SignIn;
