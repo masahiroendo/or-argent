@@ -1,10 +1,11 @@
 import { FC } from 'react';
-import { Box, Button, Container, Flex, Heading } from '@chakra-ui/react';
+import { Box, Container, Flex, Heading } from '@chakra-ui/react';
 import { FaPlayCircle } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import { ROUTES } from '../../router/constant';
 import GoldButton from '../../components/buttons/GoldButton';
+import SilverButton from '../../components/buttons/SilverButton';
 
 const Hero: FC = () => {
   const { t } = useTranslation(['translation', 'home']);
@@ -19,9 +20,9 @@ const Hero: FC = () => {
         <NavLink to={`/${ROUTES.CREATE_ACCOUNT}`}>
           <GoldButton>{t('create-account')}</GoldButton>
         </NavLink>
-        <Button leftIcon={<FaPlayCircle />} size="lg" borderRadius="5em" _before={{ opacity: '85%' }}>
+        <SilverButton leftIcon={<FaPlayCircle />} _before={{ opacity: '85%' }}>
           {t('watch-a-demo')}
-        </Button>
+        </SilverButton>
       </Flex>
     </Container>
   );
