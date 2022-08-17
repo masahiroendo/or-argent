@@ -71,8 +71,8 @@ const Header: FC = () => {
 
   return (
     <Box bg={bg}>
-      <Container display="flex" paddingX={{ base: '10px', md: '25px', lg: '75px' }} maxW="container.xl">
-        <Box display="flex" alignItems="center" gap={2}>
+      <Container display="flex" px={{ base: '10px', md: '25px', lg: '75px' }} maxW="container.2xl">
+        <Box display="flex" alignItems="center" gap={2} fontSize={{ base: '11px', sm: '1em' }}>
           <NavLink to="Metal/Gold" className={({ isActive }) => (isActive ? styles.active : undefined)}>
             <SpotPrice asset={'gold'} price={goldSpot.price} openPrice={goldSpot.open} />
           </NavLink>
