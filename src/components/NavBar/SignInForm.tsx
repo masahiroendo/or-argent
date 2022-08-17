@@ -11,6 +11,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Link,
 } from '@chakra-ui/react';
 import { FC, FormEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -20,7 +21,11 @@ import { ROUTES } from '../../router/constant';
 import GoldButton from '../buttons/GoldButton';
 import SilverButton from '../buttons/SilverButton';
 
-const SignInForm: FC = () => {
+type SignInFormProps = {
+  onCloseForm: () => void;
+};
+
+const SignInForm: FC<SignInFormProps> = ({ onCloseForm }) => {
   const [show, setShow] = useState<boolean>(false);
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
@@ -90,7 +95,7 @@ const SignInForm: FC = () => {
         </HStack>
         <Box>{t('user.no-account-yet')}</Box>
       </form>
-      <NavLink to={`/${ROUTES.CREATE_ACCOUNT}`}>
+      <NavLink to={`/${ROUTES.CREATE_ACCOUNT}`} onClick={onCloseForm}>
         <SilverButton my={4}>{t('user.create-account')}</SilverButton>
       </NavLink>
     </>

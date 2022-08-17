@@ -55,7 +55,7 @@ const NavBar: FC = () => {
         </Hide>
         <Collapse in={signInFormOpened} animateOpacity>
           <Container maxW={'480px'}>
-            <SignInForm />
+            <SignInForm onCloseForm={onCloseSignInForm} />
           </Container>
         </Collapse>
       </nav>
