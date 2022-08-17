@@ -12,7 +12,11 @@ const NavigationItems: FC = () => {
   const { t } = useTranslation('navbar');
 
   return (
-    <Stack fontSize="18px" direction={{ base: 'column', md: 'row' }} gap={'6'} alignItems="flex-start" pl={6}>
+    <Stack
+      direction={{ base: 'column', md: 'row' }}
+      gap={{ base: 2, md: 0, lg: 4, xl: 6 }}
+      alignItems="flex-start"
+      pl={{ base: 6, md: 0 }}>
       <ProductMenu />
       <SimpleLink to={ROUTES.STORING} content={t('storing.title')} />
       <SimpleLink to={ROUTES.DELIVERY} content={t('delivery.title')} />
