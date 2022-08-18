@@ -9,6 +9,7 @@ import theme from './theme';
 import { isDev } from './constants';
 import './i18n';
 import { CurrencyProvider } from './contexts/CurrencyContext';
+import { AuthContextProvider } from './contexts/AuthContext';
 
 if (isDev) {
   const { worker } = require('./mocks/browser');
@@ -20,9 +21,11 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <ChakraProvider theme={theme}>
-        <CurrencyProvider>
-          <App />
-        </CurrencyProvider>
+        <AuthContextProvider>
+          <CurrencyProvider>
+            <App />
+          </CurrencyProvider>
+        </AuthContextProvider>
       </ChakraProvider>
     </BrowserRouter>
   </React.StrictMode>,
