@@ -12,35 +12,58 @@ import {
   InputGroup,
   InputRightElement,
   Link,
+  useToast,
 } from '@chakra-ui/react';
 import { FC, FormEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
-import { ROUTES } from '../../router/constant';
-import GoldButton from '../buttons/GoldButton';
 import SilverButton from '../buttons/SilverButton';
+import GoldButton from '../buttons/GoldButton';
+import { ROUTES } from '../../router/constant';
+import useAuth from '../../hooks/use-auth';
 
 type SignInFormProps = {
   onCloseForm: () => void;
 };
 
 const SignInForm: FC<SignInFormProps> = ({ onCloseForm }) => {
+  const { t } = useTranslation('navbar');
+  const { authenticating, signIn } = useAuth();
   const [show, setShow] = useState<boolean>(false);
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { t } = useTranslation('navbar');
+  const errorToast = useToast({
+    title: 'Authentication failed',
+    status: 'error',
+    position: 'top',
+    isClosable: true,
+  });
+  const successToast = useToast({
+    title: 'Authentication succeeded',
+    status: 'success',
+    position: 'top',
+    isClosable: true,
+  });
 
   const handleShowPassword = () => {
     setShow(!show);
   };
 
-  const handleSubmitLogin = (event: FormEvent) => {
+  const handleSubmitLogin = async (event: FormEvent) => {
     event.preventDefault();
-    alert(`Email: ${email} & Password: ${password}`);
+    const success = await signIn(email, password);
+    if (!success) {
+      errorToast();
+      return;
+    }
+
+    successToast();
+    setUserName('');
     setEmail('');
     setPassword('');
+    // and redirect to /account, which is a private route
   };
 
   return (
@@ -84,19 +107,27 @@ const SignInForm: FC<SignInFormProps> = ({ onCloseForm }) => {
           </InputGroup>
         </FormControl>
         <Divider orientation="vertical" />
-        <GoldButton type="submit" w={'full'} alignSelf="end" my={4}>
+        <GoldButton
+          isLoading={authenticating}
+          loadingText={t('user.please-wait')}
+          type="submit"
+          w={{ base: 'full', md: 'inherit' }}
+          alignSelf="end"
+          my={4}>
           {t('user.signin')}
         </GoldButton>
         <HStack w="full" justify="space-between">
           <Checkbox>{t('user.remember-me')}</Checkbox>
-          <Button variant="link" colorScheme="blue" w="auto">
+          <Link color="blue.600" w="auto">
             {t('user.forgot-password')}
-          </Button>
+          </Link>
         </HStack>
         <Box>{t('user.no-account-yet')}</Box>
       </form>
       <NavLink to={`/${ROUTES.CREATE_ACCOUNT}`} onClick={onCloseForm}>
-        <SilverButton my={4}>{t('user.create-account')}</SilverButton>
+        <SilverButton w={{ base: 'full', md: 'inherit' }} my={4}>
+          {t('user.create-account')}
+        </SilverButton>
       </NavLink>
     </>
   );
