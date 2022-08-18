@@ -4,7 +4,6 @@ import {
   Collapse,
   Container,
   Hide,
-  HStack,
   IconButton,
   Image,
   Show,
@@ -12,42 +11,25 @@ import {
   useDisclosure,
   useOutsideClick,
 } from '@chakra-ui/react';
-import { ChevronDownIcon, ChevronUpIcon, CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { CgShoppingCart } from 'react-icons/cg';
 import { NavLink } from 'react-router-dom';
-import { FiUser } from 'react-icons/fi';
+import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 
 import NavigationItems from './NavigationItems';
 import SimpleLink from './SimpleLink';
 import { ROUTES } from '../../router/constant';
-import SignInForm from './SignInForm';
+import User from './User';
 
 const NavBar: FC = () => {
-  const signInFormRef = useRef<HTMLDivElement>(null);
   const burgerMenuRef = useRef<HTMLDivElement>(null);
-  useOutsideClick({
-    ref: signInFormRef,
-    handler: () => {
-      onCloseSignInForm();
-    },
-  });
+  const containerRef = useRef<HTMLDivElement>(null);
   useOutsideClick({
     ref: burgerMenuRef,
     handler: () => {
-      onCloseBurger();
+      onClose();
     },
   });
-  const { isOpen: burgerOpened, onOpen: onOpenBurger, onClose: onCloseBurger } = useDisclosure();
-  const { isOpen: signInFormOpened, onOpen: onOpenSignInForm, onClose: onCloseSignInForm } = useDisclosure();
-
-  const handleUserIconClick = () => {
-    onCloseBurger();
-    signInFormOpened ? onCloseSignInForm() : onOpenSignInForm();
-  };
-  const handleBurgerIconClick = () => {
-    onCloseSignInForm();
-    burgerOpened ? onCloseBurger() : onOpenBurger();
-  };
+  const { isOpen, onClose, onToggle } = useDisclosure();
 
   return (
     <header>
@@ -57,35 +39,28 @@ const NavBar: FC = () => {
             <Image boxSize="70px" objectFit="cover" src="/assets/images/logo-shape.png" alt="or argent logo" />
           </NavLink>
           <Show above="md">
-            <Box fontSize={{ md: '14px', lg: '16px', xl: '18px' }}>
+            <Box fontSize={{ md: '14px', lg: '16px', xl: '20px' }}>
               <NavigationItems />
             </Box>
           </Show>
           <Stack flex={{ base: 1, md: 0 }} alignItems="center" justify={'flex-end'} direction={'row'} spacing={6}>
-            <HStack cursor="pointer" onClick={handleUserIconClick} spacing={0}>
-              {<FiUser size={24} />}
-              {signInFormOpened ? <ChevronUpIcon /> : <ChevronDownIcon />}
-            </HStack>
+            <User parentRef={containerRef} />
             <SimpleLink to={ROUTES.CART}>{<CgShoppingCart fontSize={24} />}</SimpleLink>
             <IconButton
+              onClick={onToggle}
               display={{ base: 'flex', md: 'none' }}
-              onClick={handleBurgerIconClick}
-              icon={burgerOpened ? <CloseIcon w={4} h={4} /> : <HamburgerIcon w={6} h={6} />}
+              icon={isOpen ? <CloseIcon w={4} h={4} /> : <HamburgerIcon w={6} h={6} />}
               variant={'ghost'}
               aria-label={'Toggle Navigation'}
             />
           </Stack>
         </Container>
         <Hide above="md">
-          <Collapse in={burgerOpened} animateOpacity ref={burgerMenuRef}>
+          <Collapse in={isOpen} animateOpacity ref={burgerMenuRef}>
             <NavigationItems />
           </Collapse>
         </Hide>
-        <Collapse in={signInFormOpened} animateOpacity ref={signInFormRef}>
-          <Container maxW={'480px'}>
-            <SignInForm onCloseForm={onCloseSignInForm} />
-          </Container>
-        </Collapse>
+        <Box ref={containerRef} />
       </nav>
     </header>
   );
