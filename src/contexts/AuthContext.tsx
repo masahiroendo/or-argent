@@ -3,15 +3,18 @@ import { createContext, FC, useState, PropsWithChildren } from 'react';
 const timeout = 2000;
 
 export type User = {
+  userName: string;
   email: string;
 };
 
 type AuthContextType = {
   me: User | null;
   signedIn: boolean;
-  signIn: (email: string, password: string) => Promise<boolean>;
+  signIn: (userName: string, email: string, password: string) => Promise<boolean>;
   signOut: () => Promise<void>;
 };
+
+const SESSION_KEY = 'session';
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
@@ -19,12 +22,13 @@ export const AuthContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => 
   const [user, setUser] = useState<User | null>(null);
   const [signedIn, setSignedIn] = useState(false);
 
-  const signIn = (email: string, password: string): Promise<boolean> => {
+  const signIn = (userName: string, email: string, password: string): Promise<boolean> => {
     return new Promise((resolve) => {
       setTimeout(() => {
         setSignedIn(true);
-        const newUser = { email };
+        const newUser = { userName, email };
         setUser(newUser);
+        localStorage.setItem(SESSION_KEY, JSON.stringify(newUser));
         resolve(true);
       }, timeout);
     });

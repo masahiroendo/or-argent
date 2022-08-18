@@ -6,7 +6,7 @@ type UseAuthType = {
   processing: boolean;
   me: User | null;
   signedIn: boolean;
-  signIn: (email: string, password: string) => Promise<boolean>;
+  signIn: (userName: string, email: string, password: string) => Promise<boolean>;
   signOut: () => Promise<void>;
 };
 
@@ -17,10 +17,10 @@ const useAuth = (): UseAuthType => {
   return {
     processing: processing,
     me,
-    signIn: async (email: string, password: string): Promise<boolean> => {
+    signIn: async (userName: string, email: string, password: string): Promise<boolean> => {
       try {
         setProcessing(true);
-        const success = await signIn(email, password);
+        const success = await signIn(userName, email, password);
         setProcessing(false);
         return success;
       } catch (err) {

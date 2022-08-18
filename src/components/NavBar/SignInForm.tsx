@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { FC, FormEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import SilverButton from '../buttons/SilverButton';
 import GoldButton from '../buttons/GoldButton';
@@ -34,6 +34,7 @@ const SignInForm: FC<SignInFormProps> = ({ onCloseForm }) => {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
   const errorToast = useToast({
     title: 'Authentication failed',
     status: 'error',
@@ -53,7 +54,7 @@ const SignInForm: FC<SignInFormProps> = ({ onCloseForm }) => {
 
   const handleSubmitLogin = async (event: FormEvent) => {
     event.preventDefault();
-    const success = await signIn(email, password);
+    const success = await signIn(userName, email, password);
     if (!success) {
       errorToast();
       return;
@@ -63,7 +64,7 @@ const SignInForm: FC<SignInFormProps> = ({ onCloseForm }) => {
     setUserName('');
     setEmail('');
     setPassword('');
-    // and redirect to /account, which is a private route
+    navigate(ROUTES.PROFILE, { replace: true });
   };
 
   return (
