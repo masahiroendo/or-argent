@@ -11,6 +11,7 @@ export const ROUTES = Object.freeze({
   METAL: 'metal',
   NOT_FOUND: 'not-found',
   PUBLICATIONS: 'publication',
+  PRODUCTS: 'products',
   PROFILE: 'profile',
   RATES: 'rates',
   STORING: 'storing',

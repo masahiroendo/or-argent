@@ -11,6 +11,8 @@ import CallBack from '../pages/Contact/CallBack';
 import Storing from '../pages/Storing';
 import UnderConstruction from '../pages/UnderConstruction';
 import CreateAccount from '../pages/CreateAccount';
+import Product from '../pages/Product';
+import Products from '../pages/Products';
 import Profile from '../pages/Profile';
 import ProtectedRoute from './ProtectedRoute';
 
@@ -18,16 +20,22 @@ const AppRoutes: FC = () => {
   return (
     <Routes>
       <Route path={ROUTES.HOME} element={<Layout />}>
+        {/* Public Routes */}
         <Route path="/" element={<Home />} />
-        <Route path={`${ROUTES.METAL}/:metal`} element={<MetalPage />} />
-        <Route path={ROUTES.CONTACT} element={<Contact />} />
         <Route path={ROUTES.CALLBACK} element={<CallBack />} />
+        <Route path={ROUTES.CREATE_ACCOUNT} element={<CreateAccount />} />
+        <Route path={ROUTES.CONTACT} element={<Contact />} />
+        <Route path={`${ROUTES.METAL}/:metal`} element={<MetalPage />} />
+        <Route path={`${ROUTES.PRODUCTS}/:name`} element={<Product />} />
+        <Route path={ROUTES.PRODUCTS} element={<Products />} />
         <Route path={ROUTES.STORING} element={<Storing />} />
         <Route path={ROUTES.UNDER_CONSTRUCTION} element={<UnderConstruction />} />
-        <Route path={ROUTES.CREATE_ACCOUNT} element={<CreateAccount />} />
+
+        {/* Private Routes */}
         <Route path={ROUTES.HOME} element={<ProtectedRoute />}>
           <Route path={ROUTES.PROFILE} element={<Profile />} />
         </Route>
+
         <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
         <Route path="*" element={<NotFound />} />
       </Route>
