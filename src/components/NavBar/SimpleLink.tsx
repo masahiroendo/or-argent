@@ -11,7 +11,7 @@ type SimpleLinkProps = {
 
 const SimpleLink: FC<PropsWithChildren<SimpleLinkProps>> = ({ to, content, upperCased = false, children }) => {
   return (
-    <NavLink to={to} className={({ isActive }) => (isActive ? styles.active : undefined)}>
+    <NavLink to={to}>
       {content ? <span className={upperCased ? styles.upperCase : ''}>{content}</span> : children}
     </NavLink>
   );
