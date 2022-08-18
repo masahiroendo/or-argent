@@ -8,7 +8,7 @@ const ProtectedRoute: FC = () => {
   const { signedIn } = useAuth();
 
   if (!signedIn) {
-    return <Navigate to={`/${ROUTES.CREATE_ACCOUNT}`} replace={true} />;
+    return <Navigate to={`/${ROUTES.HOME}`} replace={true} />;
   }
   return <Outlet />;
 };

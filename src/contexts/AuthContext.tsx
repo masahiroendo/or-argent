@@ -18,9 +18,19 @@ const SESSION_KEY = 'session';
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
+const getUserFromStorage = (): User | null => {
+  const parsed = localStorage.getItem(SESSION_KEY);
+  if (!parsed) {
+    return null;
+  }
+
+  const userData = JSON.parse(parsed) as User;
+  return userData;
+};
+
 export const AuthContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [signedIn, setSignedIn] = useState(false);
+  const [user, setUser] = useState<User | null>(getUserFromStorage);
+  const [signedIn, setSignedIn] = useState(() => !!getUserFromStorage());
 
   const signIn = (userName: string, email: string, password: string): Promise<boolean> => {
     return new Promise((resolve) => {
