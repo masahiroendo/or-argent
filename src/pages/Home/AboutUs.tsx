@@ -55,8 +55,8 @@ const AboutUs = () => {
         {t('why')}
       </Heading>
       <SimpleGrid columns={[1, null, 2]} spacing="40px" px={{ base: 4, md: '20' }}>
-        {items.map(({ Icon, contentKey, to }) => (
-          <NavLink to={to}>
+        {items.map(({ Icon, contentKey, to }, i) => (
+          <NavLink key={`${contentKey}-${i}`} to={to}>
             <Flex
               align="center"
               p={5}
