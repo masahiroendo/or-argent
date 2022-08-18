@@ -17,14 +17,22 @@ const ProductMenu = () => {
       <MenuList>
         <HStack spacing={6} p={4} alignItems="flex-start">
           <VStack alignItems="flex-start">
-            <SimpleLink to={`${ROUTES.METAL}/gold`} content={t('product-menu.gold.buy-all')} upperCased={true} />
-            <SimpleLink to={`${ROUTES.METAL}/gold/bars`} content={t('product-menu.gold.buy-bars')} />
-            <SimpleLink to={`${ROUTES.METAL}/gold/coins`} content={t('product-menu.gold.buy-coins')} />
+            <SimpleLink
+              to={`${ROUTES.PRODUCTS}?metal=gold`}
+              content={t('product-menu.gold.buy-all')}
+              upperCased={true}
+            />
+            <SimpleLink to={`${ROUTES.PRODUCTS}?metal=gold&type=bar`} content={t('product-menu.gold.buy-bars')} />
+            <SimpleLink to={`${ROUTES.PRODUCTS}?metal=gold&type=coin`} content={t('product-menu.gold.buy-coins')} />
           </VStack>
           <VStack alignItems="flex-start">
-            <SimpleLink to={`${ROUTES.METAL}/silver`} content={t('product-menu.silver.buy-all')} upperCased={true} />
-            <SimpleLink to={`${ROUTES.METAL}/silver/bars`} content={t('product-menu.silver.buy-bars')} />
-            <SimpleLink to={`${ROUTES.METAL}/silver/coins`} content={t('product-menu.silver.buy-coins')} />
+            <SimpleLink
+              to={`${ROUTES.PRODUCTS}?meta=silver`}
+              content={t('product-menu.silver.buy-all')}
+              upperCased={true}
+            />
+            <SimpleLink to={`${ROUTES.PRODUCTS}?metal=silver&type=bar`} content={t('product-menu.silver.buy-bars')} />
+            <SimpleLink to={`${ROUTES.PRODUCTS}?metal=silver&type=coin`} content={t('product-menu.silver.buy-coins')} />
           </VStack>
         </HStack>
       </MenuList>

@@ -26,7 +26,7 @@ const AppRoutes: FC = () => {
         <Route path={ROUTES.CREATE_ACCOUNT} element={<CreateAccount />} />
         <Route path={ROUTES.CONTACT} element={<Contact />} />
         <Route path={`${ROUTES.METAL}/:metal`} element={<MetalPage />} />
-        <Route path={`${ROUTES.PRODUCTS}/:name`} element={<Product />} />
+        <Route path={`${ROUTES.PRODUCTS}/:slug`} element={<Product />} />
         <Route path={ROUTES.PRODUCTS} element={<Products />} />
         <Route path={ROUTES.STORING} element={<Storing />} />
         <Route path={ROUTES.UNDER_CONSTRUCTION} element={<UnderConstruction />} />

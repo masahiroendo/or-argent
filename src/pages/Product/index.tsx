@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom';
 type ProductProps = {};
 
 const Product: FC<ProductProps> = () => {
-  const { name } = useParams();
+  const { slug } = useParams();
 
-  return <div>Product page {name}</div>;
+  return <div>Product page {slug}</div>;
 };
 
 export default Product;
