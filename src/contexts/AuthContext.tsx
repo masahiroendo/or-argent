@@ -39,6 +39,7 @@ export const AuthContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => 
       setTimeout(() => {
         setSignedIn(false);
         setUser(null);
+        localStorage.removeItem(SESSION_KEY);
         resolve();
       }, timeout);
     });
