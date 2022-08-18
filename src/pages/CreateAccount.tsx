@@ -20,53 +20,47 @@ const CreateAccount = (props: Props) => {
     firstNameRef.current?.focus();
   }, []);
 
-  // useEffect(() => {
-  //   setErrMsg("")
-  // }, [firstname, lastname, username, pwd, matchPwd])
-
   return (
-    <>
-      <Heading>{t('register-form')}</Heading>
+    <Container py={6}>
+      <Heading my={10}>{t('register-form')}</Heading>
       <form>
-        <Container>
-          <VStack>
-            <FormControl w={['50%', 'full']} isRequired>
-              <FormLabel htmlFor="gender">{t('gender.gender')}</FormLabel>
-              <Select id="gender" placeholder={t('gender.select-your-gender')}>
-                <option>{t('gender.male')}</option>
-                <option>{t('gender.female')}</option>
-              </Select>
-            </FormControl>
-            <HStack w="100%">
-              <FormControl isRequired>
-                <FormLabel ref={firstNameRef} htmlFor="FirstName">
-                  {t('firstname', { ns: 'translation' })}
-                </FormLabel>
-                <Input id="FirstName" placeholder="Please enter your Firstname" />
-              </FormControl>
-              <FormControl isRequired>
-                <FormLabel htmlFor="LastName">{t('lastname', { ns: 'translation' })} </FormLabel>
-                <Input id="LastName" placeholder="Please enter your Lastname" />
-              </FormControl>
-            </HStack>
+        <VStack>
+          <FormControl w={['50%', 'full']} isRequired>
+            <FormLabel htmlFor="gender">{t('gender.gender')}</FormLabel>
+            <Select id="gender" placeholder={t('gender.select-your-gender')}>
+              <option>{t('gender.male')}</option>
+              <option>{t('gender.female')}</option>
+            </Select>
+          </FormControl>
+          <HStack w="100%">
             <FormControl isRequired>
-              <FormLabel htmlFor="UserName">{t('user.user-name', { ns: 'navbar' })} </FormLabel>
-              <Input id="UserName" placeholder="Please enter a User Name" />
+              <FormLabel ref={firstNameRef} htmlFor="FirstName">
+                {t('firstname', { ns: 'translation' })}
+              </FormLabel>
+              <Input id="FirstName" placeholder="Please enter your Firstname" />
             </FormControl>
             <FormControl isRequired>
-              <FormLabel htmlFor="Password">Password</FormLabel>
-              <Input id="password" type="password" placeholder="Password" />
+              <FormLabel htmlFor="LastName">{t('lastname', { ns: 'translation' })} </FormLabel>
+              <Input id="LastName" placeholder="Please enter your Lastname" />
             </FormControl>
-            <FormControl isRequired>
-              <FormLabel htmlFor="confirmPassword">Confirm password</FormLabel>
-              <Input id="ConfirmPassword" placeholder="Confirm password" />
-            </FormControl>
-            <Checkbox>{t('agree-terms-and-conditions')}</Checkbox>
-            <GoldButton onClick={handleNavigate}>{t('create-account')}</GoldButton>
-          </VStack>
-        </Container>
+          </HStack>
+          <FormControl isRequired>
+            <FormLabel htmlFor="UserName">{t('user.user-name', { ns: 'navbar' })} </FormLabel>
+            <Input id="UserName" placeholder="Please enter a User Name" />
+          </FormControl>
+          <FormControl isRequired>
+            <FormLabel htmlFor="Password">Password</FormLabel>
+            <Input id="password" type="password" placeholder="Password" />
+          </FormControl>
+          <FormControl isRequired>
+            <FormLabel htmlFor="confirmPassword">Confirm password</FormLabel>
+            <Input id="ConfirmPassword" placeholder="Confirm password" />
+          </FormControl>
+          <Checkbox>{t('agree-terms-and-conditions')}</Checkbox>
+          <GoldButton onClick={handleNavigate}>{t('create-account')}</GoldButton>
+        </VStack>
       </form>
-    </>
+    </Container>
   );
 };
 
