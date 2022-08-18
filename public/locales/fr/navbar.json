@@ -64,6 +64,7 @@
   "user": {
     "create-account": "Créer un compte",
     "login": "Mon Compte",
+    "logout": "Se déconnecter",
     "email": "Email",
     "forgot-password": "Mot de passe oublié?",
     "no-account-yet": "Pas encore de compte?",

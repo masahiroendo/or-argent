@@ -11,6 +11,8 @@ import CallBack from '../pages/Contact/CallBack';
 import Storing from '../pages/Storing';
 import UnderConstruction from '../pages/UnderConstruction';
 import CreateAccount from '../pages/CreateAccount';
+import Profile from '../pages/Profile';
+import ProtectedRoute from './ProtectedRoute';
 
 const AppRoutes: FC = () => {
   return (
@@ -23,9 +25,12 @@ const AppRoutes: FC = () => {
         <Route path={ROUTES.STORING} element={<Storing />} />
         <Route path={ROUTES.UNDER_CONSTRUCTION} element={<UnderConstruction />} />
         <Route path={ROUTES.CREATE_ACCOUNT} element={<CreateAccount />} />
+        <Route path={ROUTES.HOME} element={<ProtectedRoute />}>
+          <Route path={ROUTES.PROFILE} element={<Profile />} />
+        </Route>
+        <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
-      <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
-      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

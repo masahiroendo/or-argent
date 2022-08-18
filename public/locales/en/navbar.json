@@ -64,6 +64,7 @@
   "user": {
     "create-account": "Create an account",
     "login": "Login",
+    "logout": "Logout",
     "email": "Email",
     "forgot-password": "Forgot password?",
     "no-account-yet": "No account yet?",

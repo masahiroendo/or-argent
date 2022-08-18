@@ -3,30 +3,41 @@ import { useContext, useState } from 'react';
 import AuthContext, { User } from '../contexts/AuthContext';
 
 type UseAuthType = {
-  authenticating: boolean;
-  me: User;
+  processing: boolean;
+  me: User | null;
   signedIn: boolean;
   signIn: (email: string, password: string) => Promise<boolean>;
+  signOut: () => Promise<void>;
 };
 
 const useAuth = (): UseAuthType => {
-  const [authenticating, setAuthenticating] = useState(false);
-  const { me, signedIn, signIn } = useContext(AuthContext);
+  const [processing, setProcessing] = useState(false);
+  const { me, signedIn, signIn, signOut } = useContext(AuthContext);
 
   return {
-    authenticating,
+    processing: processing,
     me,
     signIn: async (email: string, password: string): Promise<boolean> => {
       try {
-        setAuthenticating(true);
+        setProcessing(true);
         const success = await signIn(email, password);
-        setAuthenticating(false);
+        setProcessing(false);
         return success;
       } catch (err) {
         console.error(err);
       }
-      setAuthenticating(false);
+      setProcessing(false);
       return false;
+    },
+    signOut: async (): Promise<void> => {
+      try {
+        setProcessing(true);
+        await signOut();
+        setProcessing(false);
+      } catch (err) {
+        console.error(err);
+      }
+      setProcessing(false);
     },
     signedIn,
   };

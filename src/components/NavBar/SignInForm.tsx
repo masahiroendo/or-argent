@@ -29,7 +29,7 @@ type SignInFormProps = {
 
 const SignInForm: FC<SignInFormProps> = ({ onCloseForm }) => {
   const { t } = useTranslation('navbar');
-  const { authenticating, signIn } = useAuth();
+  const { processing, signIn } = useAuth();
   const [show, setShow] = useState<boolean>(false);
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
@@ -108,7 +108,7 @@ const SignInForm: FC<SignInFormProps> = ({ onCloseForm }) => {
         </FormControl>
         <Divider orientation="vertical" />
         <GoldButton
-          isLoading={authenticating}
+          isLoading={processing}
           loadingText={t('user.please-wait')}
           type="submit"
           w={{ base: 'full', md: 'inherit' }}
