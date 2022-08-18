@@ -1,4 +1,5 @@
 import Select from 'react-select';
+import { useTranslation } from 'react-i18next';
 import {
   Button,
   Checkbox,
@@ -20,8 +21,8 @@ import { capitalize } from '../../../utils/string-utils';
 import { sendEmail } from '../../../services/email';
 
 const to = 'vemih35989@meidir.com'; // get a disposable email address from https://temp-mail.org/en/
-const weekDays: string[] = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi'];
-const timeSlots: string[] = ['matinée', 'midi', 'soir'];
+const weekDays: string[] = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+const timeSlots: string[] = ['morning', 'noon', 'evening'];
 const timeZoneOptions = [
   {
     label: 'Europe UTC+01',
@@ -42,6 +43,7 @@ const timeZoneOptions = [
 ];
 
 const CallBack: FC = () => {
+  const { t } = useTranslation(['translation', 'contact']);
   const nameInput = useInput((value: string) => value.trim() !== '');
   const phoneInput = useInput((value: string) => value.trim() !== '');
   const emailInput = useInput((value: string) => value.includes('@'));
@@ -112,12 +114,14 @@ const CallBack: FC = () => {
   };
 
   return (
-    <Container maxW="container.xl" mb={4}>
+    <Container maxW="container.lg" my={6}>
       <CallBackHeader />
       <form onSubmit={handleSubmit}>
         <SimpleGrid spacing="20px">
           <FormControl isInvalid={nameInput.hasError}>
-            <FormLabel htmlFor="name">Nom et/ou Prénom</FormLabel>
+            <FormLabel htmlFor="name">
+              {t('lastname')} / {t('firstname')}
+            </FormLabel>
             <Input
               type="text"
               name="name"
@@ -129,7 +133,7 @@ const CallBack: FC = () => {
             <FormErrorMessage>Please enter your Name</FormErrorMessage>
           </FormControl>
           <FormControl isInvalid={phoneInput.hasError}>
-            <FormLabel htmlFor="telephone">Téléphone</FormLabel>
+            <FormLabel htmlFor="telephone">{t('phone')}</FormLabel>
             <Input
               type="text"
               name="telephone"
@@ -141,7 +145,7 @@ const CallBack: FC = () => {
             <FormErrorMessage>Please enter your phone number</FormErrorMessage>
           </FormControl>
           <FormControl isInvalid={emailInput.hasError}>
-            <FormLabel htmlFor="email">Email</FormLabel>
+            <FormLabel htmlFor="email">{t('email')}</FormLabel>
             <Input
               type="text"
               name="email"
@@ -154,13 +158,13 @@ const CallBack: FC = () => {
           </FormControl>
           <FormControl isInvalid={noWeekDaysChecked}>
             <CheckboxGroup>
-              <FormLabel htmlFor="week-day">Jour de la semaine</FormLabel>
+              <FormLabel htmlFor="week-day">{t('days-of-the-week', { ns: 'contact' })}</FormLabel>
               <Stack spacing={[1, 5]} direction={['column', 'row']}>
                 {weekDays.map((day) => {
                   const isChecked = checkedWeekDays.includes(day);
                   return (
                     <Checkbox key={day} name="week-day" isChecked={isChecked} onChange={handleWeekDaysChange(day)}>
-                      {capitalize(day)}
+                      {capitalize(t(`days.${day}`))}
                     </Checkbox>
                   );
                 })}
@@ -169,13 +173,13 @@ const CallBack: FC = () => {
             <FormErrorMessage>Please select at least one weekday</FormErrorMessage>
           </FormControl>
           <FormControl isInvalid={noTimeSlotChecked}>
-            <FormLabel htmlFor="time-slot">Moment de la journée</FormLabel>
+            <FormLabel htmlFor="time-slot">{t('moment-of-the-day', { ns: 'contact' })}</FormLabel>
             <Stack spacing={[1, 5]} direction={['column', 'row']}>
               {timeSlots.map((time) => {
                 const isChecked = checkedTimeSlot.includes(time);
                 return (
                   <Checkbox key={time} name="time-slot" isChecked={isChecked} onChange={handleTimeSlotChange(time)}>
-                    {capitalize(time)}
+                    {capitalize(t(`times.${time}`))}
                   </Checkbox>
                 );
               })}
@@ -183,7 +187,7 @@ const CallBack: FC = () => {
             <FormErrorMessage>Please select a time slot</FormErrorMessage>
           </FormControl>
           <FormControl isInvalid={timeZoneSelect.hasError}>
-            <FormLabel htmlFor="time-zone">Fuseau Horaire</FormLabel>
+            <FormLabel htmlFor="time-zone">{t('timezone')}</FormLabel>
             <Select
               name="time-zone"
               options={timeZoneOptions}
@@ -195,7 +199,7 @@ const CallBack: FC = () => {
         </SimpleGrid>
         <Flex justifyContent="center" mt={'1rem'}>
           <Button disabled={!isValidForm()} variant="solid" type="submit" style={{ borderRadius: '25px' }}>
-            Demande de rappel
+            {t('to-be-called-back', { ns: 'contact' })}
           </Button>
         </Flex>
       </form>

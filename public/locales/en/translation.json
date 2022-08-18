@@ -1,8 +1,19 @@
 {
   "agree-terms-and-conditions": "I agree to the Terms. Learn about how we use and protect your data in our Privacy Policy.",
+  "click-here": "Click here",
   "contact": "Contact",
   "create-account": "Create an account",
   "currency": "Currency",
+  "days": {
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday"
+  },
+  "email": "Email",
   "firstname": "First name",
   "gender": {
     "gender": "gender",
@@ -13,10 +24,17 @@
   "gold": "Gold",
   "lastname": "Last name",
   "page-is-under-construction": "This page is under construction",
+  "phone": "Phone number",
   "please-wait": "Please wait a moment",
   "register-form": "Register Form Page",
   "signing-out": "Signing out",
   "silver": "Silver",
+  "times": {
+    "morning": "Morning",
+    "noon": "Noon",
+    "evening": "Evening"
+  },
+  "timezone": "Timezone",
   "title": "GOLD and SILVER",
   "watch-a-demo": "Watch our video",
   "why": "Why Or-argent.fr?"

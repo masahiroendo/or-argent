@@ -1,9 +1,20 @@
 {
   "agree-terms-and-conditions": "J'accepte les conditions d'utilisation. Pour découvrir comment nous utilisons et protégeons vos données, consultez notre politique de confidentialité.",
+  "click-here": "Cliquer ici",
   "contact": "Contact",
   "create-account": "Créer un compte",
   "currency": "Devise",
-  "firstname": "Votre Nom",
+  "days": {
+    "monday": "Lundi",
+    "tuesday": "Mardi",
+    "wednesday": "Mercredi",
+    "thursday": "Jeudi",
+    "friday": "Vendredi",
+    "saturday": "Samedi",
+    "sunday": "Dimanche"
+  },
+  "email": "Email",
+  "firstname": "Prénom",
   "gender": {
     "gender": "sexe",
     "select-your-gender": "selectionnez votre sexe",
@@ -11,12 +22,19 @@
     "female": "feminin"
   },
   "gold": "Gold",
-  "lastname": "Votre Prénom",
+  "lastname": "Nom",
   "page-is-under-construction": "Cette page est en cours de dévelopement",
+  "phone": "Téléphone",
   "please-wait": "Veuillez patienter",
   "register-form": "Créer mon Compte",
   "signing-out": "Déconnexion en cours",
   "silver": "Argent",
+  "times": {
+    "morning": "Matinée",
+    "noon": "Midi",
+    "evening": "Soir"
+  },
+  "timezone": "Fuseau horaire",
   "title": "Or et Argent",
   "watch-a-demo": "Voir notre vidéo",
   "why": "Pourquoi Or-argent.fr?"

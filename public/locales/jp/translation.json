@@ -1,10 +1,20 @@
 {
   "agree-terms-and-conditions": "会員規約および個人情報保護方針に同意して会員登録を進める",
+  "click-here": "ここをクリック",
   "contact": "お問い合わせ",
   "create-account": "会員登録",
   "currency": "通貨",
+  "days": {
+    "monday": "月曜日",
+    "tuesday": "火曜日",
+    "wednesday": "水曜日",
+    "thursday": "木曜日",
+    "friday": "金曜日",
+    "saturday": "土曜日",
+    "sunday": "日曜日"
+  },
+  "email": "Eメール",
   "firstname": "性",
-  "lastname": "名",
   "gender": {
     "gender": "性別",
     "select-your-gender": "以下の性別をお選び下さい",
@@ -12,11 +22,19 @@
     "female": "女性"
   },
   "gold": "金",
+  "lastname": "名",
   "page-is-under-construction": "このページは現在準備中です",
+  "phone": "電話番号",
   "please-wait": "お待ち下さい",
   "signing-out": "ログアウト中です",
   "register-form": "新規会員登録ページ",
   "silver": "銀",
+  "times": {
+    "morning": "午前",
+    "noon": "昼",
+    "evening": "午後"
+  },
+  "timezone": "現地時間",
   "title": "金さん銀さん",
   "watch-a-demo": "詳しく見る",
   "why": "Or-argent.frを選ぶ理由？"
