@@ -11,7 +11,7 @@ const Hero: FC = () => {
   const { t } = useTranslation(['translation', 'home']);
 
   return (
-    <Container py={'3em'} maxW="container.lg">
+    <Container p={'6em'} maxW="container.lg">
       <Heading as="h1" fontSize={{ base: '4xl', md: '5xl', lg: '6xl' }} mb={'1em'}>
         {t('title', { ns: 'home' })}
       </Heading>
