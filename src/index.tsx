@@ -10,6 +10,7 @@ import { isDev } from './constants';
 import './i18n';
 import { CurrencyProvider } from './contexts/CurrencyContext';
 import { AuthContextProvider } from './contexts/AuthContext';
+import ErrorBoundary from './components/ErrorBoundary';
 
 if (isDev) {
   const { worker } = require('./mocks/browser');
@@ -19,15 +20,17 @@ if (isDev) {
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ChakraProvider theme={theme}>
-        <AuthContextProvider>
-          <CurrencyProvider>
-            <App />
-          </CurrencyProvider>
-        </AuthContextProvider>
-      </ChakraProvider>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <ChakraProvider theme={theme}>
+          <AuthContextProvider>
+            <CurrencyProvider>
+              <App />
+            </CurrencyProvider>
+          </AuthContextProvider>
+        </ChakraProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   </React.StrictMode>,
 );
 
