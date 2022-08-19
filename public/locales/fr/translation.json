@@ -1,5 +1,7 @@
 {
   "agree-terms-and-conditions": "J'accepte les conditions d'utilisation. Pour découvrir comment nous utilisons et protégeons vos données, consultez notre politique de confidentialité.",
+  "bar": "Lingot",
+  "coin": "Pièce",
   "click-here": "Cliquer ici",
   "contact": "Contact",
   "create-account": "Créer un compte",
@@ -21,10 +23,12 @@
     "male": "masulin",
     "female": "feminin"
   },
-  "gold": "Gold",
+  "gold": "Or",
   "lastname": "Nom",
+  "paladium": "Paladium",
   "page-is-under-construction": "Cette page est en cours de dévelopement",
   "phone": "Téléphone",
+  "platinum": "Platine",
   "please-wait": "Veuillez patienter",
   "register-form": "Créer mon Compte",
   "signing-out": "Déconnexion en cours",

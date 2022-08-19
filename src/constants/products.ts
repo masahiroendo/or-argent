@@ -19,7 +19,7 @@ export type ProductImage = {
 
 export type Product = {
   id: string;
-  type: ProductFamily;
+  category: ProductFamily;
   metal: MetalType;
   name: string;
   slug: string;
@@ -33,7 +33,7 @@ export type Product = {
 export const storeProducts: Product[] = [
   {
     id: faker.unique(v4),
-    type: 'bar',
+    category: 'bar',
     metal: 'gold',
     name: '1 kilogram Gold Bar Valcambi',
     slug: '1kg-gold-bar-valcambi',
@@ -55,7 +55,7 @@ export const storeProducts: Product[] = [
   },
   {
     id: faker.unique(v4),
-    type: 'coin',
+    category: 'coin',
     metal: 'gold',
     name: '1 ounce Gold American Buffalo',
     slug: '1oz-gold-buffalo',
@@ -77,7 +77,7 @@ export const storeProducts: Product[] = [
   },
   {
     id: faker.unique(v4),
-    type: 'coin',
+    category: 'coin',
     metal: 'gold',
     name: '1 ounce Gold 1 ounce Silver Britannia',
     slug: '1oz-gold-american-eagle',
@@ -99,7 +99,7 @@ export const storeProducts: Product[] = [
   },
   {
     id: faker.unique(v4),
-    type: 'bar',
+    category: 'bar',
     metal: 'silver',
     name: '1kg Silver Bar - JBR',
     slug: '1kg-silver-bar-JBR',
@@ -121,7 +121,7 @@ export const storeProducts: Product[] = [
   },
   {
     id: faker.unique(v4),
-    type: 'coin',
+    category: 'coin',
     metal: 'silver',
     name: '1 ounce Silver Philharmonic',
     slug: '1oz-silver-philharmonic',
@@ -143,7 +143,7 @@ export const storeProducts: Product[] = [
   },
   {
     id: faker.unique(v4),
-    type: 'coin',
+    category: 'coin',
     metal: 'silver',
     name: '1 ounce Silver Britannia',
     slug: '1oz-silver-britannia',
