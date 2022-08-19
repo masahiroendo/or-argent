@@ -5,13 +5,13 @@ import {
   CheckboxGroup,
   Container,
   Divider,
+  Flex,
   Grid,
   GridItem,
   Heading,
   Text,
   useCheckboxGroup,
   useColorModeValue,
-  VStack,
 } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
 
@@ -57,7 +57,7 @@ const Products: FC = () => {
           <Badge variant="outline" fontSize={'1em'} colorScheme="yellow" p={1}>
             {t('metal')}
           </Badge>
-          <VStack align="left" mt={4}>
+          <Flex direction={{ base: 'row', lg: 'column' }} align="left" mt={4} gap={{ base: 6, lg: 3 }}>
             <CheckboxGroup>
               <Checkbox {...getMetalCheckboxProps({ value: 'gold' })}>
                 <Text fontWeight="bold">{t('gold')}</Text>
@@ -72,12 +72,12 @@ const Products: FC = () => {
                 <Text fontWeight="bold">{t('paladium')}</Text>
               </Checkbox>
             </CheckboxGroup>
-          </VStack>
+          </Flex>
           <Divider variant="solid" my={5} />
           <Badge variant="outline" fontSize={'1em'} colorScheme="blue" p={1}>
             {t('category')}
           </Badge>
-          <VStack align="left" mt={4}>
+          <Flex direction={{ base: 'row', lg: 'column' }} align="left" mt={4} gap={{ base: 6, lg: 3 }}>
             <CheckboxGroup>
               <Checkbox {...getCategoryCheckboxProps({ value: 'bar' })}>
                 <Text fontWeight="bold">{t('bar')}</Text>
@@ -86,7 +86,7 @@ const Products: FC = () => {
                 <Text fontWeight="bold">{t('coin')}</Text>
               </Checkbox>
             </CheckboxGroup>
-          </VStack>
+          </Flex>
         </GridItem>
         <GridItem area="product">
           <FilteredProducts products={storeProducts} metals={metals} categories={categories} />
