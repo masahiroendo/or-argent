@@ -5,13 +5,14 @@ import { NavLink } from 'react-router-dom';
 
 import GoldIconButton from '../../components/buttons/GoldIconButton';
 import SilverIconButton from '../../components/buttons/SilverIconButton';
+import { COLORS } from '../../constants/colors';
 import { Product } from '../../constants/products';
 
-type ProducCardrops = {
+type ProducCardProps = {
   product: Product;
 };
 
-const ProductCard: FC<ProducCardrops> = ({
+const ProductCard: FC<ProducCardProps> = ({
   product: {
     images,
     metal,
@@ -19,7 +20,7 @@ const ProductCard: FC<ProducCardrops> = ({
     price,
     spec: { weight },
     slug,
-    type,
+    category: type,
   },
 }) => {
   const imageUrl = images[0]?.fullSize;
@@ -29,7 +30,7 @@ const ProductCard: FC<ProducCardrops> = ({
       p={6}
       maxW={{ sm: '330px' }}
       w={'full'}
-      bg={useColorModeValue('white', 'gray.800')}
+      bg={useColorModeValue(COLORS.PRODUCTS_PAGE_LIGHT, COLORS.PRODUCTS_PAGE_DARK)}
       boxShadow={'2xl'}
       rounded={'lg'}
       pos={'relative'}>
