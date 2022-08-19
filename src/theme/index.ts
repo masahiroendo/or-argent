@@ -7,12 +7,10 @@ import '@fontsource/playfair-display/600-italic.css';
 import '@fontsource/playfair-display/800.css';
 import '@fontsource/playfair-display/800-italic.css';
 
-const theme = extendTheme({
-  fonts: {
-    heading: `'Playfair Display', serif`,
-    body: `'Playfair Display', serif`,
-  },
-});
+import colors from './colors';
+import fonts from './fonts';
+
+const theme = extendTheme({ colors, fonts });
 
 // 2. Add your color mode config
 const config: ThemeConfig = {

@@ -20,7 +20,7 @@ const CarouselItem: FC<CarouselItemProps> = ({ item }) => {
   const { currency } = useContext(CurrencyContext);
   // TODO: differenciate between the product to get the right color
   const isGold = true;
-  const borderColor = isGold ? 'yellow.200' : 'grey.300';
+  const borderColor = isGold ? 'gold.700' : 'silver.500';
 
   const handleDragStart = (e: DragEvent) => {
     e.preventDefault();

@@ -78,7 +78,7 @@ const User: FC<UserProps> = ({ parentRef }) => {
             <AlertDialogContent>
               <AlertDialogBody>
                 <Center py={4} flexDirection="column" gap={4}>
-                  <CircularProgress isIndeterminate color="yellow.300" />
+                  <CircularProgress isIndeterminate color="gold.700" />
                   <Text>{`${t('signing-out')}, ${t('please-wait').toLowerCase()}...`}</Text>
                 </Center>
               </AlertDialogBody>
