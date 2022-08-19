@@ -1,6 +1,8 @@
 import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import AuthContext, { User } from '../contexts/AuthContext';
+import { ROUTES } from '../router/constant';
 
 type UseAuthType = {
   processing: boolean;
@@ -13,6 +15,7 @@ type UseAuthType = {
 const useAuth = (): UseAuthType => {
   const [processing, setProcessing] = useState(false);
   const { me, signedIn, signIn, signOut } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   return {
     processing: processing,
@@ -34,6 +37,7 @@ const useAuth = (): UseAuthType => {
         setProcessing(true);
         await signOut();
         setProcessing(false);
+        navigate(ROUTES.HOME, { replace: true });
       } catch (err) {
         console.error(err);
       }
