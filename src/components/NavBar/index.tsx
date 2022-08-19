@@ -5,7 +5,6 @@ import {
   Container,
   Hide,
   IconButton,
-  Image,
   Show,
   Stack,
   useDisclosure,
@@ -17,8 +16,9 @@ import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 
 import NavigationItems from './NavigationItems';
 import SimpleLink from './SimpleLink';
-import { ROUTES } from '../../router/constant';
 import User from './User';
+import GoldLingotIcon from '../icons/GoldLingotIcon';
+import { ROUTES } from '../../router/constant';
 
 const NavBar: FC = () => {
   const burgerMenuRef = useRef<HTMLDivElement>(null);
@@ -34,9 +34,15 @@ const NavBar: FC = () => {
   return (
     <header>
       <nav>
-        <Container display="flex" justifyContent={{ md: 'center' }} alignItems="center" maxW="container.2xl" gap={5}>
+        <Container
+          display="flex"
+          justifyContent={{ md: 'center' }}
+          alignItems="center"
+          maxW="container.2xl"
+          py={2}
+          gap={5}>
           <NavLink to={ROUTES.HOME}>
-            <Image boxSize="70px" objectFit="cover" src="/assets/images/logo-shape.png" alt="or argent logo" />
+            <GoldLingotIcon w={10} h={10} />
           </NavLink>
           <Show above="md">
             <Box fontSize={{ md: '14px', lg: '16px', xl: '20px' }}>
