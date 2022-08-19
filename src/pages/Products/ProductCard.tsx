@@ -27,7 +27,7 @@ const ProductCard: FC<ProducCardrops> = ({
     <Box
       role={'group'}
       p={6}
-      maxW={'330px'}
+      maxW={{ sm: '330px' }}
       w={'full'}
       bg={useColorModeValue('white', 'gray.800')}
       boxShadow={'2xl'}
@@ -69,7 +69,12 @@ const ProductCard: FC<ProducCardrops> = ({
             {name}
           </Heading>
         </NavLink>
-        <Flex direction={{ base: 'column', md: 'row' }} justifyContent="space-between" alignItems={'center'} pt={6}>
+        <Flex
+          direction={{ base: 'column', md: 'row' }}
+          justifyContent="space-between"
+          alignItems={'center'}
+          pt={3}
+          gap={3}>
           <NavLink to={`${slug}`}>
             <Text fontWeight={800} fontSize={'xl'}>
               {price}€-$-YEN
