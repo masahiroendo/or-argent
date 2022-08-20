@@ -1,6 +1,7 @@
 {
   "agree-terms-and-conditions": "J'accepte les conditions d'utilisation. Pour découvrir comment nous utilisons et protégeons vos données, consultez notre politique de confidentialité.",
   "bar": "Lingot",
+  "categories": "Catégories",
   "coin": "Pièce",
   "click-here": "Cliquer ici",
   "contact": "Contact",
@@ -25,6 +26,8 @@
   },
   "gold": "Or",
   "lastname": "Nom",
+  "metal": "Métal",
+  "narrow-your-search": "Affinez votre recherche",
   "paladium": "Paladium",
   "page-is-under-construction": "Cette page est en cours de dévelopement",
   "phone": "Téléphone",

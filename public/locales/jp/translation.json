@@ -1,6 +1,7 @@
 {
   "agree-terms-and-conditions": "会員規約および個人情報保護方針に同意して会員登録を進める",
   "bar": "地金",
+  "categories": "種類別",
   "click-here": "ここをクリック",
   "coin": "金貨",
   "contact": "お問い合わせ",
@@ -25,6 +26,7 @@
   },
   "gold": "金",
   "lastname": "名",
+  "metal": "金属",
   "narrow-your-search": "絞り込み表示",
   "paladium": "パラジウム",
   "platinum": "プラチナ",

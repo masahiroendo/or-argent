@@ -18,21 +18,39 @@ const ProductMenu = () => {
         <HStack spacing={6} p={4} alignItems="flex-start">
           <VStack alignItems="flex-start">
             <SimpleLink
-              to={`${ROUTES.PRODUCTS}?metal=gold`}
+              to={`${ROUTES.PRODUCTS}?metals=gold`}
               content={t('product-menu.gold.buy-all')}
+              reloadDocument={true}
               upperCased={true}
             />
-            <SimpleLink to={`${ROUTES.PRODUCTS}?metal=gold&type=bar`} content={t('product-menu.gold.buy-bars')} />
-            <SimpleLink to={`${ROUTES.PRODUCTS}?metal=gold&type=coin`} content={t('product-menu.gold.buy-coins')} />
+            <SimpleLink
+              to={`${ROUTES.PRODUCTS}?metals=gold&categories=bar`}
+              content={t('product-menu.gold.buy-bars')}
+              reloadDocument={true}
+            />
+            <SimpleLink
+              to={`${ROUTES.PRODUCTS}?metals=gold&categories=coin`}
+              content={t('product-menu.gold.buy-coins')}
+              reloadDocument={true}
+            />
           </VStack>
           <VStack alignItems="flex-start">
             <SimpleLink
-              to={`${ROUTES.PRODUCTS}?meta=silver`}
+              to={`${ROUTES.PRODUCTS}?metals=silver`}
               content={t('product-menu.silver.buy-all')}
+              reloadDocument={true}
               upperCased={true}
             />
-            <SimpleLink to={`${ROUTES.PRODUCTS}?metal=silver&type=bar`} content={t('product-menu.silver.buy-bars')} />
-            <SimpleLink to={`${ROUTES.PRODUCTS}?metal=silver&type=coin`} content={t('product-menu.silver.buy-coins')} />
+            <SimpleLink
+              to={`${ROUTES.PRODUCTS}?metals=silver&categories=bar`}
+              content={t('product-menu.silver.buy-bars')}
+              reloadDocument={true}
+            />
+            <SimpleLink
+              to={`${ROUTES.PRODUCTS}?metals=silver&categories=coin`}
+              content={t('product-menu.silver.buy-coins')}
+              reloadDocument={true}
+            />
           </VStack>
         </HStack>
       </MenuList>

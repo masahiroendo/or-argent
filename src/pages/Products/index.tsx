@@ -20,6 +20,9 @@ import { COLORS } from '../../constants/colors';
 import FilteredProducts from './FilteredProducts';
 import { useTranslation } from 'react-i18next';
 
+const metalNames = ['gold', 'silver', 'platinum', 'paladium'];
+const categoryNames = ['bar', 'coin'];
+
 const grids = {
   base: `
   "filter"
@@ -34,13 +37,14 @@ const grids = {
 const Products: FC = () => {
   const { t } = useTranslation();
   const { search } = useLocation();
-  const location = useLocation();
-  const { value: metals, getCheckboxProps: getMetalCheckboxProps } = useCheckboxGroup();
-  const { value: categories, getCheckboxProps: getCategoryCheckboxProps } = useCheckboxGroup();
-
-  // TODO: use below searchParams to apply filters (true or false for checkbox).
-  //   const searchedMetal = new URLSearchParams(search).get('metal');
-  //   const searchedType = new URLSearchParams(search).get('type');
+  const searchedMetals = new URLSearchParams(search).get('metals');
+  const searchedCategories = new URLSearchParams(search).get('categories');
+  const { value: metals, getCheckboxProps: getMetalCheckboxProps } = useCheckboxGroup({
+    defaultValue: !searchedMetals ? [] : searchedMetals.split(','),
+  });
+  const { value: categories, getCheckboxProps: getCategoryCheckboxProps } = useCheckboxGroup({
+    defaultValue: !searchedCategories ? [] : searchedCategories.split(','),
+  });
 
   return (
     <Container mt={{ base: 2, lg: 20 }} maxW="8xl">
@@ -58,33 +62,25 @@ const Products: FC = () => {
             {t('metal')}
           </Badge>
           <Flex direction={{ base: 'row', lg: 'column' }} align="left" mt={4} gap={{ base: 6, lg: 3 }}>
-            <CheckboxGroup>
-              <Checkbox {...getMetalCheckboxProps({ value: 'gold' })}>
-                <Text fontWeight="bold">{t('gold')}</Text>
-              </Checkbox>
-              <Checkbox {...getMetalCheckboxProps({ value: 'silver' })}>
-                <Text fontWeight="bold">{t('silver')}</Text>
-              </Checkbox>
-              <Checkbox {...getMetalCheckboxProps({ value: 'platinum' })}>
-                <Text fontWeight="bold">{t('platinum')}</Text>
-              </Checkbox>
-              <Checkbox {...getMetalCheckboxProps({ value: 'paladium' })}>
-                <Text fontWeight="bold">{t('paladium')}</Text>
-              </Checkbox>
+            <CheckboxGroup value={metals}>
+              {metalNames.map((m) => (
+                <Checkbox key={m} {...getMetalCheckboxProps({ value: m })} colorScheme="gold">
+                  <Text fontWeight="bold">{t(m)}</Text>
+                </Checkbox>
+              ))}
             </CheckboxGroup>
           </Flex>
           <Divider variant="solid" my={5} />
           <Badge variant="outline" fontSize={'1em'} colorScheme="blue" p={1}>
-            {t('category')}
+            {t('categories')}
           </Badge>
           <Flex direction={{ base: 'row', lg: 'column' }} align="left" mt={4} gap={{ base: 6, lg: 3 }}>
-            <CheckboxGroup>
-              <Checkbox {...getCategoryCheckboxProps({ value: 'bar' })}>
-                <Text fontWeight="bold">{t('bar')}</Text>
-              </Checkbox>
-              <Checkbox {...getCategoryCheckboxProps({ value: 'coin' })}>
-                <Text fontWeight="bold">{t('coin')}</Text>
-              </Checkbox>
+            <CheckboxGroup value={categories}>
+              {categoryNames.map((c) => (
+                <Checkbox key={c} {...getCategoryCheckboxProps({ value: c })} colorScheme="gold">
+                  <Text fontWeight="bold">{t(c)}</Text>
+                </Checkbox>
+              ))}
             </CheckboxGroup>
           </Flex>
         </GridItem>

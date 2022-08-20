@@ -37,7 +37,7 @@ const FilteredProducts: FC<FilteredProductsProps> = ({ products, metals, categor
         .filter(filterByMetal(metals))
         .filter(filterByCategory(categories))
         .map((p: Product) => (
-          <GridItem p={7} justifySelf="center">
+          <GridItem key={p.id} p={7} justifySelf="center">
             <ProductCard product={p} key={p.id} />
           </GridItem>
         ))}
