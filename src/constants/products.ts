@@ -78,6 +78,28 @@ export const storeProducts: Product[] = [
   {
     id: faker.unique(v4),
     category: 'coin',
+    metal: 'platinum',
+    name: '1 ounce René Descartes (France)',
+    slug: '1oz-platinum-rene-descartes',
+    description: faker.lorem.lines(5),
+    price: parseInt(faker.finance.amount(1200, 2100), 10),
+    spec: {
+      weight: OUNCE_WEIGHT,
+    },
+    images: [
+      {
+        thumbnail: `${PRODUCTS_IMAGES_PATH}/platinum-coin-rene-descartes-front.png`,
+        fullSize: `${PRODUCTS_IMAGES_PATH}/platinum-coin-rene-descartes-front.png`,
+      },
+      {
+        thumbnail: `${PRODUCTS_IMAGES_PATH}/platinum-coin-rene-descartes-front.png`,
+        fullSize: `${PRODUCTS_IMAGES_PATH}/platinum-coin-rene-descartes-front.png`,
+      },
+    ],
+  },
+  {
+    id: faker.unique(v4),
+    category: 'coin',
     metal: 'gold',
     name: '1 ounce Gold 1 ounce Silver Britannia',
     slug: '1oz-gold-american-eagle',

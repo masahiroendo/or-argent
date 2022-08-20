@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
 
-import { storeProducts } from '../../constants/products';
+import { storeProducts, Product } from '../../constants/products';
 import { COLORS } from '../../constants/colors';
 import FilteredProducts from './FilteredProducts';
 import { useTranslation } from 'react-i18next';
@@ -33,6 +33,11 @@ const grids = {
   "filter product product product"
   "filter product product product"`,
 };
+
+const availableMetal = (metalName: string): boolean => storeProducts.some((p) => p.metal === metalName);
+
+const countItems = (fieldName: keyof Product, fieldValue: string): number =>
+  storeProducts.filter((p) => p[fieldName] === fieldValue).length;
 
 const Products: FC = () => {
   const { t } = useTranslation();
@@ -64,8 +69,12 @@ const Products: FC = () => {
           <Flex direction={{ base: 'row', lg: 'column' }} align="left" mt={4} gap={{ base: 6, lg: 3 }}>
             <CheckboxGroup value={metals}>
               {metalNames.map((m) => (
-                <Checkbox key={m} {...getMetalCheckboxProps({ value: m })} colorScheme="gold">
-                  <Text fontWeight="bold">{t(m)}</Text>
+                <Checkbox
+                  key={m}
+                  disabled={!availableMetal(m)}
+                  {...getMetalCheckboxProps({ value: m })}
+                  colorScheme="gold">
+                  <Text fontWeight="bold">{`${t(m)} (${countItems('metal', m)})`}</Text>
                 </Checkbox>
               ))}
             </CheckboxGroup>
@@ -78,7 +87,7 @@ const Products: FC = () => {
             <CheckboxGroup value={categories}>
               {categoryNames.map((c) => (
                 <Checkbox key={c} {...getCategoryCheckboxProps({ value: c })} colorScheme="gold">
-                  <Text fontWeight="bold">{t(c)}</Text>
+                  <Text fontWeight="bold">{`${t(c)} (${countItems('category', c)})`}</Text>
                 </Checkbox>
               ))}
             </CheckboxGroup>
