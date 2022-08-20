@@ -1,6 +1,20 @@
 {
+  "contact-us": "お問い合わせ",
+  "errors": {
+    "enter-email": "Eメールをご記入下さい",
+    "enter-firstname": "性をご記入下さい",
+    "enter-phone": "電話番号をご記入下さい",
+    "enter-lastname": "名をご記入下さい",
+    "enter-subject": "項目をご記入下さい",
+    "enter-message": "用途・用法をご記入下さいe"
+  },
   "days-of-the-week": "平日",
+  "message": "用途・用法",
+  "message-sent": "送信成功",
   "moment-of-the-day": "時間帯",
+  "please-verify": "御確認下さい",
   "secured-messaging": "セキュアメッセージング",
+  "send-message": "送信する",
+  "subject": "項目",
   "to-be-called-back": "連絡を希望"
 }

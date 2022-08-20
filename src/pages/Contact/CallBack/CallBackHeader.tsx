@@ -13,7 +13,7 @@ const CallBackHeader: FC = () => {
     <SimpleGrid columns={[1, 2, 4]} spacing="20px">
       <Box height="80px">
         <Heading as="h2" size="md">
-          Téléphone
+          {t('phone')}
         </Heading>
         <Text>
           <PhoneIcon />

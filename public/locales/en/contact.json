@@ -1,6 +1,20 @@
 {
+  "contact-us": "Contact us",
+  "errors": {
+    "enter-email": "Please enter your email",
+    "enter-firstname": "Please enter your firstname",
+    "enter-phone": "Please enter your phone number",
+    "enter-lastname": "Please enter your lastname",
+    "enter-subject": "Please enter a subject",
+    "enter-message": "Please enter your message"
+  },
   "days-of-the-week": "Jours de la semaine",
+  "message": "Message",
+  "message-sent": "Message was sent",
   "moment-of-the-day": "Time slot",
+  "please-verify": "Please verify",
   "secured-messaging": "Secured messaging service",
+  "send-message": "Send message",
+  "subject": "Subject",
   "to-be-called-back": "I wish to be called-back"
 }

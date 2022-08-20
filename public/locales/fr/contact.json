@@ -1,6 +1,20 @@
 {
+  "contact-us": "Contactez-nous",
+  "errors": {
+    "enter-email": "Veuillez saisir votre email",
+    "enter-firstname": "Veuillez saisir votre prénom",
+    "enter-phone": "Veuillez saisir votre numéro de téléphone",
+    "enter-lastname": "Veuillez saisir votre nom de famille",
+    "enter-subject": "Veuillez saisir l'objet de votre message",
+    "enter-message": "Veuillez saisir votre message"
+  },
   "days-of-the-week": "Days of the week",
+  "message": "Message",
+  "message-sent": "Message envoyé",
   "moment-of-the-day": "Moment de la journée",
-  "to-be-called-back": "Être rappelé",
-  "secured-messaging": "Messagerie sécurisée"
+  "please-verify": "Veuillez vérifier",
+  "secured-messaging": "Messagerie sécurisée",
+  "send-message": "Envoyer le message",
+  "subject": "Suject",
+  "to-be-called-back": "Être rappelé"
 }

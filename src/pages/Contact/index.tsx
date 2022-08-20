@@ -16,7 +16,6 @@ const Contact: FC = () => {
 
   return (
     <FormContextProvider>
-      <h1>Contact page</h1>
       {opened && <MessageModal onCancel={closeModal} />}
       <ContactForm onSubmitCallback={openModal} />
     </FormContextProvider>

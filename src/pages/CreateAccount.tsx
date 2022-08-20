@@ -21,7 +21,7 @@ const CreateAccount = (props: Props) => {
   }, []);
 
   return (
-    <Container py={6}>
+    <Container py={{ base: 2, md: 6 }}>
       <Heading my={10}>{t('register-form')}</Heading>
       <form>
         <VStack>

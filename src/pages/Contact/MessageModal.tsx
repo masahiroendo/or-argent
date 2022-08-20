@@ -1,10 +1,23 @@
-import { Button, CircularProgress } from '@chakra-ui/react';
-import { FC, Fragment, PropsWithChildren, useState } from 'react';
-import { FormContent } from './ContactForm';
-import Modal from '../../components/Modal';
 import { useContext } from 'react';
-import { FormContext } from './FormContext';
+import { useTranslation } from 'react-i18next';
+import {
+  CircularProgress,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Text,
+} from '@chakra-ui/react';
+import { FC, PropsWithChildren, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { FormContent } from './ContactForm';
+import { FormContext } from './FormContext';
+import GoldButton from '../../components/buttons/GoldButton';
+import SilverButton from '../../components/buttons/SilverButton';
 
 type MessageModalProps = {
   onCancel: () => void;
@@ -25,6 +38,7 @@ type ModalError = {
 };
 
 const MessageModal: FC<PropsWithChildren<MessageModalProps>> = ({ onCancel }) => {
+  const { t } = useTranslation(['translation', 'contact']);
   const [isSending, setIsSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState<ModalError | null>(null);
@@ -75,59 +89,66 @@ const MessageModal: FC<PropsWithChildren<MessageModalProps>> = ({ onCancel }) =>
     }
   };
 
-  const messageSummaryModal = (
-    <Fragment>
-      <div>
-        Verify the content of your message below and click on the Send button to send the email to {email.value}.
-      </div>
-      <div>
-        <span>
-          Dear {firstName.value} {lastName.value}
-        </span>
-      </div>
-      <div>Email Address: {email.value}</div>
-      <div>Message: {message.value}</div>
-      <div>
-        <Button onClick={onCancel} disabled={isSending}>
-          Back
-        </Button>
-        <Button
-          isLoading={isSending}
-          loadingText="Submitting"
-          onClick={onSendConfirm}
-          spinner={<CircularProgress isIndeterminate color="green.300" size={6} />}>
-          Send
-        </Button>
-      </div>
-    </Fragment>
+  const messageSummaryContent = (
+    <>
+      <Text>{`${t('firstname')}: ${firstName.value}`}</Text>
+      <Text>{`${t('lastname')}: ${lastName.value}`}</Text>
+      <Text>{`${t('email')}: ${email.value}`}</Text>
+      <Text>{`${t('subject', { ns: 'contact' })}: ${subject.value}`}</Text>
+      <Text>{`${t('message', { ns: 'contact' })}: ${message.value}`}</Text>
+    </>
   );
 
-  const messageSentModal = (
-    <Fragment>
-      <div>
-        Your message was sent to the following recipient:
-        <p>
-          name: {sentContent.firstName} {sentContent.lastName}
-        </p>
-        <p>email: {sentContent.email}</p>
-      </div>
-      <Button onClick={handleCloseBtn}>Back to Home</Button>
-    </Fragment>
+  const messageSentContent = (
+    <>
+      <Text as="p">
+        {sentContent.firstName} {sentContent.lastName}
+      </Text>
+      <Text as="p">
+        {t('email')}: {sentContent.email}
+      </Text>
+    </>
   );
 
-  const errorModal = (
-    <Fragment>
-      <div>There was an error while sending your message</div>
-      <div>Reason of the error: {error?.message}</div>
-      <Button onClick={onCancel}>Back</Button>
-    </Fragment>
+  const errorContent = (
+    <>
+      <Text>There was an error while sending your message</Text>
+      <Text>Reason of the error: {error?.message}</Text>
+      <SilverButton onClick={onCancel}>{t('back')}</SilverButton>
+    </>
   );
 
   return (
-    <Modal onClose={onCancel}>
-      {!sent && !error && messageSummaryModal}
-      {sent && messageSentModal}
-      {error && errorModal}
+    <Modal isOpen={true} onClose={onCancel}>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>{sent ? t('message-sent', { ns: 'contact' }) : t('please-verify', { ns: 'contact' })}</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          {!sent && !error && messageSummaryContent}
+          {sent && messageSentContent}
+          {error && errorContent}
+        </ModalBody>
+        <ModalFooter>
+          {sent ? (
+            <GoldButton onClick={handleCloseBtn}>{t('back')}</GoldButton>
+          ) : (
+            <GoldButton
+              mr={3}
+              isLoading={isSending}
+              loadingText="Submitting"
+              onClick={onSendConfirm}
+              spinner={<CircularProgress isIndeterminate color="green.300" size={6} />}>
+              {t('send-message', { ns: 'contact' })}
+            </GoldButton>
+          )}
+          {!sent && (
+            <SilverButton onClick={onCancel} disabled={isSending}>
+              {t('back')}
+            </SilverButton>
+          )}
+        </ModalFooter>
+      </ModalContent>
     </Modal>
   );
 };
