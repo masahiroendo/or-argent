@@ -36,8 +36,19 @@ const grids = {
 
 const availableMetal = (metalName: string): boolean => storeProducts.some((p) => p.metal === metalName);
 
+//2 array method to count items
 const countItems = (fieldName: keyof Product, fieldValue: string): number =>
   storeProducts.filter((p) => p[fieldName] === fieldValue).length;
+
+const countItemsReduce = (fieldName: keyof Product, fieldValue: string): number => {
+  const count = storeProducts.reduce((acc, cur) => {
+    if (cur[fieldName] === fieldValue) {
+      return acc + 1;
+    }
+    return acc;
+  }, 0);
+  return count;
+};
 
 const Products: FC = () => {
   const { t } = useTranslation();
@@ -74,7 +85,7 @@ const Products: FC = () => {
                   disabled={!availableMetal(m)}
                   {...getMetalCheckboxProps({ value: m })}
                   colorScheme="gold">
-                  <Text fontWeight="bold">{`${t(m)} (${countItems('metal', m)})`}</Text>
+                  <Text fontWeight="bold">{`${t(m)} (${countItemsReduce('metal', m)})`}</Text>
                 </Checkbox>
               ))}
             </CheckboxGroup>
@@ -86,7 +97,7 @@ const Products: FC = () => {
           <Flex direction={{ base: 'row', lg: 'column' }} align="left" mt={4} gap={{ base: 6, lg: 3 }}>
             <CheckboxGroup value={categories}>
               {categoryNames.map((c) => (
-                <Checkbox key={c} {...getCategoryCheckboxProps({ value: c })} colorScheme="gold">
+                <Checkbox key={c} {...getCategoryCheckboxProps({ value: c })} colorScheme="blue">
                   <Text fontWeight="bold">{`${t(c)} (${countItems('category', c)})`}</Text>
                 </Checkbox>
               ))}
