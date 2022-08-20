@@ -78,7 +78,7 @@ const ContactForm: FC<ContactFormProps> = ({ onSubmitCallback }) => {
 
   return (
     <Container maxW="container.lg" py={{ base: 2, md: 6 }}>
-      <Center>
+      <Center my={6}>
         <Heading h="h1">{t('contact-us', { ns: 'contact' })}</Heading>
       </Center>
       <Grid
