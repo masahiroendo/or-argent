@@ -14,11 +14,11 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { storeProducts, Product } from '../../constants/products';
 import { COLORS } from '../../constants/colors';
 import FilteredProducts from './FilteredProducts';
-import { useTranslation } from 'react-i18next';
 
 const metalNames = ['gold', 'silver', 'platinum', 'paladium'];
 const categoryNames = ['bar', 'coin'];
@@ -77,7 +77,7 @@ const Products: FC = () => {
           <Badge variant="outline" fontSize={'1em'} colorScheme="yellow" p={1}>
             {t('metal')}
           </Badge>
-          <Flex direction={{ base: 'row', lg: 'column' }} align="left" mt={4} gap={{ base: 6, lg: 3 }}>
+          <Flex direction={{ base: 'row', lg: 'column' }} align="baseline" mt={4} gap={{ base: 6, lg: 3 }}>
             <CheckboxGroup value={metals}>
               {metalNames.map((m) => (
                 <Checkbox
@@ -94,7 +94,7 @@ const Products: FC = () => {
           <Badge variant="outline" fontSize={'1em'} colorScheme="blue" p={1}>
             {t('categories')}
           </Badge>
-          <Flex direction={{ base: 'row', lg: 'column' }} align="left" mt={4} gap={{ base: 6, lg: 3 }}>
+          <Flex direction={{ base: 'row', lg: 'column' }} align="baseline" mt={4} gap={{ base: 6, lg: 3 }}>
             <CheckboxGroup value={categories}>
               {categoryNames.map((c) => (
                 <Checkbox key={c} {...getCategoryCheckboxProps({ value: c })} colorScheme="blue">

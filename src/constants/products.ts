@@ -6,10 +6,17 @@ type MetalType = 'gold' | 'silver' | 'palladium' | 'platinum';
 
 export const OUNCE_WEIGHT = 31.1035;
 export const BAR_WEIGHT = 1000.0;
+export const FOUR_NINE = '999.9/1000';
+export const LINGOT_DIMENSIONS = 'L:111mm W:51mm H:21mm';
+export const COIN_DIMENSIONS = 'Diameter: 32.70mm';
 export const PRODUCTS_IMAGES_PATH = '/assets/images/products/';
 
-export type ProductSpec = {
-  weight: number;
+export type ProductSpecsspecs = {
+  grossWeight?: number;
+  fineWeight?: number;
+  fineness?: string;
+  dimensions?: string;
+  country?: string;
 };
 
 export type ProductImage = {
@@ -25,7 +32,7 @@ export type Product = {
   slug: string;
   description: string;
   price: number;
-  spec: ProductSpec;
+  specs: ProductSpecsspecs;
   images: ProductImage[];
   // remaningQuantity: number
 };
@@ -39,8 +46,12 @@ export const storeProducts: Product[] = [
     slug: '1kg-gold-bar-valcambi',
     description: faker.lorem.lines(5),
     price: parseInt(faker.finance.amount(1200, 2100), 10),
-    spec: {
-      weight: BAR_WEIGHT,
+    specs: {
+      grossWeight: BAR_WEIGHT,
+      fineWeight: BAR_WEIGHT,
+      fineness: FOUR_NINE,
+      dimensions: LINGOT_DIMENSIONS,
+      country: 'Switzerland',
     },
     images: [
       {
@@ -61,8 +72,8 @@ export const storeProducts: Product[] = [
     slug: '1oz-gold-buffalo',
     description: faker.lorem.lines(5),
     price: parseInt(faker.finance.amount(1200, 2100), 10),
-    spec: {
-      weight: OUNCE_WEIGHT,
+    specs: {
+      grossWeight: OUNCE_WEIGHT,
     },
     images: [
       {
@@ -83,8 +94,8 @@ export const storeProducts: Product[] = [
     slug: '1oz-platinum-rene-descartes',
     description: faker.lorem.lines(5),
     price: parseInt(faker.finance.amount(1200, 2100), 10),
-    spec: {
-      weight: OUNCE_WEIGHT,
+    specs: {
+      grossWeight: OUNCE_WEIGHT,
     },
     images: [
       {
@@ -101,12 +112,12 @@ export const storeProducts: Product[] = [
     id: faker.unique(v4),
     category: 'coin',
     metal: 'gold',
-    name: '1 ounce Gold 1 ounce Silver Britannia',
+    name: '1 ounce Gold American Eagle',
     slug: '1oz-gold-american-eagle',
     description: faker.lorem.lines(5),
     price: parseInt(faker.finance.amount(1200, 2100), 10),
-    spec: {
-      weight: OUNCE_WEIGHT,
+    specs: {
+      grossWeight: OUNCE_WEIGHT,
     },
     images: [
       {
@@ -127,8 +138,8 @@ export const storeProducts: Product[] = [
     slug: '1kg-silver-bar-JBR',
     description: faker.lorem.lines(5),
     price: parseInt(faker.finance.amount(1200, 2100), 10),
-    spec: {
-      weight: OUNCE_WEIGHT,
+    specs: {
+      grossWeight: OUNCE_WEIGHT,
     },
     images: [
       {
@@ -149,8 +160,8 @@ export const storeProducts: Product[] = [
     slug: '1oz-silver-philharmonic',
     description: faker.lorem.lines(5),
     price: parseInt(faker.finance.amount(1200, 2100), 10),
-    spec: {
-      weight: OUNCE_WEIGHT,
+    specs: {
+      grossWeight: OUNCE_WEIGHT,
     },
     images: [
       {
@@ -171,8 +182,8 @@ export const storeProducts: Product[] = [
     slug: '1oz-silver-britannia',
     description: faker.lorem.lines(5),
     price: parseInt(faker.finance.amount(1200, 2100), 10),
-    spec: {
-      weight: OUNCE_WEIGHT,
+    specs: {
+      grossWeight: OUNCE_WEIGHT,
     },
     images: [
       {

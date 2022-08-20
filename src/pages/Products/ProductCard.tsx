@@ -12,17 +12,7 @@ type ProducCardProps = {
   product: Product;
 };
 
-const ProductCard: FC<ProducCardProps> = ({
-  product: {
-    images,
-    metal,
-    name,
-    price,
-    spec: { weight },
-    slug,
-    category: type,
-  },
-}) => {
+const ProductCard: FC<ProducCardProps> = ({ product: { images, metal, name, price, specs, slug, category: type } }) => {
   const imageUrl = images[0]?.fullSize;
   return (
     <Box
