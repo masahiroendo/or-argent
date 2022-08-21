@@ -1,5 +1,5 @@
 import { Box, Flex, Heading, Image, Text, useColorModeValue } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import { CgShoppingCart } from 'react-icons/cg';
 import { NavLink } from 'react-router-dom';
 
@@ -7,12 +7,15 @@ import GoldIconButton from '../../components/buttons/GoldIconButton';
 import SilverIconButton from '../../components/buttons/SilverIconButton';
 import { COLORS } from '../../theme/colors';
 import { Product } from '../../constants/products';
+import { CurrencyContext } from '../../contexts/CurrencyContext';
 
 type ProducCardProps = {
   product: Product;
 };
 
 const ProductCard: FC<ProducCardProps> = ({ product: { images, metal, name, price, specs, slug, category: type } }) => {
+  const { currency } = useContext(CurrencyContext);
+
   const imageUrl = images[0]?.fullSize;
   return (
     <Box
@@ -68,7 +71,7 @@ const ProductCard: FC<ProducCardProps> = ({ product: { images, metal, name, pric
           gap={3}>
           <NavLink to={`${slug}`}>
             <Text fontWeight={800} fontSize={'xl'}>
-              {price}€-$-YEN
+              {`${price} ${currency.symbol}`}
             </Text>
           </NavLink>
           <Box>

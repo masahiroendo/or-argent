@@ -1,3 +1,4 @@
+import { FC, useContext } from 'react';
 import {
   Box,
   Container,
@@ -10,7 +11,6 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -18,6 +18,7 @@ import AddToCartButton from './AddToCartButton';
 import ProductNotFound from './ProductNotFound';
 import { COLORS } from '../../theme/colors';
 import { Product, storeProducts } from '../../constants/products';
+import { CurrencyContext } from '../../contexts/CurrencyContext';
 
 const ProductDetails: FC = () => {
   const { t } = useTranslation(['translation', 'products']);
@@ -25,6 +26,7 @@ const ProductDetails: FC = () => {
   const descriptionColor = useColorModeValue('gray.700', 'gray.200');
   const labelColor = useColorModeValue('gold.700', 'silver.100');
   const { slug } = useParams();
+  const { currency } = useContext(CurrencyContext);
 
   if (!slug) {
     return <ProductNotFound />;
@@ -40,8 +42,6 @@ const ProductDetails: FC = () => {
 
   const { category, images, description, metal, name, price, slug: productSlug, specs } = product;
   const firstImage = images[0];
-
-  alert('utiliser le component stats pour afficher la variation https://chakra-ui.com/docs/components/stat');
 
   return (
     <Container maxW={'container.xl'}>
@@ -62,7 +62,7 @@ const ProductDetails: FC = () => {
             {name}
           </Heading>
           <Text color={descriptionColor} fontWeight={300} fontSize={'2xl'}>
-            {price}€-$-YEN
+            {`${price} ${currency.symbol}`}
           </Text>
           <Stack spacing={{ base: 4, sm: 6 }} direction={'column'} divider={<StackDivider borderColor={color} />}>
             <Box>
