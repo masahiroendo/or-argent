@@ -11,7 +11,7 @@ import { makeMetalPricesApiOHLCEndpoint } from '../../constants/endpoints';
 import { MetalsAPIOHLCResponse } from '../../constants/apiResponses';
 import { CurrencyContext } from '../../contexts/CurrencyContext';
 import { buttonHover } from './styles';
-import { COLORS } from '../../constants/colors';
+import { COLORS } from '../../theme/colors';
 
 import styles from './style.module.scss';
 
@@ -54,7 +54,7 @@ const Header: FC = () => {
   const [silverSpot, setSilverSpot] = useState<SpotPriceDataType>(initSpotPrice);
   const { t } = useTranslation();
   const { currency } = useContext(CurrencyContext);
-  const bg = useColorModeValue(COLORS.GOLD, COLORS.SILVER);
+  const bg = useColorModeValue(COLORS.GOLD, COLORS.DARK);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -16,7 +16,7 @@ import { FiRepeat } from 'react-icons/fi';
 import { FaUserTie } from 'react-icons/fa';
 
 import GoldButton from '../../components/buttons/GoldButton';
-import { COLORS } from '../../constants/colors';
+import { COLORS } from '../../theme/colors';
 import { ROUTES } from '../../router/constant';
 import SilverButton from '../../components/buttons/SilverButton';
 
@@ -45,8 +45,8 @@ const items = [
 
 const AboutUs = () => {
   const { t } = useTranslation(['translation', 'home']);
-  const light = useColorModeValue(COLORS.GOLD, COLORS.SILVER);
-  const dark = useColorModeValue(COLORS.SILVER, COLORS.GOLD);
+  const light = useColorModeValue(COLORS.GOLD, COLORS.DARK);
+  const dark = useColorModeValue(COLORS.DARK, COLORS.GOLD);
   const { colorMode } = useColorMode();
 
   return (

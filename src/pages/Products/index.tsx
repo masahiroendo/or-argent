@@ -17,7 +17,7 @@ import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { storeProducts, Product } from '../../constants/products';
-import { COLORS } from '../../constants/colors';
+import { COLORS } from '../../theme/colors';
 import FilteredProducts from './FilteredProducts';
 
 const metalNames = ['gold', 'silver', 'platinum', 'paladium'];

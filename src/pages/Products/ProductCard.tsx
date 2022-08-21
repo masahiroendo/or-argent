@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 import GoldIconButton from '../../components/buttons/GoldIconButton';
 import SilverIconButton from '../../components/buttons/SilverIconButton';
-import { COLORS } from '../../constants/colors';
+import { COLORS } from '../../theme/colors';
 import { Product } from '../../constants/products';
 
 type ProducCardProps = {

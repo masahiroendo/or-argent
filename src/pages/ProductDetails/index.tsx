@@ -16,7 +16,7 @@ import { useTranslation } from 'react-i18next';
 
 import AddToCartButton from './AddToCartButton';
 import ProductNotFound from './ProductNotFound';
-import { COLORS } from '../../constants/colors';
+import { COLORS } from '../../theme/colors';
 import { Product, storeProducts } from '../../constants/products';
 
 const ProductDetails: FC = () => {

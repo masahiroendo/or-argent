@@ -8,7 +8,7 @@ import { IoLocationSharp } from 'react-icons/io5';
 import { useTranslation } from 'react-i18next';
 
 import { ROUTES } from '../../../router/constant';
-import { COLORS } from '../../../constants/colors';
+import { COLORS } from '../../../theme/colors';
 
 const ContactLinks: FC = () => {
   const { t } = useTranslation(['translation', 'contact']);
