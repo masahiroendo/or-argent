@@ -39,7 +39,7 @@ const CarouselItem: FC<CarouselItemProps> = ({ item: { image, metal, name, price
             maxW={{ base: '250px', lg: '150px' }}
           />
         </NavLink>
-        <Text fontWeight="semibold" fontSize="xl">
+        <Text cursor="grab" _active={{ cursor: 'grabbing' }} fontWeight="semibold" fontSize="xl">
           {name}
         </Text>
       </Stack>

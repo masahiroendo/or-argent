@@ -27,7 +27,8 @@ const ProductsImageCarousel: FC<ProducsImageCarouselProps> = ({ images }) => {
       {images.map((url, index) => (
         <Box
           key={`${url}-${index}`}
-          cursor="pointer"
+          cursor="grab"
+          _active={{ cursor: 'grabbing' }}
           height={{ base: '2xs', md: 'md', lg: 'xl' }}
           backgroundPosition="center"
           backgroundRepeat="no-repeat"
