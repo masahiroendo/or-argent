@@ -22,6 +22,7 @@ import SilverButton from '../buttons/SilverButton';
 import GoldButton from '../buttons/GoldButton';
 import { ROUTES } from '../../router/constant';
 import useAuth from '../../hooks/use-auth';
+import useToggle from '../../hooks/use-toggle';
 
 type SignInFormProps = {
   onCloseForm: () => void;
@@ -30,7 +31,7 @@ type SignInFormProps = {
 const SignInForm: FC<SignInFormProps> = ({ onCloseForm }) => {
   const { t } = useTranslation('navbar');
   const { processing, signIn } = useAuth();
-  const [show, setShow] = useState<boolean>(false);
+  const { opened, toggle } = useToggle();
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -47,10 +48,6 @@ const SignInForm: FC<SignInFormProps> = ({ onCloseForm }) => {
     position: 'top',
     isClosable: true,
   });
-
-  const handleShowPassword = () => {
-    setShow(!show);
-  };
 
   const handleSubmitLogin = async (event: FormEvent) => {
     event.preventDefault();
@@ -97,13 +94,15 @@ const SignInForm: FC<SignInFormProps> = ({ onCloseForm }) => {
           <FormLabel>{t('user.password')}</FormLabel>
           <InputGroup>
             <Input
-              type={show ? 'text' : 'password'}
+              type={opened ? 'text' : 'password'}
               value={password}
               placeholder="*******"
               onChange={(event: any) => setPassword(event.currentTarget.value)}
             />
             <InputRightElement>
-              <Button onMouseDown={handleShowPassword}>{show ? <ViewOffIcon /> : <ViewIcon />}</Button>
+              <Button onMouseUp={toggle} onMouseDown={toggle}>
+                {opened ? <ViewOffIcon /> : <ViewIcon />}
+              </Button>
             </InputRightElement>
           </InputGroup>
         </FormControl>
