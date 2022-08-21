@@ -1,21 +1,11 @@
 import { FC, useContext } from 'react';
-import {
-  Box,
-  Container,
-  Flex,
-  Heading,
-  Image,
-  SimpleGrid,
-  Stack,
-  StackDivider,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, Container, Heading, SimpleGrid, Stack, StackDivider, Text, useColorModeValue } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import AddToCartButton from './AddToCartButton';
 import ProductNotFound from './ProductNotFound';
+import ProductsImageCarousel from './ProducsImageCarousel';
 import { COLORS } from '../../theme/colors';
 import { Product, storeProducts } from '../../constants/products';
 import { CurrencyContext } from '../../contexts/CurrencyContext';
@@ -41,22 +31,11 @@ const ProductDetails: FC = () => {
   }
 
   const { category, images, description, metal, name, price, slug: productSlug, specs } = product;
-  const firstImage = images[0];
 
   return (
     <Container maxW={'container.xl'}>
       <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 8, md: 10 }} py={{ base: '1em', lg: '4em' }}>
-        <Flex bgColor={color}>
-          <Image
-            rounded={'md'}
-            src={firstImage.fullSize}
-            alt={name}
-            fit={'contain'}
-            align={'center'}
-            w={'100%'}
-            maxH={{ base: '300px', lg: 'initial' }}
-          />
-        </Flex>
+        <ProductsImageCarousel images={images.map((i) => i.fullSize)} />
         <Stack spacing={{ base: 6, md: 10 }}>
           <Heading as="h1" lineHeight={1.1} fontWeight={600} fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}>
             {name}
