@@ -46,7 +46,7 @@ const CarouselItem: FC<CarouselItemProps> = ({ item: { image, metal, name, price
       <VStack justifyContent="space-between" p={2}>
         <HStack fontWeight="semibold" fontSize="lg">
           <NavLink to={`/${ROUTES.PRODUCTS}/${slug}`}>
-            <Box>
+            <Box whiteSpace="nowrap">
               {price.toFixed(2)} {currency.symbol}
             </Box>
           </NavLink>
