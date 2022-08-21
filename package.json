@@ -2,6 +2,10 @@
   "name": "or-argent",
   "version": "0.1.0",
   "private": true,
+  "email": "massahiro.endo@gmail.com",
+  "author": "Masahiro Endo",
+  "url": "https://github.com/masahiroendo/or-argent",
+  "homepage": "https://or-argent.vercel.app",
   "dependencies": {
     "@chakra-ui/icons": "^1.1.7",
     "@chakra-ui/react": "^1.8.8",
