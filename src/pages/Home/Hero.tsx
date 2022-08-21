@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Box, Container, Flex, Heading } from '@chakra-ui/react';
+import { Box, Container, Flex, Heading, Link } from '@chakra-ui/react';
 import { FaPlayCircle } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
@@ -20,9 +20,9 @@ const Hero: FC = () => {
         <NavLink to={`/${ROUTES.CREATE_ACCOUNT}`}>
           <GoldButton>{t('create-account')}</GoldButton>
         </NavLink>
-        <NavLink to={`#`}>
+        <Link href="https://rumble.com/user/RadioQuebec" target="_blank">
           <SilverButton leftIcon={<FaPlayCircle />}>{t('watch-a-demo')}</SilverButton>
-        </NavLink>
+        </Link>
       </Flex>
     </Container>
   );

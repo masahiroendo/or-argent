@@ -20,6 +20,7 @@ import { BsFillShareFill } from 'react-icons/bs';
 
 import json from '../../../package.json';
 import GoldLingotIcon from '../../components/icons/GoldLingotIcon';
+import Switchers from '../../components/Switchers';
 import { COLORS } from '../../theme/colors';
 
 type FooterButtonProps = { label: string; href: string; onClick?: () => void; target?: string };
@@ -89,6 +90,7 @@ const Footer: FC = () => {
             </Link>{' '}
             components library
           </Text>
+          <Switchers />
         </VStack>
       </Container>
       <Divider />

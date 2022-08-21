@@ -1,16 +1,12 @@
 import { FC, useContext, useEffect, useState } from 'react';
-import { Box, Button, ButtonGroup, Container, Show, Spacer, useColorModeValue } from '@chakra-ui/react';
+import { Box, Container, Show, Spacer, useColorModeValue } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 
-import CurrencySelect from './CurrencySelect';
-import LanguageSelect from './LanguageSelect';
 import SpotPrice from './SpotPrice';
-import { ThemeSwitchBtn } from './themeSwitchBtn';
+import Switchers from '../Switchers';
 import { makeMetalPricesApiOHLCEndpoint } from '../../constants/endpoints';
 import { MetalsAPIOHLCResponse } from '../../constants/apiResponses';
 import { CurrencyContext } from '../../contexts/CurrencyContext';
-import { buttonHover } from './styles';
 import { COLORS } from '../../theme/colors';
 
 import styles from './style.module.scss';
@@ -52,7 +48,6 @@ const fetchLatestGoldAndSilverPrices = async (
 const Header: FC = () => {
   const [goldSpot, setGoldSpot] = useState<SpotPriceDataType>(initSpotPrice);
   const [silverSpot, setSilverSpot] = useState<SpotPriceDataType>(initSpotPrice);
-  const { t } = useTranslation();
   const { currency } = useContext(CurrencyContext);
   const bg = useColorModeValue(COLORS.GOLD, COLORS.DARK);
 
@@ -81,17 +76,8 @@ const Header: FC = () => {
           </NavLink>
         </Box>
         <Spacer />
-        <Show above="sm">
-          <ButtonGroup p={1}>
-            <NavLink to="contact" className={({ isActive }) => (isActive ? styles.active : undefined)}>
-              <Button _active={buttonHover} _hover={buttonHover} variant="ghost">
-                {t('contact')}
-              </Button>
-            </NavLink>
-            <LanguageSelect />
-            <CurrencySelect />
-            <ThemeSwitchBtn />
-          </ButtonGroup>
+        <Show above="md">
+          <Switchers />
         </Show>
       </Container>
     </Box>
