@@ -20,7 +20,7 @@ const Hero: FC = () => {
         <NavLink to={`/${ROUTES.CREATE_ACCOUNT}`}>
           <GoldButton>{t('create-account')}</GoldButton>
         </NavLink>
-        <Link href="https://rumble.com/user/RadioQuebec" target="_blank">
+        <Link color="Silver.400" href="https://rumble.com/user/RadioQuebec" target="_blank">
           <SilverButton leftIcon={<FaPlayCircle />}>{t('watch-a-demo')}</SilverButton>
         </Link>
       </Flex>

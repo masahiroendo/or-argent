@@ -2,6 +2,32 @@
   "buy-bullion": "Lingots et pièces d'investissement certifiés LBMA",
   "description": "Or-argent.fr propose une solution optimale pour protéger son patrimoine via l’achat et le stockage de métaux précieux. ",
   "direct-ownership": "Détention en nom propre, avec accès direct aux coffres",
+  "how-to-invest": {
+    "title": "Comment investir",
+    "create-an-account": {
+      "header": "Créer un compte",
+      "content": "Remplissez le formulaire d'inscription, puis vérifiez votre profil en fournissant les documents justificatifs requis."
+    },
+    "order": {
+      "header": "Passer commande",
+      "content": "Sélectionnez les produits et le service souhaité, puis confirmez votre commande en renseignant une carte bancaire."
+    },
+    "proceed-to-payment": {
+      "header": "Procéder au paiement",
+      "content": "Transférez les fonds nécessaires au paiement de votre commande par virement bancaire."
+    }
+  },
+  "live-price": {
+    "header": "Cours des métaux précieux",
+    "header1": "Prix en direct des métaux précieux",
+    "content1": "24h/24, 5j/7, dans plus de 110 devises.",
+    "header2": "Suivez vos investissements au quotidien",
+    "content2": "Des graphiques historiques pour visualiser les tendances à long terme, ainsi que des outils pour suivre au quotidien ses investissements et la performance des métaux précieux.",
+    "header3": "Ordres d’achat jusqu’à 70.000 €",
+    "content3": "24h/24, 7j/7, depuis le site internet.",
+    "header4": "Nos conseillers à votre service",
+    "content4": "Pour tout autre placement or ou argent, nos conseillers sont disponibles par email ou téléphone, du lundi au vendredi (9h à 18h30)."
+  },
   "sell-bullion": "Rachat de vos métaux, liquidités de l'investissement garantie",
   "store": "Stockage sécurisé hors du système bancaire",
   "title": "Investir dans l'or et l'argent physique"

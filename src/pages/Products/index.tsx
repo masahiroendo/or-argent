@@ -20,7 +20,7 @@ import { storeProducts, Product } from '../../constants/products';
 import { COLORS } from '../../theme/colors';
 import FilteredProducts from './FilteredProducts';
 
-const metalNames = ['gold', 'silver', 'platinum', 'paladium'];
+const metalNames = ['gold', 'silver', 'platinum', 'palladium'];
 const categoryNames = ['bar', 'coin'];
 
 const grids = {
@@ -77,7 +77,7 @@ const Products: FC = () => {
           <Badge variant="outline" fontSize={'1em'} colorScheme="yellow" p={1}>
             {t('metal')}
           </Badge>
-          <Flex direction={{ base: 'row', lg: 'column' }} align="baseline" mt={4} gap={{ base: 6, lg: 3 }}>
+          <Flex wrap="wrap" direction={{ base: 'row', lg: 'column' }} align="baseline" mt={4} gap={{ base: 6, lg: 3 }}>
             <CheckboxGroup value={metals}>
               {metalNames.map((m) => (
                 <Checkbox
@@ -94,7 +94,7 @@ const Products: FC = () => {
           <Badge variant="outline" fontSize={'1em'} colorScheme="blue" p={1}>
             {t('categories')}
           </Badge>
-          <Flex direction={{ base: 'row', lg: 'column' }} align="baseline" mt={4} gap={{ base: 6, lg: 3 }}>
+          <Flex wrap="wrap" direction={{ base: 'row', lg: 'column' }} align="baseline" mt={4} gap={{ base: 6, lg: 3 }}>
             <CheckboxGroup value={categories}>
               {categoryNames.map((c) => (
                 <Checkbox key={c} {...getCategoryCheckboxProps({ value: c })} colorScheme="blue">

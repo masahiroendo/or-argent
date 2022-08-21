@@ -41,6 +41,8 @@ const ProductDetails: FC = () => {
   const { category, images, description, metal, name, price, slug: productSlug, specs } = product;
   const firstImage = images[0];
 
+  alert('utiliser le component stats pour afficher la variation https://chakra-ui.com/docs/components/stat');
+
   return (
     <Container maxW={'container.xl'}>
       <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 8, md: 10 }} py={{ base: '1em', lg: '4em' }}>

@@ -12,8 +12,8 @@ export const ASSET_SYMBOLS: Record<string, AssetSymbol> = Object.freeze({
     name: 'Silver',
     symbol: 'XAG',
   },
-  PALADIUM: {
-    name: 'Paladium',
+  palladium: {
+    name: 'palladium',
     symbol: 'XPD',
   },
   PLATINUM: {

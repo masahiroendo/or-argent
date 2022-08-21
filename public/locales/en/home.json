@@ -2,6 +2,32 @@
   "description": "Or-argent.fr offers an optimal solution to protect your assets through the purchase and storage of precious metals. ",
   "buy-bullion": "LBMA certified bullion bars and coins",
   "direct-ownership": "Direct ownership, with personal access to the vaults",
+  "how-to-invest": {
+    "title": "How to invest",
+    "create-an-account": {
+      "header": "Create an account",
+      "content": "Fill in the signup form, then provide the required documents to verify your account."
+    },
+    "order": {
+      "header": "Passer commande",
+      "content": "Select your wished products, then confirm your order by proceeding to the payment."
+    },
+    "proceed-to-payment": {
+      "header": "Proceed to payment",
+      "content": "Transfer the funds to finalize your order."
+    }
+  },
+  "live-price": {
+    "header": "Precious metal spot prices",
+    "header1": "Live precious metals prices",
+    "content1": "24hrs a day, 5 days a week, in more than 110 currencies.",
+    "header2": "Track your investments value",
+    "content2": "Historical charts to visualize long-term trends, as well as tools to monitor your investments and the precious metals performance on a daily basis.",
+    "header3": "Buy orders up to €70,000",
+    "content3": "24/7, from our website.",
+    "header4": "Our experts at your service",
+    "content4": "For any other gold or silver investment, our client support is available by email or phone, Monday to Friday from 9 am to 6.30 pm."
+  },
   "sell-bullion": "Buy-back of your metals, guaranteed investment liquidity",
   "store": "Secure storage outside the banking system",
   "title": "Invest in physical gold and silver bullions"
