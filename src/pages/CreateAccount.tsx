@@ -1,18 +1,20 @@
-import { Checkbox, Container, FormControl, FormLabel, Heading, HStack, Input, Select, VStack } from '@chakra-ui/react';
-
-import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../router/constant';
-import { useTranslation } from 'react-i18next';
 import { useEffect, useRef } from 'react';
+import { Checkbox, Container, FormControl, FormLabel, Heading, HStack, Input, Select, VStack } from '@chakra-ui/react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
+import { ROUTES } from '../router/constant';
 import GoldButton from '../components/buttons/GoldButton';
+import useAuth from '../hooks/use-auth';
 
-type Props = {};
-
-const CreateAccount = (props: Props) => {
+const CreateAccount = () => {
   const firstNameRef = useRef<HTMLLabelElement | null>(null);
   const { t } = useTranslation(['translation', 'navbar']);
   const navigate = useNavigate();
-  const handleNavigate = () => {
+  const { /*signIn,*/ signedIn } = useAuth();
+
+  const handleSubmit = async () => {
+    // await signIn();
     navigate(`/${ROUTES.UNDER_CONSTRUCTION}`, { replace: true });
   };
 
@@ -20,10 +22,14 @@ const CreateAccount = (props: Props) => {
     firstNameRef.current?.focus();
   }, []);
 
+  if (signedIn) {
+    return <Navigate to={`/${ROUTES.PROFILE}`} replace />;
+  }
+
   return (
     <Container py={{ base: 2, md: 6 }}>
       <Heading my={10}>{t('register-form')}</Heading>
-      <form>
+      <form onSubmit={handleSubmit}>
         <VStack>
           <FormControl w={['50%', 'full']} isRequired>
             <FormLabel htmlFor="gender">{t('gender.gender')}</FormLabel>
@@ -49,6 +55,10 @@ const CreateAccount = (props: Props) => {
             <Input id="UserName" placeholder="Please enter a User Name" />
           </FormControl>
           <FormControl isRequired>
+            <FormLabel htmlFor="email">{t('user.email', { ns: 'navbar' })} </FormLabel>
+            <Input id="email" placeholder="Please enter your email address" />
+          </FormControl>
+          <FormControl isRequired>
             <FormLabel htmlFor="Password">Password</FormLabel>
             <Input id="password" type="password" placeholder="Password" />
           </FormControl>
@@ -57,7 +67,7 @@ const CreateAccount = (props: Props) => {
             <Input id="ConfirmPassword" placeholder="Confirm password" />
           </FormControl>
           <Checkbox>{t('agree-terms-and-conditions')}</Checkbox>
-          <GoldButton onClick={handleNavigate}>{t('create-account')}</GoldButton>
+          <GoldButton type="submit">{t('create-account')}</GoldButton>
         </VStack>
       </form>
     </Container>

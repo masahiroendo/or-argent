@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../../hooks/use-auth';
 import { RiHandCoinLine, RiSafe2Fill } from 'react-icons/ri';
 import { FiRepeat } from 'react-icons/fi';
 import { FaUserTie } from 'react-icons/fa';
@@ -48,13 +49,14 @@ const AboutUs = () => {
   const light = useColorModeValue(COLORS.GOLD, COLORS.DARK);
   const dark = useColorModeValue(COLORS.DARK, COLORS.GOLD);
   const { colorMode } = useColorMode();
+  const { signedIn } = useAuth();
 
   return (
     <Container maxW="container.lg" backgroundColor={light} my={'3em'}>
       <Heading textAlign="center" py={6} top="-50px" pos="relative">
         {t('why')}
       </Heading>
-      <SimpleGrid columns={[1, null, 2]} spacing="40px" px={{ base: 4, md: '20' }}>
+      <SimpleGrid columns={[1, null, 2]} spacing="40px" px={{ base: 4, md: '20' }} pb={'3em'}>
         {items.map(({ Icon, contentKey, to }, i) => (
           <NavLink key={`${contentKey}-${i}`} to={to}>
             <Flex
@@ -72,15 +74,17 @@ const AboutUs = () => {
           </NavLink>
         ))}
       </SimpleGrid>
-      <Center py={'3em'}>
-        <NavLink to={`/${ROUTES.CREATE_ACCOUNT}`}>
-          {colorMode === 'light' ? (
-            <SilverButton>{t('create-account')} </SilverButton>
-          ) : (
-            <GoldButton>{t('create-account')} </GoldButton>
-          )}
-        </NavLink>
-      </Center>
+      {!signedIn && (
+        <Center pb={'3em'}>
+          <NavLink to={`/${ROUTES.CREATE_ACCOUNT}`}>
+            {colorMode === 'light' ? (
+              <SilverButton>{t('create-account')} </SilverButton>
+            ) : (
+              <GoldButton>{t('create-account')} </GoldButton>
+            )}
+          </NavLink>
+        </Center>
+      )}
     </Container>
   );
 };
