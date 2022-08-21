@@ -1,28 +1,10 @@
 import { FC, Fragment } from 'react';
+
 import Hero from './Hero';
 import HomeCarousel from './HomeCarousel';
 import AboutUs from './AboutUs';
-
-// const banners: Banner[] = [
-//   {
-//     Id: faker.unique(v4),
-//     imageSrc: faker.image.animals(1224, 600),
-//     title: faker.random.words(4),
-//     description: faker.lorem.paragraph(2),
-//   },
-//   {
-//     Id: faker.unique(v4),
-//     imageSrc: faker.image.animals(1224, 600),
-//     title: faker.random.words(4),
-//     description: faker.lorem.paragraph(2),
-//   },
-//   {
-//     Id: faker.unique(v4),
-//     imageSrc: faker.image.animals(1224, 600),
-//     title: faker.random.words(4),
-//     description: faker.lorem.paragraph(2),
-//   },
-// ];
+import HowTo from './HowTo';
+import MetalsRates from './MetalRates';
 
 const Home: FC = () => {
   return (
@@ -30,6 +12,8 @@ const Home: FC = () => {
       <Hero />
       <HomeCarousel />
       <AboutUs />
+      <HowTo />
+      <MetalsRates />
     </Fragment>
   );
 };
