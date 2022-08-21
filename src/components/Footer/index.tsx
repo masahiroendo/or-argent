@@ -1,12 +1,12 @@
 import { FC, PropsWithChildren } from 'react';
 import {
-  Badge,
   Box,
   Button,
   Container,
   Divider,
   HStack,
   IconButton,
+  Kbd,
   Link,
   Stack,
   Text,
@@ -59,8 +59,9 @@ const Footer: FC = () => {
     isClosable: true,
     description: (
       <>
-        You can now paste {json.homepage} in your favorite sns app with <Badge>cmd+v</Badge> on mac or{' '}
-        <Badge>ctrl+v</Badge> on pc
+        You can now paste {json.homepage} in your favorite sns app with <Kbd color="blackAlpha.700">cmd</Kbd>+
+        <Kbd color="blackAlpha.700">v</Kbd> on mac or <Kbd color="blackAlpha.700">ctrl</Kbd>+
+        <Kbd color="blackAlpha.700">v</Kbd> on pc
       </>
     ),
   });
