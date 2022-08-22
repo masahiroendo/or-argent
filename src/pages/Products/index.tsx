@@ -63,7 +63,7 @@ const Products: FC = () => {
   });
 
   return (
-    <Container mt={{ base: 2, lg: 20 }} maxW="8xl">
+    <Container p={{ base: 0, sm: '16px' }} mt={{ base: 2, lg: 20 }} maxW="8xl">
       <Grid
         templateAreas={grids}
         templateColumns={{ md: 'repeat(1, minmax(0, 1fr))', lg: 'repeat(4, minmax(0, 1fr))' }}
