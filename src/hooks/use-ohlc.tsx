@@ -3,9 +3,12 @@ import { useContext, useEffect, useState } from 'react';
 import { OpenHighLowClose, MetalsAPIOHLCResponse } from '../constants/apiResponses';
 import { makeMetalPricesApiOHLCEndpoint } from '../constants/endpoints';
 import { CurrencyContext } from '../contexts/CurrencyContext';
+import { calculateVariation } from '../utils/math-utils';
+
+export type UseOHLCDataType = OpenHighLowClose & { variation: number };
 
 const useOhlc = (metal: string) => {
-  const [data, setData] = useState<OpenHighLowClose>({ close: 0, high: 0, low: 0, open: 0 });
+  const [data, setData] = useState<UseOHLCDataType>({ close: 0, high: 0, low: 0, open: 0, variation: 0 });
   const [error, setError] = useState<Error | null>(null);
   const { currency } = useContext(CurrencyContext);
 
@@ -14,7 +17,9 @@ const useOhlc = (metal: string) => {
       try {
         const response = await fetch(makeMetalPricesApiOHLCEndpoint(metal, currency.iso));
         const json = (await response.json()) as MetalsAPIOHLCResponse;
-        setData(json.rates);
+        const { close, high, low, open } = json.rates;
+        const updatedData: UseOHLCDataType = { open, close, high, low, variation: calculateVariation(close, open) };
+        setData(updatedData);
       } catch (err) {
         setError(err as Error);
       }
@@ -24,5 +29,7 @@ const useOhlc = (metal: string) => {
 
   return { data, error };
 };
+
+export type UserOHLCType = ReturnType<typeof useOhlc>;
 
 export default useOhlc;

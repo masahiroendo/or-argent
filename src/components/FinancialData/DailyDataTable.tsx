@@ -20,22 +20,23 @@ import GoldSymbolIcon from '../../components/icons/GoldSymbolIcon';
 import SilverSymbolIcon from '../icons/SilverSymbolIcon';
 import PalladiumSymbolIcon from '../../components/icons/PalladiumSymbolIcon';
 import PlatinumSymbolIcon from '../../components/icons/PlatinumSymbolIcon';
-import useOhlc from '../../hooks/use-ohlc';
+import useOhlc, { UseOHLCDataType } from '../../hooks/use-ohlc';
 import { ASSET_SYMBOLS } from '../../constants/assetSymbols';
 import { CurrencyContext } from '../../contexts/CurrencyContext';
-import { calculateVariation } from '../../utils/math-utils';
-import { OpenHighLowClose } from '../../constants/apiResponses';
 
 type TableRowProps = {
-  data: OpenHighLowClose;
+  data: UseOHLCDataType;
   currencySymbol: string;
   MetalSymbolAndLabel: ReactNode;
   error: Error | null;
 };
 
-const TableRow: FC<TableRowProps> = ({ currencySymbol, data, MetalSymbolAndLabel, error }) => {
-  const variation = calculateVariation(data.close, data.open);
-
+const TableRow: FC<TableRowProps> = ({
+  currencySymbol,
+  data: { open, close, variation },
+  MetalSymbolAndLabel,
+  error,
+}) => {
   return (
     <Tr>
       <Td>
@@ -43,8 +44,8 @@ const TableRow: FC<TableRowProps> = ({ currencySymbol, data, MetalSymbolAndLabel
           {MetalSymbolAndLabel}
         </Flex>
       </Td>
-      <Td>{!error ? ` ${data.open.toFixed(2)} ${currencySymbol}` : 'N-A'}</Td>
-      <Td>{!error ? ` ${data.close.toFixed(2)} ${currencySymbol}` : 'N-A'}</Td>
+      <Td>{!error ? ` ${open.toFixed(2)} ${currencySymbol}` : 'N-A'}</Td>
+      <Td>{!error ? ` ${close.toFixed(2)} ${currencySymbol}` : 'N-A'}</Td>
       <Td>
         {<StatArrow type={variation > 0 ? 'increase' : 'decrease'} />}
         {!error ? ` ${variation.toPrecision(2)}%` : 'N-A'}
