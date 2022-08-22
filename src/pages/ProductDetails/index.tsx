@@ -1,4 +1,4 @@
-import { FC, useContext } from 'react';
+import { FC } from 'react';
 import {
   Badge,
   Box,
@@ -7,10 +7,6 @@ import {
   SimpleGrid,
   Stack,
   StackDivider,
-  Stat,
-  StatArrow,
-  StatNumber,
-  StatHelpText,
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
@@ -22,16 +18,14 @@ import ProductNotFound from './ProductNotFound';
 import ProductsImageCarousel from './ProductsImageCarousel';
 import { COLORS } from '../../theme/colors';
 import { Product, storeProducts } from '../../constants/products';
-import { CurrencyContext } from '../../contexts/CurrencyContext';
 import RecommendedProductsCarousel from './RecommendedProductsCarousel';
+import ProductPriceAndVariation from './ProductPriceAndVariation';
 
 const ProductDetails: FC = () => {
   const { t } = useTranslation(['translation', 'products']);
   const color = useColorModeValue(COLORS.PRODUCTS_PAGE_LIGHT, COLORS.PRODUCTS_PAGE_DARK);
-  const descriptionColor = useColorModeValue('gray.700', 'gray.200');
   const labelColor = useColorModeValue('gold.700', 'silver.100');
   const { slug } = useParams();
-  const { currency } = useContext(CurrencyContext);
 
   if (!slug) {
     return <ProductNotFound />;
@@ -45,7 +39,7 @@ const ProductDetails: FC = () => {
     return <ProductNotFound />;
   }
 
-  const { category, images, description, metal, name, price, specs } = product;
+  const { category, images, description, metal, name, price } = product;
 
   return (
     <>
@@ -60,16 +54,7 @@ const ProductDetails: FC = () => {
               <Badge alignSelf="start" fontSize="1em">
                 {category}
               </Badge>
-              <Stat>
-                <StatNumber
-                  fontSize={{ base: '2xl', lg: '4xl' }}
-                  color={descriptionColor}
-                  fontWeight={300}>{`${price} ${currency.symbol}`}</StatNumber>
-                <StatHelpText fontSize={{ base: 'xl', lg: '2xl' }}>
-                  <StatArrow type="increase" />
-                  23.36%
-                </StatHelpText>
-              </Stat>
+              <ProductPriceAndVariation metal={metal} price={price} />
             </Box>
             <Stack spacing={{ base: 4, sm: 6 }} direction={'column'} divider={<StackDivider borderColor={color} />}>
               <Box>
@@ -82,12 +67,13 @@ const ProductDetails: FC = () => {
                 <Heading as="h3" size="md" color={labelColor} textTransform={'uppercase'} mb={'4'}>
                   {t('specs')}
                 </Heading>
-                <Text as="p">Put the specs in a tab system</Text>
+                <Text as="p">TODO: Put the specs in a tab system</Text>
               </Box>
               <Box>
                 <Heading as="h3" size="md" color={labelColor} textTransform={'uppercase'} mb={'4'}>
                   {t('quantity')}
                 </Heading>
+                <Box>TODO: handle quantities here</Box>
               </Box>
             </Stack>
             <AddToCartButton metal={metal} />

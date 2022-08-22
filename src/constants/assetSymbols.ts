@@ -1,6 +1,8 @@
+export type MetalSymbol = 'XAU' | 'XAG' | 'XPT' | 'XPD' | 'UNDEFINED';
+
 export type AssetSymbol = {
   name: string;
-  symbol: string;
+  symbol: MetalSymbol;
 };
 
 export const ASSET_SYMBOLS: Record<string, AssetSymbol> = Object.freeze({
@@ -22,10 +24,14 @@ export const ASSET_SYMBOLS: Record<string, AssetSymbol> = Object.freeze({
   },
 });
 
-export const selectMetalSymbol = (name: string): string | undefined => {
+/**
+ * Finds the symbol for a given metal name
+ * @param {MetalSymbol} name A metal name, like "gold", or "silver"
+ */
+export const selectMetalSymbol = (name: string): MetalSymbol => {
   const asset = Object.values(ASSET_SYMBOLS).find((asset) => {
     return asset.name.toLowerCase() === name.toLowerCase();
   });
 
-  return asset?.symbol;
+  return asset ? asset.symbol : 'UNDEFINED';
 };

@@ -47,7 +47,7 @@ const TableRow: FC<TableRowProps> = ({
       <Td>{!error ? ` ${open.toFixed(2)} ${currencySymbol}` : 'N-A'}</Td>
       <Td>{!error ? ` ${close.toFixed(2)} ${currencySymbol}` : 'N-A'}</Td>
       <Td>
-        {<StatArrow type={variation > 0 ? 'increase' : 'decrease'} />}
+        {<StatArrow type={variation >= 0 ? 'increase' : 'decrease'} />}
         {!error ? ` ${variation.toPrecision(2)}%` : 'N-A'}
       </Td>
     </Tr>
