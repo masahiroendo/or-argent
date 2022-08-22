@@ -41,11 +41,13 @@ const settings: Settings = {
 
 type RecommendedProductsCarouselProps = {
   metal: MetalType;
+  slug: string;
 };
 
-const RecommendedProductsCarousel: FC<RecommendedProductsCarouselProps> = ({ metal }) => {
+const RecommendedProductsCarousel: FC<RecommendedProductsCarouselProps> = ({ metal, slug }) => {
   const recommendedProducts = storeProducts
     .filter((p) => p.metal === metal)
+    .filter((p) => p.slug !== slug)
     .map(({ category, images, name, price, slug }) => {
       const firstImg = [...images].shift();
       const image = !!firstImg ? firstImg.thumbnail : '';

@@ -11,7 +11,7 @@ export const LINGOT_DIMENSIONS = 'L:111mm W:51mm H:21mm';
 export const COIN_DIMENSIONS = 'Diameter: 32.70mm';
 export const PRODUCTS_IMAGES_PATH = '/assets/images/products/';
 
-export type ProductSpecsspecs = {
+export type ProductSpecs = {
   grossWeight?: number;
   fineWeight?: number;
   fineness?: string;
@@ -32,7 +32,7 @@ export type Product = {
   slug: string;
   description: string;
   price: number;
-  specs: ProductSpecsspecs;
+  specs: ProductSpecs;
   images: ProductImage[];
   // remaningQuantity: number
 };

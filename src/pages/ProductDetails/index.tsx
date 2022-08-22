@@ -98,7 +98,7 @@ const ProductDetails: FC = () => {
         <Heading textAlign="center" as="h2" mb={'1em'}>
           {t('recommended-products.title')}
         </Heading>
-        <RecommendedProductsCarousel metal={metal} />
+        <RecommendedProductsCarousel metal={metal} slug={slug} />
       </Stack>
     </>
   );
