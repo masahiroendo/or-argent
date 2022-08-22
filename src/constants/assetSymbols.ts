@@ -1,4 +1,4 @@
-type AssetSymbol = {
+export type AssetSymbol = {
   name: string;
   symbol: string;
 };
