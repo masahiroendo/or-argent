@@ -3,7 +3,7 @@ import { Center, Flex, Spinner } from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
 
 import Footer from './Footer';
-import Header from './Header';
+import TopInfoBar from './TopInfoBar';
 import NavBar from './NavBar';
 
 const CenteredSpinner: FC = () => {
@@ -18,7 +18,7 @@ const Layout: FC = () => {
   return (
     <Suspense fallback={<CenteredSpinner />}>
       <Flex direction="column">
-        <Header />
+        <TopInfoBar />
         <NavBar />
         <main>
           <Outlet />

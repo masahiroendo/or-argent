@@ -3,12 +3,12 @@ import { Button, ButtonGroup } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import CurrencySelect from './Header/CurrencySelect';
-import LanguageSelect from './Header/LanguageSelect';
-import { ThemeSwitchBtn } from './Header/themeSwitchBtn';
-import { buttonHover } from './Header/styles';
+import CurrencySelect from './TopInfoBar/CurrencySelect';
+import LanguageSelect from './TopInfoBar/LanguageSelect';
+import { ThemeSwitchBtn } from './TopInfoBar/themeSwitchBtn';
+import { buttonHover } from './TopInfoBar/styles';
 
-import styles from './Header/style.module.scss';
+import styles from './TopInfoBar/style.module.scss';
 
 const Switchers: FC = () => {
   const { t } = useTranslation();

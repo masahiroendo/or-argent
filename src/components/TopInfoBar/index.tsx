@@ -45,7 +45,7 @@ const fetchLatestGoldAndSilverPrices = async (
   };
 };
 
-const Header: FC = () => {
+const TopInfoBar: FC = () => {
   const [goldSpot, setGoldSpot] = useState<SpotPriceDataType>(initSpotPrice);
   const [silverSpot, setSilverSpot] = useState<SpotPriceDataType>(initSpotPrice);
   const { currency } = useContext(CurrencyContext);
@@ -84,4 +84,4 @@ const Header: FC = () => {
   );
 };
 
-export default Header;
+export default TopInfoBar;
