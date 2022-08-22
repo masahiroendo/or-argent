@@ -13,16 +13,54 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
+import { FC, ReactNode, useContext } from 'react';
 
 import { COLORS } from '../../theme/colors';
 import GoldSymbolIcon from '../../components/icons/GoldSymbolIcon';
 import SilverSymbolIcon from '../icons/SilverSymbolIcon';
 import PalladiumSymbolIcon from '../../components/icons/PalladiumSymbolIcon';
 import PlatinumSymbolIcon from '../../components/icons/PlatinumSymbolIcon';
+import useOhlc from '../../hooks/use-ohlc';
+import { ASSET_SYMBOLS } from '../../constants/assetSymbols';
+import { CurrencyContext } from '../../contexts/CurrencyContext';
+import { calculateVariation } from '../../utils/math-utils';
+import { OpenHighLowClose } from '../../constants/apiResponses';
+
+type TableRowProps = {
+  data: OpenHighLowClose;
+  currencySymbol: string;
+  MetalSymbolAndLabel: ReactNode;
+  error: Error | null;
+};
+
+const TableRow: FC<TableRowProps> = ({ currencySymbol, data, MetalSymbolAndLabel, error }) => {
+  const variation = calculateVariation(data.close, data.open);
+
+  return (
+    <Tr>
+      <Td>
+        <Flex justifyContent="start" alignItems="center">
+          {MetalSymbolAndLabel}
+        </Flex>
+      </Td>
+      <Td>{!error ? ` ${data.open.toFixed(2)} ${currencySymbol}` : 'N-A'}</Td>
+      <Td>{!error ? ` ${data.close.toFixed(2)} ${currencySymbol}` : 'N-A'}</Td>
+      <Td>
+        {<StatArrow type={variation > 0 ? 'increase' : 'decrease'} />}
+        {!error ? ` ${variation.toPrecision(2)}%` : 'N-A'}
+      </Td>
+    </Tr>
+  );
+};
 
 const DailyDataTable = () => {
   const { t } = useTranslation();
   const bgColor = useColorModeValue('silver.300', COLORS.DARK);
+  const { data: goldData, error: goldError } = useOhlc(ASSET_SYMBOLS.GOLD.symbol);
+  const { data: silverData, error: silverError } = useOhlc(ASSET_SYMBOLS.SILVER.symbol);
+  const { data: platinumData, error: platinumError } = useOhlc(ASSET_SYMBOLS.PLATINUM.symbol);
+  const { data: palladiumData, error: palladiumError } = useOhlc(ASSET_SYMBOLS.PALLADIUM.symbol);
+  const { currency } = useContext(CurrencyContext);
   const tableSize = useBreakpointValue(
     {
       base: '',
@@ -45,66 +83,46 @@ const DailyDataTable = () => {
           </Tr>
         </Thead>
         <Tbody>
-          <Tr>
-            <Td>
-              <Flex justifyContent="start" alignItems="center">
+          <TableRow
+            data={goldData}
+            currencySymbol={currency.symbol}
+            MetalSymbolAndLabel={
+              <>
                 <GoldSymbolIcon w="36px" h="36px" /> {t('gold')}
-              </Flex>
-            </Td>
-            <Td>€1,738.94</Td>
-            <Td>€1,741.65</Td>
-            <Td>
-              <StatArrow type="increase" />
-              0,00%
-            </Td>
-          </Tr>
-        </Tbody>
-        <Tbody>
-          <Tr>
-            <Td>
-              <Flex alignItems="center">
+              </>
+            }
+            error={goldError}
+          />
+          <TableRow
+            data={silverData}
+            currencySymbol={currency.symbol}
+            MetalSymbolAndLabel={
+              <>
                 <SilverSymbolIcon w="36px" h="36px" /> {t('silver')}
-              </Flex>
-            </Td>
-            <Td>€18.94</Td>
-            <Td>€18.05</Td>
-            <Td>
-              <StatArrow type="increase" />
-              0,00%
-            </Td>
-          </Tr>
-        </Tbody>
-        <Tbody>
-          <Tr>
-            <Td>
-              <Flex alignItems="center">
-                <PalladiumSymbolIcon w="36px" h="36px" />
-                {t('palladium')}
-              </Flex>
-            </Td>
-            <Td>€2,106.00</Td>
-            <Td>€2,131.00</Td>
-            <Td>
-              <StatArrow type="increase" />
-              0,00%
-            </Td>
-          </Tr>
-        </Tbody>
-        <Tbody>
-          <Tr>
-            <Td>
-              <Flex alignItems="center">
-                <PlatinumSymbolIcon w="36px" h="36px" />
-                {t('platinum')}
-              </Flex>
-            </Td>
-            <Td>€889.94</Td>
-            <Td>€898.37</Td>
-            <Td>
-              <StatArrow type="increase" />
-              0,00%
-            </Td>
-          </Tr>
+              </>
+            }
+            error={silverError}
+          />
+          <TableRow
+            data={platinumData}
+            currencySymbol={currency.symbol}
+            MetalSymbolAndLabel={
+              <>
+                <PlatinumSymbolIcon w="36px" h="36px" /> {t('platinum')}
+              </>
+            }
+            error={platinumError}
+          />
+          <TableRow
+            data={palladiumData}
+            currencySymbol={currency.symbol}
+            MetalSymbolAndLabel={
+              <>
+                <PalladiumSymbolIcon w="36px" h="36px" /> {t('palladium')}
+              </>
+            }
+            error={palladiumError}
+          />
         </Tbody>
       </Table>
     </TableContainer>

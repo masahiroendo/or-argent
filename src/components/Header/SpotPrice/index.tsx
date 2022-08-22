@@ -6,18 +6,12 @@ import { useTranslation } from 'react-i18next';
 import { CurrencyContext } from '../../../contexts/CurrencyContext';
 
 import style from './style.module.scss';
+import { calculateVariation } from '../../../utils/math-utils';
 
 type SpotPriceProps = {
   asset: string;
   price: number;
   openPrice: number;
-};
-
-const calculateVariation = (price: number, openPrice: number): number => {
-  if (openPrice === 0) {
-    return 0;
-  }
-  return ((price - openPrice) / openPrice) * 100;
 };
 
 const SpotPrice: FC<SpotPriceProps> = (props) => {

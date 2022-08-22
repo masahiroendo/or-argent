@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import SpotPrice from './SpotPrice';
 import Switchers from '../Switchers';
-import { makeMetalPricesApiOHLCEndpoint } from '../../constants/endpoints';
+import { goldMetalsApiOHLCEndpoint, silverMetalsApiOHLCEndpoint } from '../../constants/endpoints';
 import { MetalsAPIOHLCResponse } from '../../constants/apiResponses';
 import { CurrencyContext } from '../../contexts/CurrencyContext';
 import { COLORS } from '../../theme/colors';
@@ -24,9 +24,9 @@ const initSpotPrice: SpotPriceDataType = {
 const fetchLatestGoldAndSilverPrices = async (
   iso: string,
 ): Promise<{ gold: SpotPriceDataType; silver: SpotPriceDataType }> => {
-  const goldResponse = await fetch(makeMetalPricesApiOHLCEndpoint('XAU', iso));
+  const goldResponse = await fetch(goldMetalsApiOHLCEndpoint(iso));
   const goldData = (await goldResponse.json()) as MetalsAPIOHLCResponse;
-  const silverResponse = await fetch(makeMetalPricesApiOHLCEndpoint('XAG', iso));
+  const silverResponse = await fetch(silverMetalsApiOHLCEndpoint(iso));
   const silverData = (await silverResponse.json()) as MetalsAPIOHLCResponse;
 
   if (!goldData.success || !silverData.success) {
