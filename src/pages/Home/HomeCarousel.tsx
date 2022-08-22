@@ -2,7 +2,7 @@ import { FC } from 'react';
 import AliceCarousel from 'react-alice-carousel';
 
 import CarouselItem from './CarouselItem';
-import { storeProducts } from '../../constants/products';
+import { CarouselItemType, Product, storeProducts } from '../../constants/products';
 import 'react-alice-carousel/lib/scss/alice-carousel.scss';
 
 const breakPoints = {
@@ -21,12 +21,19 @@ const breakPoints = {
 };
 
 const HomeCarousel: FC = () => {
-  const items = storeProducts.map(({ id, price, images, metal, name, slug }) => (
-    <CarouselItem
-      key={id}
-      item={{ price, image: !!images && images.length ? images[0].thumbnail : '', metal, name, slug }}
-    />
-  ));
+  const items = storeProducts.map((p: Product) => {
+    const { id, price, images, metal, name, slug, category } = p;
+    const item: CarouselItemType = {
+      category,
+      image: !!images && images.length ? images[0].thumbnail : '',
+      metal,
+      name,
+      price,
+      slug,
+    };
+
+    return <CarouselItem key={id} item={item} />;
+  });
   return (
     <AliceCarousel
       items={items}

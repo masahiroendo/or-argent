@@ -1,8 +1,8 @@
 import { faker } from '@faker-js/faker';
 import { v4 } from 'uuid';
 
-type ProductFamily = 'coin' | 'bar';
-type MetalType = 'gold' | 'silver' | 'palladium' | 'platinum';
+export type ProductFamily = 'coin' | 'bar';
+export type MetalType = 'gold' | 'silver' | 'palladium' | 'platinum';
 
 export const OUNCE_WEIGHT = 31.1035;
 export const BAR_WEIGHT = 1000.0;
@@ -36,6 +36,8 @@ export type Product = {
   images: ProductImage[];
   // remaningQuantity: number
 };
+
+export type CarouselItemType = Pick<Product, 'metal' | 'name' | 'price' | 'slug' | 'category'> & { image: string };
 
 export const storeProducts: Product[] = [
   {

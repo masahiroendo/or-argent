@@ -36,6 +36,9 @@
   "phone": "Phone number",
   "platinum": "Platinum",
   "please-wait": "Please wait a moment",
+  "recommended-products": {
+    "title": "You could also be interested in those products"
+  },
   "register-form": "Register Form Page",
   "signing-out": "Signing out",
   "silver": "Silver",

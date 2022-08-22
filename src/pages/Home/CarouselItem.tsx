@@ -4,13 +4,13 @@ import { CgShoppingCart } from 'react-icons/cg';
 import { NavLink } from 'react-router-dom';
 import GoldIconButton from '../../components/buttons/GoldIconButton';
 import SilverIconButton from '../../components/buttons/SilverIconButton';
-import { Product } from '../../constants/products';
+import { CarouselItemType } from '../../constants/products';
 
 import { CurrencyContext } from '../../contexts/CurrencyContext';
 import { ROUTES } from '../../router/constant';
 
 type CarouselItemProps = {
-  item: Pick<Product, 'metal' | 'name' | 'price' | 'slug'> & { image: string };
+  item: CarouselItemType;
 };
 
 const CarouselItem: FC<CarouselItemProps> = ({ item: { image, metal, name, price, slug } }) => {
@@ -25,6 +25,7 @@ const CarouselItem: FC<CarouselItemProps> = ({ item: { image, metal, name, price
       justifyContent="space-between"
       display="flex"
       border="2px"
+      borderBottomWidth="7px"
       borderColor={borderColor}
       borderRadius="10px"
       mx="12px"

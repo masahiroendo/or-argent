@@ -6,30 +6,31 @@ import { NavLink } from 'react-router-dom';
 import GoldIconButton from '../../components/buttons/GoldIconButton';
 import SilverIconButton from '../../components/buttons/SilverIconButton';
 import { COLORS } from '../../theme/colors';
-import { Product } from '../../constants/products';
+import { CarouselItemType } from '../../constants/products';
 import { CurrencyContext } from '../../contexts/CurrencyContext';
+import { ROUTES } from '../../router/constant';
 
 type ProducCardProps = {
-  product: Product;
+  product: CarouselItemType;
 };
 
-const ProductCard: FC<ProducCardProps> = ({ product: { images, metal, name, price, specs, slug, category: type } }) => {
+const ProductCard: FC<ProducCardProps> = ({ product: { image, metal, name, price, slug, category: type } }) => {
   const { currency } = useContext(CurrencyContext);
 
-  const imageUrl = images[0]?.fullSize;
   return (
     <Box
       role={'group'}
       p={6}
       maxW={{ sm: '330px' }}
-      w={'full'}
       bg={useColorModeValue(COLORS.PRODUCTS_PAGE_LIGHT, COLORS.PRODUCTS_PAGE_DARK)}
+      w={'xs'}
       boxShadow={'2xl'}
       rounded={'lg'}
       pos={'relative'}>
       <Box
         rounded={'lg'}
         mt={-12}
+        mb={{ base: '1em', sm: '3em' }}
         pos={'relative'}
         height={'230px'}
         // _after={{
@@ -50,15 +51,15 @@ const ProductCard: FC<ProducCardProps> = ({ product: { images, metal, name, pric
         //   },
         // }}
       >
-        <NavLink to={`${slug}`}>
-          <Image rounded={'lg'} objectFit={'cover'} src={imageUrl} />
+        <NavLink to={`/${ROUTES.PRODUCTS}/${slug}`}>
+          <Image rounded={'lg'} objectFit={'cover'} src={image} />
         </NavLink>
       </Box>
       <Box pt={6}>
         <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
           {type}
         </Text>
-        <NavLink to={`${slug}`}>
+        <NavLink to={`/${ROUTES.PRODUCTS}/${slug}`}>
           <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
             {name}
           </Heading>

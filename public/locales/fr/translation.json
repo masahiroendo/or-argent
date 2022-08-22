@@ -36,6 +36,9 @@
   "phone": "Téléphone",
   "platinum": "Platine",
   "please-wait": "Veuillez patienter",
+  "recommended-products": {
+    "title": "Produits qui pourraient vous intéresser"
+  },
   "register-form": "Créer mon Compte",
   "signing-out": "Déconnexion en cours",
   "silver": "Argent",
