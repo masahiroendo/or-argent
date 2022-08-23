@@ -20,6 +20,7 @@ import { COLORS } from '../../theme/colors';
 import { Product, storeProducts } from '../../constants/products';
 import RecommendedProductsCarousel from './RecommendedProductsCarousel';
 import ProductPriceAndVariation from './ProductPriceAndVariation';
+import ProductsQuantity from './ProductsQuantity';
 
 const ProductDetails: FC = () => {
   const { t } = useTranslation(['translation', 'products']);
@@ -73,7 +74,7 @@ const ProductDetails: FC = () => {
                 <Heading as="h3" size="md" color={labelColor} textTransform={'uppercase'} mb={'4'}>
                   {t('quantity')}
                 </Heading>
-                <Box>TODO: handle quantities here</Box>
+                <ProductsQuantity />
               </Box>
             </Stack>
             <AddToCartButton metal={metal} />
