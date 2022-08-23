@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom';
 import Footer from './Footer';
 import TopInfoBar from './TopInfoBar';
 import NavBar from './NavBar';
+import FilArianne from './FilArianne';
 
 const CenteredSpinner: FC = () => {
   return (
@@ -20,6 +21,7 @@ const Layout: FC = () => {
       <Flex direction="column">
         <TopInfoBar />
         <NavBar />
+        <FilArianne />
         <main>
           <Outlet />
         </main>
