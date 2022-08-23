@@ -1,20 +1,25 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import { CgShoppingCart } from 'react-icons/cg';
 import { useTranslation } from 'react-i18next';
 
 import GoldButton from '../../components/buttons/GoldButton';
 import SilverButton from '../../components/buttons/SilverButton';
+import CartContext from '../../contexts/CartContext';
 
 type AddToCartButtonProps = {
   metal: string;
+  productId: string;
+  quantity: number;
 };
 
-const AddToCartButton: FC<AddToCartButtonProps> = ({ metal }) => {
+const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, quantity, metal }) => {
   const { t } = useTranslation(['translation', 'products']);
+  const { addToCart } = useContext(CartContext);
 
   const handlerAddToCartClick = () => {
-    alert('need to implement an add to cart function');
+    addToCart(productId, quantity);
   };
+
   return (
     <>
       {metal === 'gold' ? (

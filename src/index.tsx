@@ -11,6 +11,7 @@ import './i18n';
 import { CurrencyProvider } from './contexts/CurrencyContext';
 import { AuthContextProvider } from './contexts/AuthContext';
 import ErrorBoundary from './components/ErrorBoundary';
+import { CartContextProvider } from './contexts/CartContext';
 
 if (isDev) {
   const { worker } = require('./mocks/browser');
@@ -24,9 +25,11 @@ root.render(
       <BrowserRouter>
         <ChakraProvider theme={theme}>
           <AuthContextProvider>
-            <CurrencyProvider>
-              <App />
-            </CurrencyProvider>
+            <CartContextProvider>
+              <CurrencyProvider>
+                <App />
+              </CurrencyProvider>
+            </CartContextProvider>
           </AuthContextProvider>
         </ChakraProvider>
       </BrowserRouter>

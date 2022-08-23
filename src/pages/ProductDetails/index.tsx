@@ -41,7 +41,7 @@ const ProductDetails: FC = () => {
     return <ProductNotFound />;
   }
 
-  const { category, images, description, metal, name, price } = product;
+  const { category, images, description, metal, name, price, id } = product;
 
   return (
     <>
@@ -78,7 +78,7 @@ const ProductDetails: FC = () => {
                 <ProductsQuantity quantity={quantity} updateQuantity={setQuantity} />
               </Box>
             </Stack>
-            <AddToCartButton metal={metal} />
+            <AddToCartButton metal={metal} productId={id} quantity={quantity} />
           </Stack>
         </SimpleGrid>
       </Container>
