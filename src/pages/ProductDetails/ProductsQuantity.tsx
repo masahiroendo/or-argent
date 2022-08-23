@@ -1,19 +1,22 @@
 import { AddIcon, MinusIcon } from '@chakra-ui/icons';
-import { HStack, IconButton, Input, NumberInput, NumberInputField, Select } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import { HStack, IconButton, NumberInput, NumberInputField, Select } from '@chakra-ui/react';
+import { /*Dispatch, SetStateAction,*/ FC } from 'react';
 
-type Props = {};
+type ProductsQuantityProps = {
+  quantity: number;
+  updateQuantity: (q: number) => void;
+  // solution B: updateQuantity: Dispatch<SetStateAction<number>>; // if we are sure to pass the useState 2nd argument as a prop
+};
 
-const ProductsQuantity = (props: Props) => {
-  const [quantity, setQuantity] = useState(1);
-
+const ProductsQuantity: FC<ProductsQuantityProps> = ({ quantity, updateQuantity }) => {
   const increment = () => {
-    setQuantity(quantity + 1);
+    updateQuantity(quantity + 1);
+    // using solution B: updateQuantity((pq)  => pq + 1); also works with updateQuantity(quantity + 1);
   };
 
   const decrement = () => {
     if (quantity > 1) {
-      setQuantity(quantity - 1);
+      updateQuantity(quantity - 1);
     }
   };
 
@@ -27,7 +30,7 @@ const ProductsQuantity = (props: Props) => {
         max={1000}
         clampValueOnBlur={true}
         value={quantity}
-        onChange={(_, q) => setQuantity(q)}>
+        onChange={(_, v) => updateQuantity(v)}>
         <NumberInputField as={Select}>
           {Array.from(Array(20)).map((_, i) => {
             return <option value={i + 1}>{i + 1}</option>;

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import {
   Badge,
   Box,
@@ -27,6 +27,7 @@ const ProductDetails: FC = () => {
   const color = useColorModeValue(COLORS.PRODUCTS_PAGE_LIGHT, COLORS.PRODUCTS_PAGE_DARK);
   const labelColor = useColorModeValue('gold.700', 'silver.100');
   const { slug } = useParams();
+  const [quantity, setQuantity] = useState(1);
 
   if (!slug) {
     return <ProductNotFound />;
@@ -74,7 +75,7 @@ const ProductDetails: FC = () => {
                 <Heading as="h3" size="md" color={labelColor} textTransform={'uppercase'} mb={'4'}>
                   {t('quantity')}
                 </Heading>
-                <ProductsQuantity />
+                <ProductsQuantity quantity={quantity} updateQuantity={setQuantity} />
               </Box>
             </Stack>
             <AddToCartButton metal={metal} />
