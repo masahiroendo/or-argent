@@ -37,7 +37,7 @@ const FilArianne = () => {
             const to = '/' + originalArray.slice(0, index + 1).join('/');
             const name = nameToDisplay(path);
             return (
-              <BreadcrumbItem>
+              <BreadcrumbItem key={`breadcrumb-item-${index}`}>
                 {index !== originalArray.length - 1 ? (
                   <BreadcrumbLink as={NavLink} to={to}>
                     {name}

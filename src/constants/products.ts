@@ -1,5 +1,4 @@
 import { faker } from '@faker-js/faker';
-import { v4 } from 'uuid';
 
 export type ProductFamily = 'coin' | 'bar';
 export type MetalType = 'gold' | 'silver' | 'palladium' | 'platinum';
@@ -41,7 +40,7 @@ export type CarouselItemType = Pick<Product, 'metal' | 'name' | 'price' | 'slug'
 
 export const storeProducts: Product[] = [
   {
-    id: faker.unique(v4),
+    id: '2b63d100-c2fd-4e83-8f75-484f0dc0b5ac',
     category: 'bar',
     metal: 'gold',
     name: '1 kilogram Gold Bar Valcambi',
@@ -67,7 +66,7 @@ export const storeProducts: Product[] = [
     ],
   },
   {
-    id: faker.unique(v4),
+    id: '73b7a830-a944-4206-b82a-0e92067de283',
     category: 'coin',
     metal: 'gold',
     name: '1 ounce Gold American Buffalo',
@@ -89,7 +88,7 @@ export const storeProducts: Product[] = [
     ],
   },
   {
-    id: faker.unique(v4),
+    id: '52188961-e259-47a3-9e12-100c0c32a786',
     category: 'coin',
     metal: 'platinum',
     name: '1 ounce René Descartes (France)',
@@ -111,7 +110,7 @@ export const storeProducts: Product[] = [
     ],
   },
   {
-    id: faker.unique(v4),
+    id: 'cbc007db-baaa-400d-8f1f-72f85db1aa29',
     category: 'coin',
     metal: 'gold',
     name: '1 ounce Gold American Eagle',
@@ -133,7 +132,7 @@ export const storeProducts: Product[] = [
     ],
   },
   {
-    id: faker.unique(v4),
+    id: 'bda7e253-332d-452e-be9c-c0002364ee31',
     category: 'bar',
     metal: 'silver',
     name: '1kg Silver Bar - JBR',
@@ -155,7 +154,7 @@ export const storeProducts: Product[] = [
     ],
   },
   {
-    id: faker.unique(v4),
+    id: '6fd61b05-7409-41c9-aec5-04407a66ed0b',
     category: 'coin',
     metal: 'silver',
     name: '1 ounce Silver Philharmonic',
@@ -177,7 +176,7 @@ export const storeProducts: Product[] = [
     ],
   },
   {
-    id: faker.unique(v4),
+    id: '91f5ac2b-a8ca-4bf6-9793-e6eb6506af81',
     category: 'coin',
     metal: 'silver',
     name: '1 ounce Silver Britannia',
