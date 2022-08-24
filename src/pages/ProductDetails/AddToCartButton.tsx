@@ -14,7 +14,9 @@ type AddToCartButtonProps = {
 
 const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, quantity, metal }) => {
   const { t } = useTranslation(['translation', 'products']);
-  const { addToCart } = useContext(CartContext);
+  const { articles, addToCart } = useContext(CartContext);
+
+  console.log('AddToCartButton dans articles', articles);
 
   const handlerAddToCartClick = () => {
     addToCart(productId, quantity);
