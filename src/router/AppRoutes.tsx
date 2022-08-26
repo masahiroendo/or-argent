@@ -15,6 +15,7 @@ import ProductDetails from '../pages/ProductDetails';
 import Products from '../pages/Products';
 import Profile from '../pages/Profile';
 import ProtectedRoute from './ProtectedRoute';
+import Cart from '../pages/Cart';
 
 const AppRoutes: FC = () => {
   return (
@@ -23,6 +24,7 @@ const AppRoutes: FC = () => {
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path={ROUTES.CALLBACK} element={<CallBack />} />
+        <Route path={ROUTES.CART} element={<Cart />} />
         <Route path={ROUTES.CREATE_ACCOUNT} element={<CreateAccount />} />
         <Route path={ROUTES.CONTACT} element={<Contact />} />
         <Route path={`${ROUTES.METAL}/:metal`} element={<MetalPage />} />

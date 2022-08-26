@@ -10,15 +10,14 @@ import {
   useDisclosure,
   useOutsideClick,
 } from '@chakra-ui/react';
-import { CgShoppingCart } from 'react-icons/cg';
 import { NavLink } from 'react-router-dom';
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 
 import NavigationItems from './NavigationItems';
-import SimpleLink from './SimpleLink';
 import User from './User';
 import GoldLingotIcon from '../icons/GoldLingotIcon';
 import { ROUTES } from '../../router/constant';
+import Cart from './Cart';
 
 const NavBar: FC = () => {
   const burgerMenuRef = useRef<HTMLDivElement>(null);
@@ -51,7 +50,7 @@ const NavBar: FC = () => {
           </Show>
           <Stack flex={{ base: 1, md: 0 }} alignItems="center" justify={'flex-end'} direction={'row'} spacing={6}>
             <User parentRef={containerRef} />
-            <SimpleLink to={ROUTES.CART}>{<CgShoppingCart fontSize={24} />}</SimpleLink>
+            <Cart parentRef={containerRef} />
             <IconButton
               onClick={onToggle}
               display={{ base: 'flex', md: 'none' }}
