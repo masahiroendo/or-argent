@@ -18,7 +18,10 @@ const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, quantity, metal 
 
   const handleAddToCartClick = () => {
     if (articles.some((p) => p.id === productId)) {
-      alert('item alreast exist in cart.');
+      const confirmed = window.confirm('item alreast exist in cart.');
+      if (!confirmed) {
+        return;
+      }
     }
     addToCart(productId, quantity);
   };
