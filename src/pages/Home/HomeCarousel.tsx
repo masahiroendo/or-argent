@@ -24,6 +24,7 @@ const HomeCarousel: FC = () => {
   const items = storeProducts.map((p: Product) => {
     const { id, price, images, metal, name, slug, category } = p;
     const item: CarouselItemType = {
+      id,
       category,
       image: !!images && images.length ? images[0].thumbnail : '',
       metal,

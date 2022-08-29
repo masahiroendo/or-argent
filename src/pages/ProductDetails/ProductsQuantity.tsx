@@ -10,8 +10,8 @@ type ProductsQuantityProps = {
 
 const ProductsQuantity: FC<ProductsQuantityProps> = ({ quantity, updateQuantity }) => {
   const increment = () => {
+    /*fix: above 20 it goes back to 1 but the selectbox does not respond properly*/
     updateQuantity(quantity + 1);
-    // using solution B: updateQuantity((pq)  => pq + 1); also works with updateQuantity(quantity + 1);
   };
 
   const decrement = () => {

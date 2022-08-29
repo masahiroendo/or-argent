@@ -40,6 +40,7 @@ const FilteredProducts: FC<FilteredProductsProps> = ({ products, metals, categor
           <GridItem key={id} justifySelf="center">
             <ProductCard
               product={{
+                id,
                 image: images[0].thumbnail,
                 category,
                 metal,

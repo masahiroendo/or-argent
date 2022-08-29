@@ -16,9 +16,10 @@ const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, quantity, metal 
   const { t } = useTranslation(['translation', 'products']);
   const { articles, addToCart } = useContext(CartContext);
 
-  console.log('AddToCartButton dans articles', articles);
-
-  const handlerAddToCartClick = () => {
+  const handleAddToCartClick = () => {
+    if (articles.some((p) => p.id === productId)) {
+      alert('item alreast exist in cart.');
+    }
     addToCart(productId, quantity);
   };
 
@@ -33,7 +34,7 @@ const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, quantity, metal 
             boxShadow: 'lg',
           }}
           w="full"
-          onClick={handlerAddToCartClick}>
+          onClick={handleAddToCartClick}>
           {t('add-to-cart', { ns: 'products' })}
         </GoldButton>
       ) : (
@@ -45,7 +46,7 @@ const AddToCartButton: FC<AddToCartButtonProps> = ({ productId, quantity, metal 
             boxShadow: 'lg',
           }}
           w="full"
-          onClick={handlerAddToCartClick}>
+          onClick={handleAddToCartClick}>
           {t('add-to-cart', { ns: 'products' })}
         </SilverButton>
       )}

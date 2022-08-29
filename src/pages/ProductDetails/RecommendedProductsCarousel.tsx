@@ -48,16 +48,16 @@ const RecommendedProductsCarousel: FC<RecommendedProductsCarouselProps> = ({ met
   const recommendedProducts = storeProducts
     .filter((p) => p.metal === metal)
     .filter((p) => p.slug !== slug)
-    .map(({ category, images, name, price, slug }) => {
+    .map(({ id, category, images, name, price, slug }) => {
       const firstImg = [...images].shift();
       const image = !!firstImg ? firstImg.thumbnail : '';
-      return { category, image, name, price, slug };
+      return { id, category, image, name, price, slug };
     });
 
   return (
     <Slider {...settings}>
-      {recommendedProducts.map(({ category, image, name, price, slug }, index) => (
-        <ProductCard product={{ category, image, name, price, slug, metal }} key={index} />
+      {recommendedProducts.map((rp, index) => (
+        <ProductCard product={{ ...rp, metal }} key={index} />
       ))}
     </Slider>
   );

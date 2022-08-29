@@ -1,6 +1,6 @@
 import { createContext, FC, PropsWithChildren, useState } from 'react';
 
-type Article = {
+export type Article = {
   id: string;
   quantity: number;
 };
@@ -8,6 +8,8 @@ type Article = {
 type CartContextType = {
   articles: Article[];
   addToCart: (id: string, quantity: number) => void;
+  removeFromCart: (id: string) => void;
+  // retrieveFromCart: (id: string, quantity: number) => void;
 };
 
 const CartContext = createContext<CartContextType>({} as CartContextType);
@@ -41,9 +43,26 @@ export const CartContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => 
     setArticles(updatedArticles);
   };
 
+  const removeFromCart = (id: string) => {
+    const foundIndex = articles.findIndex((a) => {
+      return a.id === id;
+    });
+
+    if (foundIndex === -1) {
+      return;
+    }
+
+    const updatedArticles = articles.filter((a) => a.id !== id);
+    setArticles(updatedArticles);
+  };
+
+  // const retrieveFromCart = (id: string, quantity: number) => {};
+
   const value: CartContextType = {
     articles,
     addToCart,
+    removeFromCart,
+    // retrieveFromCart,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

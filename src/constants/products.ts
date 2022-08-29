@@ -36,7 +36,9 @@ export type Product = {
   // remaningQuantity: number
 };
 
-export type CarouselItemType = Pick<Product, 'metal' | 'name' | 'price' | 'slug' | 'category'> & { image: string };
+export type CarouselItemType = Pick<Product, 'id' | 'metal' | 'name' | 'price' | 'slug' | 'category'> & {
+  image: string;
+};
 
 export const storeProducts: Product[] = [
   {
