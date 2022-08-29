@@ -16,7 +16,7 @@ const ChartMenu = () => {
         {t('chart.title')}
         {opened ? <ChevronUpIcon /> : <ChevronDownIcon />}
       </MenuButton>
-      <MenuList>
+      <MenuList boxSize="xs">
         <HStack spacing={6} p={4} alignItems="flex-start">
           <VStack alignItems="flex-start">
             <SimpleLink to={`${ROUTES.CHART}/gold`} content={t('chart.gold.price.price')} upperCased={true} />

@@ -19,7 +19,13 @@ const FilArianne = () => {
     return product.name;
   };
 
-  const paths = pathname.split('/');
+  const paths = pathname.split('/').filter((path) => {
+    return path !== '';
+  });
+
+  if (paths.length < 1) {
+    return <></>;
+  }
 
   return (
     <Container display="flex" justifyContent={{ md: 'start' }} maxW="container.lg" py={2}>
@@ -29,25 +35,21 @@ const FilArianne = () => {
             <AiOutlineHome />
           </BreadcrumbLink>
         </BreadcrumbItem>
-        {paths
-          .filter((path) => {
-            return path !== '';
-          })
-          .map((path, index, originalArray) => {
-            const to = '/' + originalArray.slice(0, index + 1).join('/');
-            const name = nameToDisplay(path);
-            return (
-              <BreadcrumbItem key={`breadcrumb-item-${index}`}>
-                {index !== originalArray.length - 1 ? (
-                  <BreadcrumbLink as={NavLink} to={to}>
-                    {name}
-                  </BreadcrumbLink>
-                ) : (
-                  <>{name}</>
-                )}
-              </BreadcrumbItem>
-            );
-          })}
+        {paths.map((path, index, originalArray) => {
+          const to = '/' + originalArray.slice(0, index + 1).join('/');
+          const name = nameToDisplay(path);
+          return (
+            <BreadcrumbItem key={`breadcrumb-item-${index}`}>
+              {index !== originalArray.length - 1 ? (
+                <BreadcrumbLink as={NavLink} to={to}>
+                  {name}
+                </BreadcrumbLink>
+              ) : (
+                <>{name}</>
+              )}
+            </BreadcrumbItem>
+          );
+        })}
       </Breadcrumb>
     </Container>
   );
