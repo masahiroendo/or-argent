@@ -1,9 +1,7 @@
 import { Box, HStack, Image, Stack, Text, VStack } from '@chakra-ui/react';
 import { FC, useContext } from 'react';
-import { CgShoppingCart } from 'react-icons/cg';
 import { NavLink } from 'react-router-dom';
-import GoldIconButton from '../../components/buttons/GoldIconButton';
-import SilverIconButton from '../../components/buttons/SilverIconButton';
+import AddSingleItemToCartButton from '../../components/buttons/AddSingleItemToCartButton';
 import { CarouselItemType } from '../../constants/products';
 
 import { CurrencyContext } from '../../contexts/CurrencyContext';
@@ -13,7 +11,7 @@ type CarouselItemProps = {
   item: CarouselItemType;
 };
 
-const CarouselItem: FC<CarouselItemProps> = ({ item: { image, metal, name, price, slug } }) => {
+const CarouselItem: FC<CarouselItemProps> = ({ item: { id, image, metal, name, price, slug } }) => {
   const { currency } = useContext(CurrencyContext);
 
   const borderColor = metal === 'gold' ? 'gold.400' : 'silver.400';
@@ -52,17 +50,7 @@ const CarouselItem: FC<CarouselItemProps> = ({ item: { image, metal, name, price
             </Box>
           </NavLink>
         </HStack>
-        <Box>
-          {metal === 'gold' ? (
-            <GoldIconButton aria-label="Add to cart">
-              <CgShoppingCart />
-            </GoldIconButton>
-          ) : (
-            <SilverIconButton aria-label="Add to cart">
-              <CgShoppingCart />
-            </SilverIconButton>
-          )}
-        </Box>
+        <AddSingleItemToCartButton id={id} metal={metal} />
       </VStack>
     </Stack>
   );

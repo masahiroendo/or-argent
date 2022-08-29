@@ -1,20 +1,18 @@
 import { Box, Flex, Heading, Image, Text, useColorModeValue } from '@chakra-ui/react';
 import { FC, useContext } from 'react';
-import { CgShoppingCart } from 'react-icons/cg';
 import { NavLink } from 'react-router-dom';
 
-import GoldIconButton from '../../components/buttons/GoldIconButton';
-import SilverIconButton from '../../components/buttons/SilverIconButton';
 import { COLORS } from '../../theme/colors';
 import { CarouselItemType } from '../../constants/products';
 import { CurrencyContext } from '../../contexts/CurrencyContext';
 import { ROUTES } from '../../router/constant';
+import AddSingleItemToCartButton from '../../components/buttons/AddSingleItemToCartButton';
 
 type ProducCardProps = {
   product: CarouselItemType;
 };
 
-const ProductCard: FC<ProducCardProps> = ({ product: { image, metal, name, price, slug, category: type } }) => {
+const ProductCard: FC<ProducCardProps> = ({ product: { id, image, metal, name, price, slug, category: type } }) => {
   const { currency } = useContext(CurrencyContext);
 
   return (
@@ -75,17 +73,7 @@ const ProductCard: FC<ProducCardProps> = ({ product: { image, metal, name, price
               {`${price} ${currency.symbol}`}
             </Text>
           </NavLink>
-          <Box>
-            {metal === 'gold' ? (
-              <GoldIconButton aria-label="Add to cart">
-                <CgShoppingCart />
-              </GoldIconButton>
-            ) : (
-              <SilverIconButton aria-label="Add to cart">
-                <CgShoppingCart />
-              </SilverIconButton>
-            )}
-          </Box>
+          <AddSingleItemToCartButton metal={metal} id={id} />
         </Flex>
       </Box>
     </Box>
