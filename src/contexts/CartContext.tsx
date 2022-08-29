@@ -9,13 +9,16 @@ type CartContextType = {
   articles: Article[];
   addToCart: (id: string, quantity: number) => void;
   removeFromCart: (id: string) => void;
-  // retrieveFromCart: (id: string, quantity: number) => void;
+  updateCartItem: (id: string, quantity: number) => void;
 };
 
 const CartContext = createContext<CartContextType>({} as CartContextType);
 
 export const CartContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
   const [articles, setArticles] = useState<Article[]>([]);
+
+  const findArticleIndex = (id: string): number => articles.findIndex((a) => a.id === id);
+  const isArticleInCart = (id: string): boolean => findArticleIndex(id) !== -1;
 
   const addToCart = (id: string, quantity: number): void => {
     const updatedArticles = [...articles];
@@ -25,12 +28,7 @@ export const CartContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => 
       return;
     }
 
-    // we try to find the article with the given id
-    const foundIndex = updatedArticles.findIndex((a) => {
-      return a.id === id;
-    });
-
-    // if found (when the foundIndex is !== -1)
+    const foundIndex = findArticleIndex(id);
     if (foundIndex !== -1) {
       // updatedArticles[foundIndex] = { id, quantity: updatedArticles[foundIndex].quantity + quantity };
       // then we increment the existing article quantity by "quantity"
@@ -44,11 +42,7 @@ export const CartContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => 
   };
 
   const removeFromCart = (id: string) => {
-    const foundIndex = articles.findIndex((a) => {
-      return a.id === id;
-    });
-
-    if (foundIndex === -1) {
+    if (!isArticleInCart(id)) {
       return;
     }
 
@@ -56,13 +50,22 @@ export const CartContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => 
     setArticles(updatedArticles);
   };
 
-  // const retrieveFromCart = (id: string, quantity: number) => {};
+  const updateCartItem = (id: string, quantity: number) => {
+    const foundIndex = findArticleIndex(id);
+    if (foundIndex === -1) {
+      return;
+    }
+
+    const updatesArticles = [...articles];
+    updatesArticles[foundIndex].quantity = quantity;
+    setArticles(updatesArticles);
+  };
 
   const value: CartContextType = {
     articles,
     addToCart,
     removeFromCart,
-    // retrieveFromCart,
+    updateCartItem,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

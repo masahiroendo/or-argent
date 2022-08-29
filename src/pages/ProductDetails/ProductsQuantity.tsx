@@ -34,7 +34,7 @@ const ProductsQuantity: FC<ProductsQuantityProps> = ({ quantity, updateQuantity 
         <NumberInputField as={Select}>
           {Array.from(Array(20)).map((_, i) => {
             return (
-              <option key={`quantity-option-FilArianne${i}`} value={i + 1}>
+              <option key={`quantity-option-${i}`} value={i + 1}>
                 {i + 1}
               </option>
             );
