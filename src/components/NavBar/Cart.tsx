@@ -31,8 +31,8 @@ const NavBarCart: FC<NavBarCartProps> = ({ parentRef }) => {
         {<CgShoppingCart fontSize={24} />}
         {numberOfArticlesInCart > 0 && (
           <span>
-            <Badge fontWeight="bold" rounded="3xl" boxSize="2em" textAlign="center" bgColor="gold.400">
-              {numberOfArticlesInCart}
+            <Badge fontWeight="bold" rounded="3xl" boxSize="2em" textAlign="center" bgColor="gold.500">
+              <Box color="blackAlpha.800">{numberOfArticlesInCart}</Box>
             </Badge>
           </span>
         )}
