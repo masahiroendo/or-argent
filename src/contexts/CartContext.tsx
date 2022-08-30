@@ -11,6 +11,18 @@ export type CartItem = Pick<Product, 'id' | 'name' | 'price' | 'slug'> & {
   quantity: number;
 };
 
+const CART_ARTICLES_KEY = 'or_argent_cart_articles';
+
+const getCartFromStorage = (): Article[] | null => {
+  const parsed = localStorage.getItem(CART_ARTICLES_KEY);
+  if (!parsed) {
+    return null;
+  }
+
+  const cartData = JSON.parse(parsed) as Article[];
+  return cartData;
+};
+
 type CartContextType = {
   articles: Article[];
   addToCart: (id: string, quantity: number) => void;
@@ -21,7 +33,12 @@ type CartContextType = {
 const CartContext = createContext<CartContextType>({} as CartContextType);
 
 export const CartContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [articles, setArticles] = useState<Article[]>(getCartFromStorage() || []);
+
+  const handleArticles = (newArticles: Article[]) => {
+    setArticles(newArticles);
+    localStorage.setItem(CART_ARTICLES_KEY, JSON.stringify(newArticles));
+  };
 
   const findArticleIndex = (id: string): number => articles.findIndex((a) => a.id === id);
   const isArticleInCart = (id: string): boolean => findArticleIndex(id) !== -1;
@@ -30,7 +47,7 @@ export const CartContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => 
     const updatedArticles = [...articles];
     // if there is no article, then we just add and return
     if (updatedArticles.length === 0) {
-      setArticles([{ id, quantity }]);
+      handleArticles([{ id, quantity }]);
       return;
     }
 
@@ -44,7 +61,7 @@ export const CartContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => 
       updatedArticles.push({ id, quantity });
     }
 
-    setArticles(updatedArticles);
+    handleArticles(updatedArticles);
   };
 
   const removeFromCart = (id: string) => {
@@ -53,7 +70,7 @@ export const CartContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => 
     }
 
     const updatedArticles = articles.filter((a) => a.id !== id);
-    setArticles(updatedArticles);
+    handleArticles(updatedArticles);
   };
 
   const updateCartItem = (id: string, quantity: number) => {
@@ -64,7 +81,7 @@ export const CartContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => 
 
     const updatesArticles = [...articles];
     updatesArticles[foundIndex].quantity = quantity;
-    setArticles(updatesArticles);
+    handleArticles(updatesArticles);
   };
 
   const value: CartContextType = {

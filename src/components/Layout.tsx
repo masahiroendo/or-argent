@@ -19,8 +19,10 @@ const Layout: FC = () => {
   return (
     <Suspense fallback={<CenteredSpinner />}>
       <Flex direction="column">
+        {/* <Flex direction="column" position="fixed" backdropFilter="saturate(180%) blur(5px)" w="100%" zIndex={200}> */}
         <TopInfoBar />
         <NavBar />
+        {/* </Flex> */}
         <FilArianne />
         <main>
           <Outlet />
