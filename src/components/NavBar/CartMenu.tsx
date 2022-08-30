@@ -8,7 +8,11 @@ import GoldButton from '../buttons/GoldButton';
 import useCart from '../../hooks/use-cart';
 import { CurrencyContext } from '../../contexts/CurrencyContext';
 
-const NavBarCartMenu: FC = () => {
+type NavBarCartMenuProps = {
+  onGoToCartClick: () => void;
+};
+
+const NavBarCartMenu: FC<NavBarCartMenuProps> = ({ onGoToCartClick }) => {
   const { currency } = useContext(CurrencyContext);
   const { cartItems, removeFromCart } = useCart();
 
@@ -24,22 +28,26 @@ const NavBarCartMenu: FC = () => {
         <OrderedList>
           {cartItems.map((p) => (
             <ListItem key={p.id}>
-              <NavLink to={`${ROUTES.PRODUCTS}/${p.slug}`}>
-                <Image src={p.image} />
+              <Flex direction="row" justifyContent="center">
+                <NavLink to={`${ROUTES.PRODUCTS}/${p.slug}`}>
+                  <Image src={p.image} boxSize="100px" objectFit="cover" />
+                </NavLink>
                 <Box>{p.name} </Box>
-              </NavLink>
-              <Box>
-                {currency.symbol} {p.price}{' '}
-              </Box>
-              <Box>x {p.quantity} </Box>
-              <Icon as={GoTrashcan} cursor="pointer" onClick={() => handleRemove(p.id)} />
+                <Box>
+                  {currency.symbol} {p.price}{' '}
+                </Box>
+                <Box>x {p.quantity} </Box>
+                <Icon as={GoTrashcan} cursor="pointer" onClick={() => handleRemove(p.id)} />
+              </Flex>
             </ListItem>
           ))}
         </OrderedList>
       </List>
       {!cartIsEmpty ? (
         <Link to={ROUTES.CART}>
-          <GoldButton boxSize="full">Go to Cart</GoldButton>
+          <GoldButton boxSize="full" onClick={onGoToCartClick}>
+            Go to Cart
+          </GoldButton>
         </Link>
       ) : (
         <Flex justifyContent="center" display="flex">
