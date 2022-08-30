@@ -18,6 +18,7 @@
     "saturday": "Samedi",
     "sunday": "Dimanche"
   },
+  "details": "Détails",
   "email": "Email",
   "firstname": "Prénom",
   "gender": {
@@ -38,6 +39,7 @@
   "platinum": "Platine",
   "please-wait": "Veuillez patienter",
   "products": "Produits",
+  "quantity": "Quantité",
   "recommended-products": {
     "title": "Produits qui pourraient vous intéresser"
   },

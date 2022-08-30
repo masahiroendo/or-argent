@@ -1,10 +1,12 @@
-import { Heading, Stack, Text } from '@chakra-ui/react';
+import { Heading, List, ListIcon, ListItem, Stack } from '@chakra-ui/react';
 import { CgShoppingCart } from 'react-icons/cg';
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
+import { AiOutlineGold } from 'react-icons/ai';
 
 import { CartItem } from '../../contexts/CartContext';
 import GoldButton from '../../components/buttons/GoldButton';
+import { CurrencyContext } from '../../contexts/CurrencyContext';
 
 type CartSummaryProps = {
   items: CartItem[];
@@ -12,15 +14,35 @@ type CartSummaryProps = {
 
 const CartSummary: FC<CartSummaryProps> = ({ items }) => {
   const { t } = useTranslation('cart');
+  const { currency } = useContext(CurrencyContext);
+
+  const cartTotal: number = items.reduce((acc, curr) => {
+    return acc + curr.price * curr.quantity;
+  }, 0);
+
+  const taxes = cartTotal * (1 - 1 / 1.2);
 
   return (
-    <Stack direction="column">
+    <Stack direction="column" gap={4}>
       <Heading as="h3" size="lg">
         {t('cart-summary')}
       </Heading>
-      {items.map((item, i: number) => {
-        return <Text key={`cart-items-${i}`}>{item.name} </Text>;
-      })}
+      <List spacing={3}>
+        {items.map((item, i: number) => {
+          return (
+            <ListItem key={`cart-items-${i}`}>
+              <ListIcon as={AiOutlineGold} color="gold.700" />
+              {item.name}
+            </ListItem>
+          );
+        })}
+      </List>
+      <Heading as="h4" size="sm">
+        {t('taxes')}: {currency.symbol} {taxes.toFixed(2)}
+      </Heading>
+      <Heading as="h4" size="sm">
+        {t('grand-total')}: {currency.symbol} {cartTotal}
+      </Heading>
       <GoldButton
         aria-label="Add to cart"
         rightIcon={<CgShoppingCart fontSize={30} />}

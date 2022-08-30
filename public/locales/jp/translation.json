@@ -18,6 +18,7 @@
     "saturday": "土曜日",
     "sunday": "日曜日"
   },
+  "details": "詳細",
   "email": "Eメール",
   "firstname": "性",
   "gender": {
@@ -38,6 +39,7 @@
   "phone": "電話番号",
   "please-wait": "お待ち下さい",
   "products": "商品一覧",
+  "quantity": "数量",
   "signing-out": "ログアウト中です",
   "recommended-products": {
     "title": "他のお勧め商品"

@@ -3,7 +3,7 @@
     "picture": "画像",
     "name": "商品名",
     "price": "価格",
-    "quantity": "数",
+    "quantity": "数量",
     "modify": "編集",
     "sub-total": "小計"
   },
