@@ -1,0 +1,15 @@
+{
+  "articles-table-headers": {
+    "picture": "Picture",
+    "name": "Name",
+    "price": "Price",
+    "quantity": "Quantity",
+    "modify": "Modify",
+    "sub-total": "Sub-total"
+  },
+  "cart-summary": "Cart summary",
+  "empty-cart": "Your cart is empty",
+  "proceed-to-checkout": "Proceed to checkout",
+  "sub-total": "Sub-total",
+  "to-products-page": "Back to Products Page"
+}

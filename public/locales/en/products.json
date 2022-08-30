@@ -1,5 +1,12 @@
 {
   "add-to-cart": "Add to cart",
+  "country": "Country",
+  "dimensions": "Dimensions (MM)",
+  "history": "History",
+  "fineness": "Fineness",
   "go-back-to-products-page": "Go back to products page",
-  "not-found": "Product was not found"
+  "gross-weight": "Gross Weight (gr)",
+  "net-weight": "Gross Weight (gr)",
+  "not-found": "Product was not found",
+  "specs": "Specs"
 }

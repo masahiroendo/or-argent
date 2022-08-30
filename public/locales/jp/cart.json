@@ -1,0 +1,15 @@
+{
+  "articles-table-headers": {
+    "picture": "画像",
+    "name": "商品名",
+    "price": "価格",
+    "quantity": "数",
+    "modify": "編集",
+    "sub-total": "小計"
+  },
+  "cart-summary": "買い物カゴの概要",
+  "empty-cart": "買い物カゴに商品がはいっていません",
+  "proceed-to-checkout": "ご購入手続きへ",
+  "sub-total": "小計",
+  "to-products-page": "商品ページに戻る"
+}

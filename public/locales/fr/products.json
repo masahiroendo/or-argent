@@ -1,5 +1,12 @@
 {
   "add-to-cart": "Ajouter au panier",
+  "country": "Pays",
+  "dimensions": "Dimensions (MM)",
+  "history": "Histoire",
+  "fineness": "Finenesse",
   "go-back-to-products-page": "Revenir vers la page des produits",
-  "not-found": "Produit introuvable"
+  "gross-weight": "Poids brut (gr)",
+  "net-weight": "Poins net (gr)",
+  "not-found": "Produit introuvable",
+  "specs": "Specs"
 }

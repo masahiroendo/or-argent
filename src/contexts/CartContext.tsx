@@ -1,7 +1,13 @@
 import { createContext, FC, PropsWithChildren, useState } from 'react';
+import { Product } from '../constants/products';
 
 export type Article = {
   id: string;
+  quantity: number;
+};
+
+export type CartItem = Pick<Product, 'id' | 'name' | 'price' | 'slug'> & {
+  image: string;
   quantity: number;
 };
 

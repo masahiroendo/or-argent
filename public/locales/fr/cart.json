@@ -1,0 +1,15 @@
+{
+  "articles-table-headers": {
+    "picture": "Photo",
+    "name": "Nom",
+    "price": "Prix",
+    "quantity": "Quantité",
+    "modify": "Modifier",
+    "sub-total": "Sous-total"
+  },
+  "cart-summary": "Récapitulatif du panier",
+  "empty-cart": "Votre panier est vide",
+  "proceed-to-checkout": "Procéder au paiement",
+  "sub-total": "Sous-total",
+  "to-products-page": "Retour à la page produits"
+}

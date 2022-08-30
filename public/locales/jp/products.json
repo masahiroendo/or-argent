@@ -1,5 +1,11 @@
 {
   "add-to-cart": "カートに入れる",
+  "country": "生産国",
+  "dimensions": "寸法",
+  "fineness": "鮮度",
   "go-back-to-products-page": "商品一覧ページへ戻る",
-  "not-found": "商品が見つかりませんでした"
+  "gross-weight": "総重量",
+  "net-weight": "準重量",
+  "not-found": "商品が見つかりませんでした",
+  "specs": "商品特徴"
 }

@@ -71,12 +71,6 @@ const ProductDetails: FC = () => {
               <ProductPriceAndVariation metal={metal} price={price} />
             </Box>
             <Stack spacing={{ base: 4, sm: 6 }} direction={'column'} divider={<StackDivider borderColor={color} />}>
-              {/* <Box>
-                <Heading as="h3" size="md" color={labelColor} textTransform={'uppercase'} mb={'4'}>
-                  {t('details')}
-                </Heading>
-                <Text as="p">{description}</Text>
-              </Box> */}
               <Box>
                 <Heading as="h3" size="md" color={labelColor} textTransform={'uppercase'} mb={'4'}>
                   {t('details')}
@@ -84,23 +78,23 @@ const ProductDetails: FC = () => {
                 <Tabs isLazy isFitted size="md" colorScheme="Gold.500">
                   <TabList>
                     <Tab color={labelColor} textTransform={'uppercase'} mb={'4'}>
-                      {t('specs')}
+                      {t('specs', { ns: 'products' })}
                     </Tab>
                     <Tab color={labelColor} textTransform={'uppercase'} mb={'4'}>
-                      {t('history')}
+                      {t('history', { ns: 'products' })}
                     </Tab>
                   </TabList>
                   <TabPanels>
                     <TabPanel>
                       <TableContainer>
-                        <Table size="sm">
+                        <Table>
                           <Thead>
                             <Tr>
-                              <Th>{`${t('gross-weight')} (gr)`}</Th>
-                              <Th>{`${t('net-weight')} (gr)`}</Th>
-                              <Th>{t('fineness')}</Th>
-                              <Th>{`${t('dimensions')} (MM)`}</Th>
-                              <Th>{`${t('country')}`}</Th>
+                              <Th>{`${t('gross-weight', { ns: 'products' })}`}</Th>
+                              <Th>{`${t('net-weight', { ns: 'products' })}`}</Th>
+                              <Th>{t('fineness', { ns: 'products' })}</Th>
+                              <Th>{`${t('dimensions', { ns: 'products' })}`}</Th>
+                              <Th>{`${(t('country'), { ns: 'products' })}`}</Th>
                             </Tr>
                           </Thead>
                           <Tbody>
