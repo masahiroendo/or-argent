@@ -12,7 +12,7 @@ export const PRODUCTS_IMAGES_PATH = '/assets/images/products/';
 
 export type ProductSpecs = {
   grossWeight?: number;
-  fineWeight?: number;
+  netWeight?: number;
   fineness?: string;
   dimensions?: string;
   country?: string;
@@ -51,7 +51,7 @@ export const storeProducts: Product[] = [
     price: parseInt(faker.finance.amount(1200, 2100), 10),
     specs: {
       grossWeight: BAR_WEIGHT,
-      fineWeight: BAR_WEIGHT,
+      netWeight: BAR_WEIGHT,
       fineness: FOUR_NINE,
       dimensions: LINGOT_DIMENSIONS,
       country: 'Switzerland',
@@ -77,6 +77,10 @@ export const storeProducts: Product[] = [
     price: parseInt(faker.finance.amount(1200, 2100), 10),
     specs: {
       grossWeight: OUNCE_WEIGHT,
+      netWeight: OUNCE_WEIGHT,
+      fineness: '999.9/1000',
+      dimensions: 'Ø 32.80',
+      country: 'USA',
     },
     images: [
       {
@@ -120,7 +124,11 @@ export const storeProducts: Product[] = [
     description: faker.lorem.lines(5),
     price: parseInt(faker.finance.amount(1200, 2100), 10),
     specs: {
-      grossWeight: OUNCE_WEIGHT,
+      grossWeight: 33.93,
+      netWeight: OUNCE_WEIGHT,
+      fineness: '916.6/1000',
+      dimensions: 'Ø 32.70',
+      country: 'USA',
     },
     images: [
       {

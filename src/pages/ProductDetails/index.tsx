@@ -7,7 +7,19 @@ import {
   SimpleGrid,
   Stack,
   StackDivider,
+  Tab,
+  Table,
+  TableContainer,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Tbody,
+  Td,
   Text,
+  Th,
+  Thead,
+  Tr,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { useParams } from 'react-router-dom';
@@ -41,7 +53,7 @@ const ProductDetails: FC = () => {
     return <ProductNotFound />;
   }
 
-  const { category, images, description, metal, name, price, id } = product;
+  const { category, images, description, metal, name, price, id, specs } = product;
 
   return (
     <>
@@ -59,17 +71,55 @@ const ProductDetails: FC = () => {
               <ProductPriceAndVariation metal={metal} price={price} />
             </Box>
             <Stack spacing={{ base: 4, sm: 6 }} direction={'column'} divider={<StackDivider borderColor={color} />}>
-              <Box>
+              {/* <Box>
                 <Heading as="h3" size="md" color={labelColor} textTransform={'uppercase'} mb={'4'}>
                   {t('details')}
                 </Heading>
                 <Text as="p">{description}</Text>
-              </Box>
+              </Box> */}
               <Box>
                 <Heading as="h3" size="md" color={labelColor} textTransform={'uppercase'} mb={'4'}>
-                  {t('specs')}
+                  {t('details')}
                 </Heading>
-                <Text as="p">TODO: Put the specs in a tab system</Text>
+                <Tabs isLazy isFitted size="md" colorScheme="Gold.500">
+                  <TabList>
+                    <Tab color={labelColor} textTransform={'uppercase'} mb={'4'}>
+                      {t('specs')}
+                    </Tab>
+                    <Tab color={labelColor} textTransform={'uppercase'} mb={'4'}>
+                      {t('history')}
+                    </Tab>
+                  </TabList>
+                  <TabPanels>
+                    <TabPanel>
+                      <TableContainer>
+                        <Table size="sm">
+                          <Thead>
+                            <Tr>
+                              <Th>{`${t('gross-weight')} (gr)`}</Th>
+                              <Th>{`${t('net-weight')} (gr)`}</Th>
+                              <Th>{t('fineness')}</Th>
+                              <Th>{`${t('dimensions')} (MM)`}</Th>
+                              <Th>{`${t('country')}`}</Th>
+                            </Tr>
+                          </Thead>
+                          <Tbody>
+                            <Tr>
+                              <Td>{specs.grossWeight}</Td>
+                              <Td>{specs.netWeight}</Td>
+                              <Td>{specs.fineness}</Td>
+                              <Td>{specs.dimensions}</Td>
+                              <Td>{specs.country}</Td>
+                            </Tr>
+                          </Tbody>
+                        </Table>
+                      </TableContainer>
+                    </TabPanel>
+                    <TabPanel>
+                      <Text as="p">{description}</Text>
+                    </TabPanel>
+                  </TabPanels>
+                </Tabs>
               </Box>
               <Box>
                 <Heading as="h3" size="md" color={labelColor} textTransform={'uppercase'} mb={'4'}>
