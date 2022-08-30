@@ -1,4 +1,4 @@
-import { Badge, Box, Collapse, Container, HStack, Portal, useDisclosure, useOutsideClick } from '@chakra-ui/react';
+import { Badge, Box, Collapse, HStack, Portal, useDisclosure, useOutsideClick } from '@chakra-ui/react';
 import { FC, RefObject, useContext, useRef } from 'react';
 import { CgShoppingCart } from 'react-icons/cg';
 

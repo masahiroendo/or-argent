@@ -16,6 +16,7 @@ import Products from '../pages/Products';
 import Profile from '../pages/Profile';
 import ProtectedRoute from './ProtectedRoute';
 import CartPage from '../pages/Cart';
+import CheckOut from '../pages/Cart/CheckOut';
 
 const AppRoutes: FC = () => {
   return (
@@ -25,8 +26,10 @@ const AppRoutes: FC = () => {
         <Route path="/" element={<Home />} />
         <Route path={ROUTES.CALLBACK} element={<CallBack />} />
         <Route path={ROUTES.CART} element={<CartPage />} />
-        <Route path={ROUTES.CREATE_ACCOUNT} element={<CreateAccount />} />
+        <Route path={`${ROUTES.CART}/${ROUTES.CHECKOUT}`} element={<CheckOut />} />
         <Route path={ROUTES.CONTACT} element={<Contact />} />
+        <Route path={ROUTES.CREATE_ACCOUNT} element={<CreateAccount />} />
+        <Route path={ROUTES.CREATE_ACCOUNT} element={<CreateAccount />} />
         <Route path={`${ROUTES.METAL}/:metal`} element={<MetalPage />} />
         <Route path={`${ROUTES.PRODUCTS}/:slug`} element={<ProductDetails />} />
         <Route path={ROUTES.PRODUCTS} element={<Products />} />

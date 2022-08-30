@@ -3,10 +3,12 @@ import { CgShoppingCart } from 'react-icons/cg';
 import { FC, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AiOutlineGold } from 'react-icons/ai';
+import { NavLink } from 'react-router-dom';
 
 import { CartItem } from '../../contexts/CartContext';
 import GoldButton from '../../components/buttons/GoldButton';
 import { CurrencyContext } from '../../contexts/CurrencyContext';
+import { ROUTES } from '../../router/constant';
 
 type CartSummaryProps = {
   items: CartItem[];
@@ -43,16 +45,18 @@ const CartSummary: FC<CartSummaryProps> = ({ items }) => {
       <Heading as="h4" size="sm">
         {t('grand-total')}: {currency.symbol} {cartTotal}
       </Heading>
-      <GoldButton
-        aria-label="Add to cart"
-        rightIcon={<CgShoppingCart fontSize={30} />}
-        _hover={{
-          transform: 'translateY(2px)',
-          boxShadow: 'lg',
-        }}
-        w="full">
-        {t('proceed-to-checkout')}
-      </GoldButton>
+      <NavLink to={`/${ROUTES.CART}/${ROUTES.CHECKOUT}`}>
+        <GoldButton
+          aria-label="Add to cart"
+          rightIcon={<CgShoppingCart fontSize={30} />}
+          _hover={{
+            transform: 'translateY(2px)',
+            boxShadow: 'lg',
+          }}
+          w="full">
+          {t('proceed-to-checkout')}
+        </GoldButton>
+      </NavLink>
     </Stack>
   );
 };

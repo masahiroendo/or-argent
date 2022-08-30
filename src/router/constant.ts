@@ -3,6 +3,7 @@ export const ROUTES = Object.freeze({
   CALLBACK: 'callback',
   CART: 'cart',
   CHART: 'chart',
+  CHECKOUT: 'check-out',
   CONTACT: 'contact',
   CREATE_ACCOUNT: 'create-account',
   DELIVERY: 'delivery',

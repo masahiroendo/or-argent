@@ -94,7 +94,7 @@ const ProductDetails: FC = () => {
                               <Th>{`${t('net-weight', { ns: 'products' })}`}</Th>
                               <Th>{t('fineness', { ns: 'products' })}</Th>
                               <Th>{`${t('dimensions', { ns: 'products' })}`}</Th>
-                              <Th>{`${(t('country'), { ns: 'products' })}`}</Th>
+                              <Th>{`${t('country', { ns: 'products' })}`}</Th>
                             </Tr>
                           </Thead>
                           <Tbody>
