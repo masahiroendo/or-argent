@@ -38,9 +38,7 @@ const NavBarCart: FC<NavBarCartProps> = ({ parentRef }) => {
       </Box>
       <Portal containerRef={parentRef}>
         <Collapse in={isOpen} animateOpacity>
-          <Container maxW={'480px'}>
-            <NavBarCartMenu onGoToCartClick={onClose} />
-          </Container>
+          <NavBarCartMenu onGoToCartClick={onClose} />
         </Collapse>
       </Portal>
     </HStack>

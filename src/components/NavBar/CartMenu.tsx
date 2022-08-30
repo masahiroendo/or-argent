@@ -1,4 +1,4 @@
-import { Box, Flex, Icon, Image, List, ListItem, OrderedList, SimpleGrid } from '@chakra-ui/react';
+import { Box, Center, Container, Flex, Icon, Image, List, ListItem } from '@chakra-ui/react';
 import { GoTrashcan } from 'react-icons/go';
 import { FC, useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
@@ -23,38 +23,42 @@ const NavBarCartMenu: FC<NavBarCartMenuProps> = ({ onGoToCartClick }) => {
   };
 
   return (
-    <SimpleGrid pb={2}>
-      <List>
-        <OrderedList>
+    <Container justifyContent="center" maxW="container.xl">
+      <Flex direction="column">
+        <List>
           {cartItems.map((p) => (
             <ListItem key={p.id}>
-              <Flex direction="row" justifyContent="center">
-                <NavLink to={`${ROUTES.PRODUCTS}/${p.slug}`}>
+              <Flex direction="row" alignItems="center" gap={8}>
+                <NavLink to={`${ROUTES.PRODUCTS}/${p.slug}`} onClick={onGoToCartClick}>
                   <Image src={p.image} boxSize="100px" objectFit="cover" />
                 </NavLink>
-                <Box>{p.name} </Box>
                 <Box>
-                  {currency.symbol} {p.price}{' '}
+                  <NavLink to={`${ROUTES.PRODUCTS}/${p.slug}`} onClick={onGoToCartClick}>
+                    {p.name}
+                  </NavLink>
+                  <Box>
+                    {currency.symbol} {p.price}{' '}
+                  </Box>
                 </Box>
                 <Box>x {p.quantity} </Box>
                 <Icon as={GoTrashcan} cursor="pointer" onClick={() => handleRemove(p.id)} />
               </Flex>
             </ListItem>
           ))}
-        </OrderedList>
-      </List>
-      {!cartIsEmpty ? (
-        <Link to={ROUTES.CART}>
-          <GoldButton boxSize="full" onClick={onGoToCartClick}>
-            Go to Cart
-          </GoldButton>
-        </Link>
-      ) : (
-        <Flex justifyContent="center" display="flex">
-          Cart is empty
-        </Flex>
-      )}
-    </SimpleGrid>
+        </List>
+        <Center>
+          {!cartIsEmpty ? (
+            <Link to={ROUTES.CART}>
+              <GoldButton onClick={onGoToCartClick}>Go to Cart</GoldButton>
+            </Link>
+          ) : (
+            <Flex justifyContent="center" display="flex">
+              Cart is empty
+            </Flex>
+          )}
+        </Center>
+      </Flex>
+    </Container>
   );
 };
 
