@@ -1,4 +1,4 @@
-import { Box, Center, Container, Flex, Icon, Image, List, ListItem } from '@chakra-ui/react';
+import { Box, Container, Flex, Icon, Image, List, ListItem, VStack } from '@chakra-ui/react';
 import { GoTrashcan } from 'react-icons/go';
 import { FC, useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
@@ -23,8 +23,8 @@ const NavBarCartMenu: FC<NavBarCartMenuProps> = ({ onGoToCartClick }) => {
   };
 
   return (
-    <Container justifyContent="center" maxW="container.xl">
-      <Flex direction="column">
+    <Container maxW="container.xl">
+      <VStack>
         <List>
           {cartItems.map((p) => (
             <ListItem key={p.id}>
@@ -46,18 +46,16 @@ const NavBarCartMenu: FC<NavBarCartMenuProps> = ({ onGoToCartClick }) => {
             </ListItem>
           ))}
         </List>
-        <Center>
-          {!cartIsEmpty ? (
-            <Link to={ROUTES.CART}>
-              <GoldButton onClick={onGoToCartClick}>Go to Cart</GoldButton>
-            </Link>
-          ) : (
-            <Flex justifyContent="center" display="flex">
-              Cart is empty
-            </Flex>
-          )}
-        </Center>
-      </Flex>
+        {!cartIsEmpty ? (
+          <Link to={ROUTES.CART}>
+            <GoldButton onClick={onGoToCartClick}>Go to Cart</GoldButton>
+          </Link>
+        ) : (
+          <Flex justifyContent="center" display="flex">
+            Cart is empty
+          </Flex>
+        )}
+      </VStack>
     </Container>
   );
 };
