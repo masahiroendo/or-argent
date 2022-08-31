@@ -1,22 +1,15 @@
 import { Heading, List, ListIcon, ListItem, Stack } from '@chakra-ui/react';
-import { CgShoppingCart } from 'react-icons/cg';
-import { FC, useContext } from 'react';
+import { FC, PropsWithChildren, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AiOutlineGold } from 'react-icons/ai';
-import { NavLink } from 'react-router-dom';
 
-import { CartItem } from '../../contexts/CartContext';
-import GoldButton from '../../components/buttons/GoldButton';
 import { CurrencyContext } from '../../contexts/CurrencyContext';
-import { ROUTES } from '../../router/constant';
+import useCart from '../../hooks/use-cart';
 
-type CartSummaryProps = {
-  items: CartItem[];
-};
-
-const CartSummary: FC<CartSummaryProps> = ({ items }) => {
+const CartSummary: FC<PropsWithChildren<{}>> = ({ children }) => {
   const { t } = useTranslation('cart');
   const { currency } = useContext(CurrencyContext);
+  const { cartItems: items } = useCart();
 
   const cartTotal: number = items.reduce((acc, curr) => {
     return acc + curr.price * curr.quantity;
@@ -45,18 +38,7 @@ const CartSummary: FC<CartSummaryProps> = ({ items }) => {
       <Heading as="h4" size="sm">
         {t('grand-total')}: {currency.symbol} {cartTotal}
       </Heading>
-      <NavLink to={`/${ROUTES.CART}/${ROUTES.CHECKOUT}`}>
-        <GoldButton
-          aria-label="Add to cart"
-          rightIcon={<CgShoppingCart fontSize={30} />}
-          _hover={{
-            transform: 'translateY(2px)',
-            boxShadow: 'lg',
-          }}
-          w="full">
-          {t('proceed-to-checkout')}
-        </GoldButton>
-      </NavLink>
+      {children}
     </Stack>
   );
 };
