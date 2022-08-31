@@ -8,8 +8,16 @@
     "sub-total": "Sous-total"
   },
   "cart-summary": "Récapitulatif du panier",
+  "city-name": "Nom du lieu d'habitation",
   "empty-cart": "Votre panier est vide",
+  "payment": "Payer",
+  "payment-method": "Méthode de paiement",
+  "personal-info": "Informations personelle",
   "proceed-to-checkout": "Procéder au paiement",
+  "shipping-address": "Address de livraison",
+  "street-name-number": "Nom et numéro de rue/voie",
   "sub-total": "Sous-total",
-  "to-products-page": "Retour à la page produits"
+  "to-products-page": "Retour à la page produits",
+  "zip-code": "Code postal",
+  "zip-code-error-message": "Le code postal doit contenir aumoins 5 chiffres"
 }

@@ -23,7 +23,7 @@ import CartSummary from './CartSummary';
 
 const CheckOut = () => {
   const { signedIn, me } = useAuth();
-  const { t } = useTranslation();
+  const { t } = useTranslation(['translation', 'cart']);
 
   const [checkoutIsValid, setCheckoutIsValid] = useState(false);
 
@@ -51,23 +51,28 @@ const CheckOut = () => {
                 <Input type="email" id="email" name="email" placeholder={`${t('email')}`} />
               </FormControl>
             </Box>
-            <Heading>{t('shipping-address')}</Heading>
+            <Heading>{t('shipping-address', { ns: 'cart' })}</Heading>
             <Box>
               <FormControl isRequired>
-                <FormLabel htmlFor="streetname">{t('street-name-number')}</FormLabel>
-                <Input type="text" id="streetname" name="streetname" placeholder={`${t('street-name-number')}`} />
+                <FormLabel htmlFor="streetname">{t('street-name-number', { ns: 'cart' })}</FormLabel>
+                <Input
+                  type="text"
+                  id="streetname"
+                  name="streetname"
+                  placeholder={`${t('street-name-number', { ns: 'cart' })}`}
+                />
               </FormControl>
               <FormControl isRequired>
-                <FormLabel htmlFor="zipcode">{t('zip-code')}</FormLabel>
-                <Input type="text" id="zipcode" name="zipcode" placeholder={`${t('zip-code')}`} />
-                {!isFiveDigit && <FormErrorMessage>{t('zip-code-error-message')}</FormErrorMessage>}
+                <FormLabel htmlFor="zipcode">{t('zip-code', { ns: 'cart' })}</FormLabel>
+                <Input type="text" id="zipcode" name="zipcode" placeholder={`${t('zip-code', { ns: 'cart' })}`} />
+                {!isFiveDigit && <FormErrorMessage>{t('zip-code-error-message', { ns: 'cart' })}</FormErrorMessage>}
               </FormControl>
               <FormControl isRequired>
-                <FormLabel htmlFor="city">{t('city-name')}</FormLabel>
-                <Input type="text" id="city" name="city" placeholder={`${t('city-name')}`} />
+                <FormLabel htmlFor="city">{t('city-name', { ns: 'cart' })}</FormLabel>
+                <Input type="text" id="city" name="city" placeholder={`${t('city-name', { ns: 'cart' })}`} />
               </FormControl>
             </Box>
-            <Heading>{t('payment-method')}</Heading>
+            <Heading>{t('payment-method', { ns: 'cart' })}</Heading>
             <FormControl>
               <RadioGroup>
                 <Radio value="PayPal">PayPal</Radio>
