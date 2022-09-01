@@ -1,10 +1,11 @@
-import { FC, useContext } from 'react';
+import { FC, useContext, useState } from 'react';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import { useNavigate } from 'react-router-dom';
 
 import { CurrencyContext } from '../../contexts/CurrencyContext';
 import useCart from '../../hooks/use-cart';
 import { ROUTES } from '../../router/constant';
-import { useNavigate } from 'react-router-dom';
+import { Order, PAYPAL_FUNDING_SOURCE } from './types';
 
 const options = {
   'client-id': 'AeVOJySoJ_21UqaZ13EKkAVjCYcHTmibi5n8DoXiWi2RLb89aJKXmcKzJTMLQUKlkqm2B2_BEOy3De1S',
@@ -17,16 +18,19 @@ const ORDERS_KEY = 'or_argent_orders';
 const PaypalCheckout: FC = () => {
   const { currency } = useContext(CurrencyContext);
   const { cartItems, cartTotal, clearCart, taxes } = useCart();
+  const [fundingMethod, setFundingMethod] = useState<PAYPAL_FUNDING_SOURCE>('paypal');
   const navigate = useNavigate();
 
-  const convertCartAndAppendToOrders = (id: string, time: string, status: string) => {
-    const order = {
+  const convertCartAndAppendToOrders = (id: string, time: string, status: string, fMethod: PAYPAL_FUNDING_SOURCE) => {
+    const order: Order = {
       id,
       orderDate: time,
       status,
       total: cartTotal,
       taxes: taxes,
       articles: [...cartItems],
+      paymentType: 'Paypal',
+      fundingMethod: fMethod,
     };
     const parsed = localStorage.getItem(ORDERS_KEY);
     if (!parsed) {
@@ -44,6 +48,7 @@ const PaypalCheckout: FC = () => {
     <PayPalScriptProvider options={options}>
       <PayPalButtons
         createOrder={(data, actions) => {
+          setFundingMethod(data.paymentSource);
           return actions.order.create({
             intent: 'CAPTURE',
             purchase_units: [
@@ -62,7 +67,7 @@ const PaypalCheckout: FC = () => {
             const id = details?.id;
             const time = details?.create_time;
             const status = details?.status;
-            convertCartAndAppendToOrders(id, time, status);
+            convertCartAndAppendToOrders(id, time, status, fundingMethod);
           });
         }}
         onError={(err) => {
