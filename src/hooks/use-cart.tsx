@@ -23,8 +23,16 @@ const useCart = () => {
     };
   });
 
+  const cartTotal: number = cartItems.reduce((acc, curr) => {
+    return acc + curr.price * curr.quantity;
+  }, 0);
+
+  const taxes = cartTotal * (1 - 1 / 1.2);
+
   return {
     cartItems,
+    cartTotal,
+    taxes,
     addToCart,
     updateCartItem,
     removeFromCart,

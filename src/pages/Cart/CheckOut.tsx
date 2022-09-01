@@ -17,15 +17,16 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { grids, columns } from './';
-import GoldButton from '../../components/buttons/GoldButton';
 import useAuth from '../../hooks/use-auth';
 import CartSummary from './CartSummary';
+import PaypalCheckout from './PaypalCheckout';
+import StripeCheckout from './StripeCheckout';
 
 const CheckOut = () => {
   const { signedIn, me } = useAuth();
   const { t } = useTranslation(['translation', 'cart']);
 
-  const [checkoutIsValid, setCheckoutIsValid] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState('');
 
   const isFiveDigit = (value: string) => value.trim().length === 5;
 
@@ -34,7 +35,7 @@ const CheckOut = () => {
       <Grid templateAreas={grids} templateColumns={columns} gap={6}>
         <GridItem area="products" px={{ xl: '13em' }}>
           <Stack direction={'column'} gap={6}>
-            <Heading>{t('personal-info')}</Heading>
+            <Heading>{t('personal-info', { ns: 'cart' })}</Heading>
             <Box>
               <HStack>
                 <FormControl isRequired>
@@ -74,7 +75,7 @@ const CheckOut = () => {
             </Box>
             <Heading>{t('payment-method', { ns: 'cart' })}</Heading>
             <FormControl>
-              <RadioGroup>
+              <RadioGroup onChange={setPaymentMethod} value={paymentMethod}>
                 <Radio value="PayPal">PayPal</Radio>
                 <Radio value="Stripe">Stripe</Radio>
               </RadioGroup>
@@ -83,7 +84,7 @@ const CheckOut = () => {
         </GridItem>
         <GridItem area="summary">
           <CartSummary>
-            <GoldButton isDisabled={!checkoutIsValid}>{t('payment')}</GoldButton>
+            {paymentMethod === 'PayPal' ? <PaypalCheckout /> : paymentMethod === 'Stripe' ? <StripeCheckout /> : <></>}
           </CartSummary>
         </GridItem>
       </Grid>

@@ -9,13 +9,7 @@ import useCart from '../../hooks/use-cart';
 const CartSummary: FC<PropsWithChildren<{}>> = ({ children }) => {
   const { t } = useTranslation('cart');
   const { currency } = useContext(CurrencyContext);
-  const { cartItems: items } = useCart();
-
-  const cartTotal: number = items.reduce((acc, curr) => {
-    return acc + curr.price * curr.quantity;
-  }, 0);
-
-  const taxes = cartTotal * (1 - 1 / 1.2);
+  const { cartItems: items, cartTotal, taxes } = useCart();
 
   return (
     <Stack direction="column" gap={4}>
