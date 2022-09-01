@@ -10,6 +10,7 @@
   "cart-summary": "買い物カゴの概要",
   "city-name": "市町村名",
   "empty-cart": "買い物カゴに商品がはいっていません",
+  "grand-total": "合計",
   "payment": "支払いを行う",
   "payment-method": "支払い方法",
   "personal-info": "個人情報",
@@ -17,6 +18,7 @@
   "shipping-address": "郵送先",
   "street-name-number": "住所",
   "sub-total": "小計",
+  "taxes": "税",
   "to-products-page": "商品ページに戻る",
   "zip-code": "郵便番号",
   "zip-code-error-message": "5桁の数字の郵便番号を入力ください"

@@ -10,6 +10,7 @@
   "cart-summary": "Cart summary",
   "city-name": "City name",
   "empty-cart": "Your cart is empty",
+  "grand-total": "Grand total",
   "payment": "Pay",
   "payment-method": "Payment method",
   "personal-info": "Personal information",
@@ -17,6 +18,7 @@
   "shipping-address": "Shipping Address",
   "street-name-number": "Street name, street number",
   "sub-total": "Sub-total",
+  "taxes": "Taxes",
   "to-products-page": "Back to Products Page",
   "zip-code": "Zip code",
   "zip-code-error-message": "Zip code must be at least 5 digits"

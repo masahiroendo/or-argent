@@ -1,4 +1,5 @@
 {
+  "account": "Compte",
   "agree-terms-and-conditions": "J'accepte les conditions d'utilisation. Pour découvrir comment nous utilisons et protégeons vos données, consultez notre politique de confidentialité.",
   "back": "Retour",
   "bar": "Lingot",
@@ -32,6 +33,7 @@
   "lastname": "Nom",
   "metal": "Métal",
   "narrow-your-search": "Affinez votre recherche",
+  "orders": "Commandes",
   "open": "Ouverture",
   "palladium": "Palladium",
   "page-is-under-construction": "Cette page est en cours de dévelopement",

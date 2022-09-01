@@ -13,7 +13,7 @@ import {
   RadioGroup,
   Stack,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { ChangeEventHandler, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { grids, columns } from './';
@@ -22,13 +22,20 @@ import CartSummary from './CartSummary';
 import PaypalCheckout from './PaypalCheckout';
 import StripeCheckout from './StripeCheckout';
 
+const zipCodeRegex = new RegExp(/^\d{5}(?:[-\s]\d{4})?$/);
+
 const CheckOut = () => {
   const { signedIn, me } = useAuth();
   const { t } = useTranslation(['translation', 'cart']);
-
   const [paymentMethod, setPaymentMethod] = useState('');
+  const [zipCode, setZipcode] = useState('');
 
-  const isFiveDigit = (value: string) => value.trim().length === 5;
+  const handleZipCodeChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    setZipcode(event.target.value);
+  };
+
+  // const isZipCodeInvalid = zipCode !== '' && zipCode.trim().length !== 5;
+  const isZipCodeInvalid = zipCode !== '' && !zipCodeRegex.test(zipCode);
 
   return (
     <Container my={5} maxW="8xl">
@@ -63,10 +70,16 @@ const CheckOut = () => {
                   placeholder={`${t('street-name-number', { ns: 'cart' })}`}
                 />
               </FormControl>
-              <FormControl isRequired>
+              <FormControl isRequired onChange={handleZipCodeChange} isInvalid={isZipCodeInvalid}>
                 <FormLabel htmlFor="zipcode">{t('zip-code', { ns: 'cart' })}</FormLabel>
-                <Input type="text" id="zipcode" name="zipcode" placeholder={`${t('zip-code', { ns: 'cart' })}`} />
-                {!isFiveDigit && <FormErrorMessage>{t('zip-code-error-message', { ns: 'cart' })}</FormErrorMessage>}
+                <Input
+                  value={zipCode}
+                  type="text"
+                  id="zipcode"
+                  name="zipcode"
+                  placeholder={`${t('zip-code', { ns: 'cart' })}`}
+                />
+                <FormErrorMessage>{t('zip-code-error-message', { ns: 'cart' })}</FormErrorMessage>
               </FormControl>
               <FormControl isRequired>
                 <FormLabel htmlFor="city">{t('city-name', { ns: 'cart' })}</FormLabel>

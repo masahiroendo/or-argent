@@ -10,6 +10,7 @@
   "cart-summary": "Récapitulatif du panier",
   "city-name": "Nom du lieu d'habitation",
   "empty-cart": "Votre panier est vide",
+  "grand-total": "Total",
   "payment": "Payer",
   "payment-method": "Méthode de paiement",
   "personal-info": "Informations personelle",
@@ -17,6 +18,7 @@
   "shipping-address": "Address de livraison",
   "street-name-number": "Nom et numéro de rue/voie",
   "sub-total": "Sous-total",
+  "taxes": "TVA",
   "to-products-page": "Retour à la page produits",
   "zip-code": "Code postal",
   "zip-code-error-message": "Le code postal doit contenir aumoins 5 chiffres"

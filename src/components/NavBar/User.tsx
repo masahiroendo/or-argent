@@ -63,7 +63,7 @@ const User: FC<UserProps> = ({ parentRef }) => {
           </MenuButton>
           <MenuList>
             <MenuItem as={NavLink} to={ROUTES.PROFILE}>
-              Profile
+              {t('account')}, {t('orders')}
             </MenuItem>
             <MenuDivider />
             <MenuItem onClick={handleSignOut} pr={5}>

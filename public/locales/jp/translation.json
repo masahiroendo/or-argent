@@ -1,4 +1,5 @@
 {
+  "account": "アカウント",
   "agree-terms-and-conditions": "会員規約および個人情報保護方針に同意して会員登録を進める",
   "back": "戻る",
   "bar": "地金",
@@ -33,6 +34,7 @@
   "metal": "金属",
   "narrow-your-search": "絞り込み表示",
   "open": "オープン価格",
+  "orders": "購入履歴",
   "page-is-under-construction": "このページは現在準備中です",
   "performance": "パフォーマンス",
   "palladium": "パラジウム",

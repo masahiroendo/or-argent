@@ -1,4 +1,5 @@
 {
+  "profile": "Account",
   "agree-terms-and-conditions": "I agree to the Terms. Learn about how we use and protect your data in our Privacy Policy.",
   "back": "Back",
   "bar": "Bar",
@@ -32,6 +33,7 @@
   "lastname": "Last name",
   "metal": "Metal",
   "narrow-your-search": "Narrow your search",
+  "orders": "Orders",
   "open": "Open",
   "palladium": "Palladium",
   "page-is-under-construction": "This page is under construction",
