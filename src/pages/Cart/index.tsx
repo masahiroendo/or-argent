@@ -31,7 +31,7 @@ export const columns = {
 };
 
 const CartPage: FC = () => {
-  const { t } = useTranslation('cart');
+  const { t } = useTranslation(['translation', 'cart']);
   const { cartItems } = useCart();
 
   const cartIsEmpty = cartItems.length === 0;
@@ -39,7 +39,7 @@ const CartPage: FC = () => {
   if (cartIsEmpty) {
     return (
       <Center h="68vh" flexDirection="column" gap={6}>
-        <Text>{t('empty-cart')}</Text>
+        <Text>{t('empty-cart', { ns: 'cart' })}</Text>
         <NavLink to={`/${ROUTES.PRODUCTS}`}>{t('to-products-page')}</NavLink>
         <EmptyCartIcon w={256} h={256} />
       </Center>
@@ -63,7 +63,7 @@ const CartPage: FC = () => {
                   boxShadow: 'lg',
                 }}
                 w="full">
-                {t('proceed-to-checkout')}
+                {t('proceed-to-checkout', { ns: 'cart' })}
               </GoldButton>
             </NavLink>
           </CartSummary>

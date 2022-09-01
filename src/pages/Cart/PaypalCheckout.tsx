@@ -6,6 +6,7 @@ import { CurrencyContext } from '../../contexts/CurrencyContext';
 import useCart from '../../hooks/use-cart';
 import { ROUTES } from '../../router/constant';
 import { Order, PAYPAL_FUNDING_SOURCE } from './types';
+import useOrders from '../../hooks/use-orders';
 
 const options = {
   'client-id': 'AeVOJySoJ_21UqaZ13EKkAVjCYcHTmibi5n8DoXiWi2RLb89aJKXmcKzJTMLQUKlkqm2B2_BEOy3De1S',
@@ -13,13 +14,12 @@ const options = {
   intent: 'capture',
 };
 
-const ORDERS_KEY = 'or_argent_orders';
-
 const PaypalCheckout: FC = () => {
   const { currency } = useContext(CurrencyContext);
-  const { cartItems, cartTotal, clearCart, taxes } = useCart();
-  const [fundingMethod, setFundingMethod] = useState<PAYPAL_FUNDING_SOURCE>('paypal');
   const navigate = useNavigate();
+  const [fundingMethod, setFundingMethod] = useState<PAYPAL_FUNDING_SOURCE>('paypal');
+  const { cartItems, cartTotal, clearCart, taxes } = useCart();
+  const { addOrder } = useOrders();
 
   const convertCartAndAppendToOrders = (id: string, time: string, status: string, fMethod: PAYPAL_FUNDING_SOURCE) => {
     const order: Order = {
@@ -32,14 +32,8 @@ const PaypalCheckout: FC = () => {
       paymentType: 'Paypal',
       fundingMethod: fMethod,
     };
-    const parsed = localStorage.getItem(ORDERS_KEY);
-    if (!parsed) {
-      localStorage.setItem(ORDERS_KEY, JSON.stringify([order]));
-      return;
-    }
 
-    const existingOrders = JSON.parse(parsed);
-    localStorage.setItem(ORDERS_KEY, JSON.stringify([...existingOrders, order]));
+    addOrder(order);
     clearCart();
     navigate(`/${ROUTES.PROFILE}`);
   };

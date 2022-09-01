@@ -33,6 +33,8 @@
   "lastname": "Last name",
   "metal": "Metal",
   "narrow-your-search": "Narrow your search",
+  "no-past-orders": "You have no past orders",
+  "order": "Order",
   "orders": "Orders",
   "open": "Open",
   "palladium": "Palladium",
@@ -57,6 +59,7 @@
   },
   "timezone": "Timezone",
   "title": "GOLD and SILVER",
+  "to-products-page": "Back to Products Page",
   "watch-a-demo": "Watch our video",
   "why": "Why Or-argent.fr?"
 }

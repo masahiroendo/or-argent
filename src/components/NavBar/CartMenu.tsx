@@ -7,6 +7,7 @@ import { ROUTES } from '../../router/constant';
 import GoldButton from '../buttons/GoldButton';
 import useCart from '../../hooks/use-cart';
 import { CurrencyContext } from '../../contexts/CurrencyContext';
+import { useTranslation } from 'react-i18next';
 
 type NavBarCartMenuProps = {
   onGoToCartClick: () => void;
@@ -15,6 +16,7 @@ type NavBarCartMenuProps = {
 const NavBarCartMenu: FC<NavBarCartMenuProps> = ({ onGoToCartClick }) => {
   const { currency } = useContext(CurrencyContext);
   const { cartItems, removeFromCart } = useCart();
+  const { t } = useTranslation();
 
   const cartIsEmpty = cartItems.length === 0;
 
@@ -52,7 +54,7 @@ const NavBarCartMenu: FC<NavBarCartMenuProps> = ({ onGoToCartClick }) => {
           </Link>
         ) : (
           <Flex justifyContent="center" display="flex">
-            Cart is empty
+            {t('empty-cart')}
           </Flex>
         )}
       </VStack>

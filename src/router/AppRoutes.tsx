@@ -13,7 +13,7 @@ import UnderConstruction from '../pages/UnderConstruction';
 import CreateAccount from '../pages/CreateAccount';
 import ProductDetails from '../pages/ProductDetails';
 import Products from '../pages/Products';
-import Profile from '../pages/Profile';
+import Account from '../pages/Account';
 import ProtectedRoute from './ProtectedRoute';
 import CartPage from '../pages/Cart';
 import CheckOut from '../pages/Cart/CheckOut';
@@ -38,7 +38,7 @@ const AppRoutes: FC = () => {
 
         {/* Private Routes */}
         <Route path={ROUTES.HOME} element={<ProtectedRoute />}>
-          <Route path={ROUTES.PROFILE} element={<Profile />} />
+          <Route path={ROUTES.PROFILE} element={<Account />} />
         </Route>
 
         <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />

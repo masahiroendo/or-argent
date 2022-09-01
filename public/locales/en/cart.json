@@ -19,7 +19,6 @@
   "street-name-number": "Street name, street number",
   "sub-total": "Sub-total",
   "taxes": "Taxes",
-  "to-products-page": "Back to Products Page",
   "zip-code": "Zip code",
   "zip-code-error-message": "Zip code must be at least 5 digits"
 }

@@ -12,6 +12,7 @@ import { CurrencyProvider } from './contexts/CurrencyContext';
 import { AuthContextProvider } from './contexts/AuthContext';
 import ErrorBoundary from './components/ErrorBoundary';
 import { CartContextProvider } from './contexts/CartContext';
+import { OrderContextProvider } from './contexts/OrderContext';
 
 if (isDev) {
   const { worker } = require('./mocks/browser');
@@ -26,9 +27,11 @@ root.render(
         <ChakraProvider theme={theme}>
           <AuthContextProvider>
             <CartContextProvider>
-              <CurrencyProvider>
-                <App />
-              </CurrencyProvider>
+              <OrderContextProvider>
+                <CurrencyProvider>
+                  <App />
+                </CurrencyProvider>
+              </OrderContextProvider>
             </CartContextProvider>
           </AuthContextProvider>
         </ChakraProvider>

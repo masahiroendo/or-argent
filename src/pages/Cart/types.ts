@@ -1,12 +1,12 @@
-import { Article } from '../../contexts/CartContext';
+import { CartItem } from '../../contexts/CartContext';
 
 export type Order = {
   id: string;
-  orderDate: string | Date;
+  orderDate: string;
   status: string;
   total: number;
   taxes: number;
-  articles: Article[];
+  articles: CartItem[];
   paymentType: 'Paypal' | 'Stripe';
   fundingMethod?: PAYPAL_FUNDING_SOURCE;
 };

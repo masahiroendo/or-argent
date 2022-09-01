@@ -33,7 +33,9 @@
   "lastname": "名",
   "metal": "金属",
   "narrow-your-search": "絞り込み表示",
+  "no-past-orders": "現在ご購入商品はありません",
   "open": "オープン価格",
+  "order": "購入商品",
   "orders": "購入履歴",
   "page-is-under-construction": "このページは現在準備中です",
   "performance": "パフォーマンス",
@@ -57,6 +59,7 @@
   },
   "timezone": "現地時間",
   "title": "金さん銀さん",
+  "to-products-page": "商品ページに戻る",
   "watch-a-demo": "詳しく見る",
   "why": "Or-argent.frを選ぶ理由？"
 }
