@@ -4,7 +4,7 @@ import { storeProducts } from '../constants/products';
 import CartContext, { CartItem } from '../contexts/CartContext';
 
 const useCart = () => {
-  const { articles, addToCart, removeFromCart, updateCartItem } = useContext(CartContext);
+  const { articles, addToCart, removeFromCart, updateCartItem, clearCart } = useContext(CartContext);
 
   const articlesIds = articles.map((a) => a.id);
   const filteredProducts = storeProducts.filter((p) => {
@@ -36,6 +36,7 @@ const useCart = () => {
     addToCart,
     updateCartItem,
     removeFromCart,
+    clearCart,
   };
 };
 

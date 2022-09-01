@@ -28,6 +28,7 @@ type CartContextType = {
   addToCart: (id: string, quantity: number) => void;
   removeFromCart: (id: string) => void;
   updateCartItem: (id: string, quantity: number) => void;
+  clearCart: () => void;
 };
 
 const CartContext = createContext<CartContextType>({} as CartContextType);
@@ -84,11 +85,17 @@ export const CartContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => 
     handleArticles(updatesArticles);
   };
 
+  const clearCart = () => {
+    setArticles([]);
+    localStorage.removeItem(CART_ARTICLES_KEY);
+  };
+
   const value: CartContextType = {
     articles,
     addToCart,
     removeFromCart,
     updateCartItem,
+    clearCart,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
