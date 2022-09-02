@@ -30,7 +30,7 @@ const Orders = () => {
 
   if (!orders.length) {
     return (
-      <Center h="68vh" flexDirection="column" gap={6}>
+      <Center h="68vh" flexDirection="column" gap={6} my="3em">
         <Text>{t('no-past-orders')}</Text>
         <NavLink to={`/${ROUTES.PRODUCTS}`}>{t('to-products-page')}</NavLink>
         <NoOrdersIcon w={384} h={384} />
