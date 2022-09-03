@@ -16,5 +16,6 @@ export const ROUTES = Object.freeze({
   PROFILE: 'profile',
   RATES: 'rates',
   STORING: 'storing',
+  STRIPE_PAYMENT_CONFIRMED: 'stripe-payment-confirmed',
   UNDER_CONSTRUCTION: 'under-construction',
 });

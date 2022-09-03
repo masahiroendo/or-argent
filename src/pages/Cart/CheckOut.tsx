@@ -8,6 +8,7 @@ import {
   GridItem,
   Heading,
   HStack,
+  Icon,
   Input,
   Radio,
   RadioGroup,
@@ -15,19 +16,20 @@ import {
 } from '@chakra-ui/react';
 import { ChangeEventHandler, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { FaCcPaypal, FaCcStripe } from 'react-icons/fa';
 
 import { grids, columns } from './';
-import useAuth from '../../hooks/use-auth';
+// import useAuth from '../../hooks/use-auth';
 import CartSummary from './CartSummary';
 import PaypalCheckout from './PaypalCheckout';
 import StripeCheckout from './StripeCheckout';
 
 const alphabeticRegex = new RegExp(/^[A-Za-z]+$/);
-const emailRegex = new RegExp(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/);
+const emailRegex = new RegExp(/^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/);
 const zipCodeRegex = new RegExp(/^\d{5}(?:[-\s]\d{4})?$/);
 
 const CheckOut = () => {
-  const { signedIn, me } = useAuth();
+  // const { signedIn, me } = useAuth();
   const { t } = useTranslation(['translation', 'cart']);
   const [paymentMethod, setPaymentMethod] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -111,8 +113,12 @@ const CheckOut = () => {
             <Heading>{t('payment-method', { ns: 'cart' })}</Heading>
             <FormControl>
               <RadioGroup onChange={setPaymentMethod} value={paymentMethod}>
-                <Radio value="PayPal">PayPal</Radio>
-                <Radio value="Stripe">Stripe</Radio>
+                <Radio value="PayPal" px={3}>
+                  <Icon as={FaCcPaypal} h={8} w={8} />
+                </Radio>
+                <Radio value="Stripe" px={3}>
+                  <Icon as={FaCcStripe} h={8} w={8} />
+                </Radio>
               </RadioGroup>
             </FormControl>
           </Stack>

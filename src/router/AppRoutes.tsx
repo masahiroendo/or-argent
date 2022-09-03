@@ -17,6 +17,7 @@ import Account from '../pages/Account';
 import ProtectedRoute from './ProtectedRoute';
 import CartPage from '../pages/Cart';
 import CheckOut from '../pages/Cart/CheckOut';
+import StripePaymentConfirmed from '../pages/Cart/StripePaymentConfirmed';
 
 const AppRoutes: FC = () => {
   return (
@@ -29,7 +30,6 @@ const AppRoutes: FC = () => {
         <Route path={`${ROUTES.CART}/${ROUTES.CHECKOUT}`} element={<CheckOut />} />
         <Route path={ROUTES.CONTACT} element={<Contact />} />
         <Route path={ROUTES.CREATE_ACCOUNT} element={<CreateAccount />} />
-        <Route path={ROUTES.CREATE_ACCOUNT} element={<CreateAccount />} />
         <Route path={`${ROUTES.METAL}/:metal`} element={<MetalPage />} />
         <Route path={`${ROUTES.PRODUCTS}/:slug`} element={<ProductDetails />} />
         <Route path={ROUTES.PRODUCTS} element={<Products />} />
@@ -39,6 +39,7 @@ const AppRoutes: FC = () => {
         {/* Private Routes */}
         <Route path={ROUTES.HOME} element={<ProtectedRoute />}>
           <Route path={ROUTES.PROFILE} element={<Account />} />
+          <Route path={ROUTES.STRIPE_PAYMENT_CONFIRMED} element={<StripePaymentConfirmed />} />
         </Route>
 
         <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />

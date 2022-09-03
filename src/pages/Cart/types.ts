@@ -8,8 +8,10 @@ export type Order = {
   taxes: number;
   articles: CartItem[];
   paymentType: 'Paypal' | 'Stripe';
-  fundingMethod?: PAYPAL_FUNDING_SOURCE;
+  fundingMethod?: FUNDING_SOURCE;
 };
+
+export type FUNDING_SOURCE = PAYPAL_FUNDING_SOURCE | 'stripe-card';
 
 export type PAYPAL_FUNDING_SOURCE =
   | 'paypal'

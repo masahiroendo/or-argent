@@ -16,7 +16,7 @@ type NavBarCartMenuProps = {
 const NavBarCartMenu: FC<NavBarCartMenuProps> = ({ onGoToCartClick }) => {
   const { currency } = useContext(CurrencyContext);
   const { cartItems, removeFromCart } = useCart();
-  const { t } = useTranslation();
+  const { t } = useTranslation(['translation', 'cart']);
 
   const cartIsEmpty = cartItems.length === 0;
 
@@ -54,7 +54,7 @@ const NavBarCartMenu: FC<NavBarCartMenuProps> = ({ onGoToCartClick }) => {
           </Link>
         ) : (
           <Flex justifyContent="center" display="flex">
-            {t('empty-cart')}
+            {t('empty-cart', { ns: 'cart' })}
           </Flex>
         )}
       </VStack>

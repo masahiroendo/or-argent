@@ -11,12 +11,14 @@ import {
   Divider,
   Heading,
   Flex,
+  Icon,
   Image,
   Text,
 } from '@chakra-ui/react';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
+import { FaCcPaypal, FaCcStripe } from 'react-icons/fa';
 
 import NoOrdersIcon from './NoOrdersIcon';
 import useOrders from '../../hooks/use-orders';
@@ -41,22 +43,27 @@ const Orders = () => {
   return (
     <Container maxW="container.lg">
       <Accordion allowToggle allowMultiple>
-        {orders.map(({ orderDate, total, articles, id, status }) => {
+        {orders.map(({ orderDate, total, articles, id, status, paymentType }) => {
           return (
             <AccordionItem>
               <Heading as="h2">
                 <AccordionButton>
                   <Flex textAlign="left" gap={6}>
                     <>
-                      {t('order')}: <Badge fontSize="0.9em">ID #{id}</Badge>{' '}
-                      {new Date(Date.parse(orderDate)).toLocaleDateString()}{' '}
+                      {t('order')}:
+                      {paymentType === 'Paypal' ? (
+                        <Icon as={FaCcPaypal} h={8} w={8} />
+                      ) : paymentType === 'Stripe' ? (
+                        <Icon as={FaCcStripe} h={8} w={8} />
+                      ) : null}
+                      <Badge fontSize="0.9em">ID #{id}</Badge> {new Date(Date.parse(orderDate)).toLocaleDateString()}{' '}
                       <b>
                         {total} {currency.symbol}
                       </b>
                       ({articles.length}),
                     </>
                   </Flex>
-                  <Box flex="1">
+                  <Box marginLeft="auto" px={3}>
                     <Badge variant="outline" colorScheme="green" fontSize="0.9em">
                       {status}
                     </Badge>
