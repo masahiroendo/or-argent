@@ -1,6 +1,6 @@
 import { Center, Container, Text } from '@chakra-ui/react';
 import { useEffect } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { useTranslation } from 'react-i18next';
 
@@ -9,9 +9,9 @@ import useOrders from '../../../hooks/use-orders';
 import { Order } from '../../Cart/types';
 import { ROUTES } from '../../../router/constant';
 import StripeCardPaymentIcon from './StripeCardPaymentIcon';
-import NavigateToNotFound from '../../../components/NavigateToNotFound';
 
 const StripePaymentConfirmed = () => {
+  const navigate = useNavigate();
   const { search } = useLocation();
   const paymentIntent = new URLSearchParams(search).get('payment_intent');
   const clientSecret = new URLSearchParams(search).get('payment_intent_client_secret');
@@ -21,11 +21,11 @@ const StripePaymentConfirmed = () => {
   const { addOrder } = useOrders();
 
   const isCartEmpty = !cartItems.length;
-  const hasNotStripeReturnUrlParams = !paymentIntent && !clientSecret && !status && status !== 'success';
+  const hasNotStripeReturnUrlParams = !paymentIntent && !clientSecret && !status && status !== 'succeeded';
 
   useEffect(() => {
     if (isCartEmpty || hasNotStripeReturnUrlParams) {
-      return;
+      return navigate(`/${ROUTES.NOT_FOUND}`, { replace: true });
     }
 
     const order: Order = {
@@ -43,14 +43,6 @@ const StripePaymentConfirmed = () => {
     clearCart();
     // eslint-disable-next-line
   }, []);
-
-  if (isCartEmpty) {
-    return <NavigateToNotFound />;
-  }
-
-  if (hasNotStripeReturnUrlParams) {
-    return <NavigateToNotFound />;
-  }
 
   return (
     <Container>
