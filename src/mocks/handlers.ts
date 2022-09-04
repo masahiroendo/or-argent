@@ -1,13 +1,9 @@
 import { rest } from 'msw';
 
 import { MetalsAPIOHLCResponse } from '../constants/apiResponses';
-import { makeMetalPricesApiOHLCEndpoint } from '../constants/endpoints';
+import { makeMetalPricesApiOHLCEndpoint, metalPricesTimeSeries } from '../constants/endpoints';
 import { ASSET_SYMBOLS } from '../constants/assetSymbols';
-
-const AddVariation = (base: number): number => {
-  const coef = (Math.random() * (Math.random() < 0.5 ? -1 : 1)) / 100;
-  return base * (1 + coef);
-};
+import { addVariation, generateMockTimeSeriesData } from './generators';
 
 const mockGoldData: MetalsAPIOHLCResponse = {
   success: true,
@@ -16,10 +12,10 @@ const mockGoldData: MetalsAPIOHLCResponse = {
   base: ASSET_SYMBOLS.GOLD.symbol,
   symbol: 'EUR',
   rates: {
-    open: AddVariation(1693.798718342352),
-    high: AddVariation(1701.6143690000101),
-    low: AddVariation(1681.2250673059823),
-    close: AddVariation(1684.288868735463),
+    open: addVariation(1693.798718342352),
+    high: addVariation(1701.6143690000101),
+    low: addVariation(1681.2250673059823),
+    close: addVariation(1684.288868735463),
   },
   unit: 'per ounce',
 };
@@ -30,10 +26,10 @@ const mockSilverData: MetalsAPIOHLCResponse = {
   base: ASSET_SYMBOLS.SILVER.symbol,
   symbol: 'EUR',
   rates: {
-    open: AddVariation(18.569178808078128),
-    high: AddVariation(18.731740168163707),
-    low: AddVariation(18.38340415882),
-    close: AddVariation(18.423616199999838),
+    open: addVariation(18.569178808078128),
+    high: addVariation(18.731740168163707),
+    low: addVariation(18.38340415882),
+    close: addVariation(18.423616199999838),
   },
   unit: 'per ounce',
 };
@@ -45,10 +41,10 @@ const mockPlatinumData = {
   base: ASSET_SYMBOLS.PLATINUM.symbol,
   symbol: 'EUR',
   rates: {
-    open: AddVariation(894.5151),
-    high: AddVariation(868.8545),
-    low: AddVariation(895.9507),
-    close: AddVariation(873.1459),
+    open: addVariation(894.5151),
+    high: addVariation(868.8545),
+    low: addVariation(895.9507),
+    close: addVariation(873.1459),
   },
   unit: 'per ounce',
 };
@@ -59,10 +55,10 @@ const mockPalladiumData = {
   base: ASSET_SYMBOLS.PALLADIUM.symbol,
   symbol: 'EUR',
   rates: {
-    open: AddVariation(2154.77),
-    high: AddVariation(2155.5),
-    low: AddVariation(2102.0),
-    close: AddVariation(2124.02),
+    open: addVariation(2154.77),
+    high: addVariation(2155.5),
+    low: addVariation(2102.0),
+    close: addVariation(2124.02),
   },
   unit: 'per ounce',
 };
@@ -79,6 +75,28 @@ export const handlers = [
         return res(ctx.json(mockPalladiumData));
       default:
         throw Error('no data found from OHLW endpoint');
+    }
+  }),
+
+  rest.get(metalPricesTimeSeries, (req, res, ctx) => {
+    const symbol = req.url.searchParams.get('symbols');
+    const start = req.url.searchParams.get('start_date');
+    const end = req.url.searchParams.get('end_date');
+    if (!start || !end) {
+      throw Error('wrong start_date or end end_date parameters in query');
+    }
+    console.log('symbol', symbol, start, end);
+    switch (symbol) {
+      case ASSET_SYMBOLS.GOLD.symbol:
+        return res(ctx.json(generateMockTimeSeriesData(start, end, 'XAU')));
+      // case ASSET_SYMBOLS.SILVER.symbol:
+      //   return res(ctx.json(mockSilverTimeWeriesData));
+      // case ASSET_SYMBOLS.PLATINUM.symbol:
+      //   return res(ctx.json(mockPlatinumTimeWeriesData));
+      // case ASSET_SYMBOLS.PALLADIUM.symbol:
+      //   return res(ctx.json(mockPalladiumTimeWeriesData));
+      default:
+        throw Error('no data found from timeseries endpoint');
     }
   }),
 ];
