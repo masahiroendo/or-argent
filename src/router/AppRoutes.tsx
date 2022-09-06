@@ -2,22 +2,22 @@ import { FC } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import { ROUTES } from './constant';
+import Account from '../pages/Account';
 import Layout from '../components/Layout';
+import CallBack from '../pages/Contact/CallBack';
+import CartPage from '../pages/Cart';
+import ChartPage from '../pages/Chart';
+import CheckOut from '../pages/Cart/CheckOut';
 import Contact from '../pages/Contact';
+import CreateAccount from '../pages/CreateAccount';
 import Home from '../pages/Home';
 import NotFound from '../pages/NotFound';
-import MetalPage from '../pages/Metal';
-import CallBack from '../pages/Contact/CallBack';
-import Storing from '../pages/Storing';
-import UnderConstruction from '../pages/UnderConstruction';
-import CreateAccount from '../pages/CreateAccount';
-import ProductDetails from '../pages/ProductDetails';
 import Products from '../pages/Products';
-import Account from '../pages/Account';
+import ProductDetails from '../pages/ProductDetails';
 import ProtectedRoute from './ProtectedRoute';
-import CartPage from '../pages/Cart';
-import CheckOut from '../pages/Cart/CheckOut';
+import Storing from '../pages/Storing';
 import StripePaymentConfirmed from '../pages/Cart/StripePaymentConfirmed';
+import UnderConstruction from '../pages/UnderConstruction';
 
 const AppRoutes: FC = () => {
   return (
@@ -28,9 +28,9 @@ const AppRoutes: FC = () => {
         <Route path={ROUTES.CALLBACK} element={<CallBack />} />
         <Route path={ROUTES.CART} element={<CartPage />} />
         <Route path={`${ROUTES.CART}/${ROUTES.CHECKOUT}`} element={<CheckOut />} />
+        <Route path={`${ROUTES.CHART}/:metal`} element={<ChartPage />} />
         <Route path={ROUTES.CONTACT} element={<Contact />} />
         <Route path={ROUTES.CREATE_ACCOUNT} element={<CreateAccount />} />
-        <Route path={`${ROUTES.METAL}/:metal`} element={<MetalPage />} />
         <Route path={`${ROUTES.PRODUCTS}/:slug`} element={<ProductDetails />} />
         <Route path={ROUTES.PRODUCTS} element={<Products />} />
         <Route path={ROUTES.STORING} element={<Storing />} />

@@ -25,7 +25,7 @@ export const countDaysBetween = (start: string, end: string): number => {
   const startDate = parse(start, FULL_DATE_FORMAT, new Date());
   const endDate = parse(end, FULL_DATE_FORMAT, new Date());
   const diff = differenceInBusinessDays(addBusinessDays(endDate, 1), startDate);
-  return diff;
+  return diff + 1;
 };
 
 export const generateRates = (

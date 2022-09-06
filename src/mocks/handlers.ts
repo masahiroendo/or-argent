@@ -85,16 +85,15 @@ export const handlers = [
     if (!start || !end) {
       throw Error('wrong start_date or end end_date parameters in query');
     }
-    console.log('symbol', symbol, start, end);
-    switch (symbol) {
+    switch (symbol?.toUpperCase()) {
       case ASSET_SYMBOLS.GOLD.symbol:
         return res(ctx.json(generateMockTimeSeriesData(start, end, 'XAU')));
-      // case ASSET_SYMBOLS.SILVER.symbol:
-      //   return res(ctx.json(mockSilverTimeWeriesData));
-      // case ASSET_SYMBOLS.PLATINUM.symbol:
-      //   return res(ctx.json(mockPlatinumTimeWeriesData));
-      // case ASSET_SYMBOLS.PALLADIUM.symbol:
-      //   return res(ctx.json(mockPalladiumTimeWeriesData));
+      case ASSET_SYMBOLS.SILVER.symbol:
+        return res(ctx.json(generateMockTimeSeriesData(start, end, 'XAG')));
+      case ASSET_SYMBOLS.PLATINUM.symbol:
+        return res(ctx.json(generateMockTimeSeriesData(start, end, 'XPT')));
+      case ASSET_SYMBOLS.PALLADIUM.symbol:
+        return res(ctx.json(generateMockTimeSeriesData(start, end, 'XPD')));
       default:
         throw Error('no data found from timeseries endpoint');
     }
