@@ -2,9 +2,16 @@ import { createContext, FC, useState, PropsWithChildren } from 'react';
 
 const timeout = 2000;
 
+type Address = {
+  street: string;
+  zipCode: string;
+  city: string;
+};
+
 export type User = {
   userName: string;
   email: string;
+  address?: Address;
 };
 
 type AuthContextType = {

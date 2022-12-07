@@ -1,11 +1,10 @@
 import { FC } from 'react';
-import { Stack } from '@chakra-ui/react';
+import { Stack, Text } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
 import { ROUTES } from '../../router/constant';
 import ProductMenu from './ProductMenu';
 import SimpleLink from './SimpleLink';
-import PublicationMenu from './PublicationMenu';
 import ChartMenu from './ChartMenu';
 
 const NavigationItems: FC = () => {
@@ -18,11 +17,10 @@ const NavigationItems: FC = () => {
       alignItems="flex-start"
       pl={{ base: 6, md: 0 }}>
       <ProductMenu />
-      <SimpleLink to={ROUTES.STORING} content={t('storing.title')} />
-      <SimpleLink to={ROUTES.DELIVERY} content={t('delivery.title')} />
-      <SimpleLink to={ROUTES.RATES} content={t('rates.title')} />
+      <Text>{t('storing.title')}</Text>
+      <Text>{t('delivery.title')}</Text>
+      <Text>{t('rates.title')}</Text>
       <ChartMenu />
-      <PublicationMenu />
       <SimpleLink to={ROUTES.ABOUT_US} content={t('about.title')} />
     </Stack>
   );

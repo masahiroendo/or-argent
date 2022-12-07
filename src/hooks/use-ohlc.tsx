@@ -15,7 +15,7 @@ const useOhlc = (metal: MetalSymbol) => {
 
   useEffect(() => {
     if (metal === 'UNDEFINED') {
-      setError(Error("Cannot fetch data for symbpol = 'UNDEFINED'"));
+      setError(Error("Cannot fetch data for symbol = 'UNDEFINED'"));
     }
   }, [metal]);
 

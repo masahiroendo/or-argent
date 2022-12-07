@@ -1,9 +1,9 @@
 import { format, getTime, parse, startOfMonth, startOfWeek, startOfYear } from 'date-fns';
-import { FC, useContext, useEffect, useState } from 'react';
+import { FC, ReactNode, useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Container, Table, Thead, Tbody, Tr, Th, Td, TableContainer, Heading } from '@chakra-ui/react';
 import Highcharts from 'highcharts/highstock';
 import HighchartsReact from 'highcharts-react-official';
-import { Container, Table, Thead, Tbody, Tr, Th, Td, TableContainer } from '@chakra-ui/react';
 
 import NavigateToNotFound from '../../components/NavigateToNotFound';
 import { selectMetalSymbol } from '../../constants/assetSymbols';
@@ -11,6 +11,7 @@ import { metalPricesTimeSeries } from '../../constants/endpoints';
 import { CurrencyContext } from '../../contexts/CurrencyContext';
 import { ASSET_SYMBOLS } from '../../constants/assetSymbols';
 import { useTranslation } from 'react-i18next';
+import { ArrowDownIcon, ArrowUpIcon } from '@chakra-ui/icons';
 
 const ChartPage: FC = () => {
   const { metal } = useParams();
@@ -84,31 +85,50 @@ const ChartPage: FC = () => {
     ],
   };
 
+  const yearVariation = computeVariation('year', chartData);
+  const monthVariation = computeVariation('month', chartData);
+  const weekVariation = computeVariation('week', chartData);
+  const dayVariation = computeVariation('oneDay', chartData);
+
+  const variationColor = (rate: number): string => {
+    return rate < 0 ? 'red.500' : 'green.500';
+  };
+
+  const variationIcon = (rate: number): ReactNode => {
+    return rate < 0 ? <ArrowDownIcon /> : <ArrowUpIcon />;
+  };
+
   return (
     <Container maxW="container.xl">
+      <Heading textAlign="center" my={4}>
+        {t(`evolution-of-metal`)}
+      </Heading>
       <HighchartsReact highcharts={Highcharts} constructorType={'stockChart'} options={options} />
-      <TableContainer>
+      <TableContainer my={6}>
         <Table>
           <Thead>
             <Tr>
               <Th>{t('year')}</Th>
-              {/* <Th>{t('semester')}</Th>
-              <Th>{t('trimester')}</Th> */}
               <Th>{t('month')}</Th>
               <Th>{t('week')}</Th>
-              <Th>{t('today')}</Th>
+              <Th>{t('day')}</Th>
             </Tr>
           </Thead>
           <Tbody>
             <Tr>
-              <Td>{computeVariation('year', chartData).toFixed(2)}%</Td>
-              <Td>{computeVariation('month', chartData).toFixed(2)}%</Td>
-              <Td>{computeVariation('week', chartData).toFixed(2)}%</Td>
-              <Td>{computeVariation('today', chartData).toFixed(2)}%</Td>
+              <Td textColor={variationScheme(yearVariation, ['red.500', 'green.500'])}>
+                {variationScheme(yearVariation, [<ArrowDownIcon />, <ArrowUpIcon />])} {yearVariation.toFixed(2)}%
+              </Td>
+              <Td textColor={variationColor(monthVariation)}>
+                {variationIcon(monthVariation)} {monthVariation.toFixed(2)}%
+              </Td>
+              <Td textColor={variationColor(weekVariation)}>{weekVariation.toFixed(2)}%</Td>
+              <Td textColor={variationColor(dayVariation)}>{dayVariation.toFixed(2)}%</Td>
             </Tr>
           </Tbody>
         </Table>
       </TableContainer>
+      {/* <div>Creat an account button here</div> */}
     </Container>
   );
 };
@@ -128,7 +148,7 @@ function getTimestampByStart(start: string): number {
   return -1;
 }
 
-function computeVariation(start: 'today' | 'week' | 'month' | 'year' = 'today', data: number[][]): number {
+function computeVariation(start: 'oneDay' | 'week' | 'month' | 'year' = 'oneDay', data: number[][]): number {
   if (data.length < 2) {
     return 0;
   }
@@ -158,4 +178,8 @@ function computeVariation(start: 'today' | 'week' | 'month' | 'year' = 'today', 
   const lastValue = variations[lastIndex];
   const lastPrice = lastValue[1];
   return calculateVariation(lastPrice, referencePrice);
+}
+
+function variationScheme<T>(rate: number, tab: T[]): T {
+  return rate < 0 ? tab[0] : tab[1];
 }

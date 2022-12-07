@@ -1,5 +1,5 @@
 import { FC, useContext } from 'react';
-import { HStack } from '@chakra-ui/react';
+import { Box, HStack } from '@chakra-ui/react';
 import { ArrowDownIcon, ArrowUpIcon } from '@chakra-ui/icons';
 import { useTranslation } from 'react-i18next';
 
@@ -21,10 +21,10 @@ const SpotPrice: FC<SpotPriceProps> = ({ metal }) => {
 
   return (
     <HStack className={style['spot-price']}>
-      <span>{t(metal.name)}</span> <span>{close.toFixed(2)}</span>
-      <span>{currency.symbol}</span>{' '}
+      <Box>{t(metal.name)}</Box> <Box>{close.toFixed(2)}</Box>
+      <Box>{currency.symbol}</Box>{' '}
       {variation < 0 ? <ArrowDownIcon viewBox="0 0 24 24" color="red" /> : <ArrowUpIcon color="green" />}
-      <span className={style[variationStyle]}>{variation.toPrecision(2)}%</span>
+      <Box className={style[variationStyle]}>{variation.toPrecision(2)}%</Box>
     </HStack>
   );
 };
